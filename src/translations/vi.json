@@ -1,4 +1,15 @@
 {
+    "home-header": {
+        "specialty": "Chuyên khoa",
+        "search-doctor-by-specialty": "Tìm bác sĩ theo chuyên khoa",
+        "health-facility": "Cơ sở y tế",
+        "select-clinic": "Chọn bệnh viên phòng khám",
+        "doctor": "Bác sĩ",
+        "select-doctor": "Chọn bác sĩ giỏi",
+        "check-pagekage": "Gói khám",
+        "general-check": "Khám sức khỏe tổng quát",
+        "support": "Hỗ trợ"
+    },
     "common": {
         "add": "Thêm",
         "edit": "Sửa",

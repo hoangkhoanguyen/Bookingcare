@@ -1,4 +1,15 @@
 {
+    "home-header": {
+        "specialty": "Specialty",
+        "search-doctor-by-specialty": "Search doctor by specialty",
+        "health-facility": "Health facilities",
+        "select-clinic": "Choose hospital clinic",
+        "doctor": "Doctor",
+        "select-doctor": "Choose good doctor",
+        "check-pagekage": "Checking pagekage",
+        "general-check": "General checking",
+        "support": "Support"
+    },
     "common": {
         "add": "Add",
         "edit": "Edit",
