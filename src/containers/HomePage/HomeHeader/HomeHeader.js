@@ -1,9 +1,18 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
+import '../HomeHeader/HomeHeader.scss'
 
 export const HomeHeader = () => {
     return <div className='home-header'>
-        <div className="nav-header">
+        <div className="nav-left">
+            <div className="menu-icon">
+                <i class="fas fa-bars"></i>
+            </div>
+            <div className="logo">
+                <img src="/img/Homepage/main-logo.png" alt="" />
+            </div>
+        </div>
+        <div className="nav-center">
             <div className="nav-item">
                 <h6 className="nav-title"><FormattedMessage id="home-header.specialty" /></h6>
                 <span className="sub-title"><FormattedMessage id="home-header.search-doctor-by-specialty" /></span>
@@ -21,8 +30,10 @@ export const HomeHeader = () => {
                 <span className="sub-title"><FormattedMessage id="home-header.general-check" /></span>
             </div>
         </div>
-        <div className="support">
-            <FormattedMessage id="home-header.support" />
+        <div className="nav-right">
+            <i class="fas fa-question-circle"></i>
+            <span><FormattedMessage id="home-header.support" />
+            </span>
         </div>
     </div>;
 };

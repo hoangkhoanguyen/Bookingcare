@@ -1,0 +1,23 @@
+.home-header {
+    display        : flex;
+    flex-direction : row;
+    justify-content: space-between;
+
+    .nav-left {
+        .menu-icon {}
+
+        .logo {
+            display: none;
+        }
+    }
+
+    .nav-center {
+        .nav-item {
+            .nav-title {}
+
+            .sub-title {}
+        }
+    }
+
+    .nav-right {}
+}
