@@ -4,15 +4,34 @@
     justify-content: space-between;
 
     .nav-left {
-        .menu-icon {}
+        display       : flex;
+        flex-direction: row;
+
+        .menu-icon {
+            font-size: 36px;
+        }
 
         .logo {
-            display: none;
+            height: 40px;
+            width : 180px;
+
+            img {
+                height: 100%;
+                width : 100%;
+            }
+
+            // display: none;
         }
     }
 
     .nav-center {
+        display        : flex;
+        flex-direction : row;
+        justify-content: center;
+
         .nav-item {
+            margin: auto 10px;
+
             .nav-title {}
 
             .sub-title {}

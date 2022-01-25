@@ -1,8 +1,18 @@
 import React from 'react';
+
 import { FormattedMessage } from 'react-intl';
+import { useDispatch } from 'react-redux';
+import { changeLanguage } from '../../../store/actions/appActions';
 import '../HomeHeader/HomeHeader.scss'
 
+
 export const HomeHeader = () => {
+
+    const handleChangeLanguage = (language) => {
+        dispatch(changeLanguage(language))
+    }
+
+    const dispatch = useDispatch()
     return <div className='home-header'>
         <div className="nav-left">
             <div className="menu-icon">
@@ -34,6 +44,10 @@ export const HomeHeader = () => {
             <i class="fas fa-question-circle"></i>
             <span><FormattedMessage id="home-header.support" />
             </span>
+        </div>
+        <div className="change-language">
+            <button onClick={() => { handleChangeLanguage('vi') }}>VI</button>
+            <button onClick={() => { handleChangeLanguage('en') }}>EN</button>
         </div>
     </div>;
 };

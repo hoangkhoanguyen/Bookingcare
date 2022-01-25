@@ -7,8 +7,21 @@
         "doctor": "Bác sĩ",
         "select-doctor": "Chọn bác sĩ giỏi",
         "check-pagekage": "Gói khám",
-        "general-check": "Khám sức khỏe tổng quát",
+        "general-test": "Khám sức khỏe tổng quát",
         "support": "Hỗ trợ"
+    },
+    "main-content": {
+        "health-base": "NỀN TẢNG Y TẾ",
+        "general-health-care": "CHĂM SÓC SỨC KHỎE TOÀN DIỆN",
+        "search-specialty": "Tìm chuyên khoa",
+        "specialty-test": "Khám chuyên khoa",
+        "remote-test": "Khám từ xa",
+        "general-test": "Khám tổng quát",
+        "medical-test": "Xét nghiệm y học",
+        "mental-health": "Sức khỏe tinh thần",
+        "dental-test": "Khám nha khoa",
+        "surgery pack": "Gói phẫu thuật",
+        "medical-product": "Sản phẩm y tế"
     },
     "common": {
         "add": "Thêm",

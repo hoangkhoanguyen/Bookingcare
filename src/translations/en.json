@@ -10,6 +10,19 @@
         "general-check": "General checking",
         "support": "Support"
     },
+    "main-content": {
+        "health-base": "HEALTH BASE",
+        "general-health-care": "COMPREHENSIVE HEALTH CARE",
+        "search-specialty": "Search specialty",
+        "specialty-test": "Specialty test",
+        "remote-test": "Remote test",
+        "general-test": "General test",
+        "medical-test": "Medical experiment",
+        "mental-health": "Mental health",
+        "dental-test": "Dental test",
+        "surgery pack": "Surgery pack",
+        "medical-product": "Medical product"
+    },
     "common": {
         "add": "Add",
         "edit": "Edit",

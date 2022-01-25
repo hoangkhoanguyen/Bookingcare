@@ -1,0 +1,21 @@
+.body {
+    .main-content {
+        display        : flex;
+        flex-direction : column;
+        justify-content: space-between;
+        height         : 500px;
+        box-sizing     : border-box;
+
+        .title {}
+
+        .search-area {}
+
+        .download-app {}
+
+        .category {
+            display        : flex;
+            flex-direction : row;
+            justify-content: space-around;
+        }
+    }
+}
