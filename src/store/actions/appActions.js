@@ -13,3 +13,8 @@ export const changeLanguage = (language) => ({
     type: actionTypes.CHANGE_LANGUAGE,
     language: language
 })
+
+export const showHideSidebar = (isShow) => ({
+    type: actionTypes.SET_SHOW_HIDE_SIDEBAR,
+    isShow: isShow
+})

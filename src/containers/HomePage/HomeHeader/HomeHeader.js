@@ -1,22 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
-import { useDispatch } from 'react-redux';
-import { changeLanguage } from '../../../store/actions/appActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { changeLanguage, showHideSidebar } from '../../../store/actions/appActions';
 import '../HomeHeader/HomeHeader.scss'
+import { HomeSidebar } from '../HomeSidebar/HomeSidebar';
 
 
 export const HomeHeader = () => {
 
+    const isShowSidebar = useSelector(state => state.app.isShowSidebar)
+
     const handleChangeLanguage = (language) => {
         dispatch(changeLanguage(language))
+    }
+
+    const handleShowSidebar = () => {
+        dispatch(showHideSidebar(true))
     }
 
     const dispatch = useDispatch()
     return <div className='home-header'>
         <div className="nav-left">
             <div className="menu-icon">
-                <i class="fas fa-bars"></i>
+                <i class="fas fa-bars" onClick={handleShowSidebar}></i>
             </div>
             <div className="logo">
                 <img src="/img/Homepage/main-logo.png" alt="" />
@@ -49,5 +56,6 @@ export const HomeHeader = () => {
             <button onClick={() => { handleChangeLanguage('vi') }}>VI</button>
             <button onClick={() => { handleChangeLanguage('en') }}>EN</button>
         </div>
+        {isShowSidebar && <HomeSidebar />}
     </div>;
 };

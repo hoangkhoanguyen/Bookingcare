@@ -2,6 +2,9 @@
     display        : flex;
     flex-direction : row;
     justify-content: space-between;
+    height         : 100px;
+    width          : 100vw;
+    min-width      : 1000px;
 
     .nav-left {
         display       : flex;
@@ -20,7 +23,6 @@
                 width : 100%;
             }
 
-            // display: none;
         }
     }
 

@@ -13,7 +13,8 @@ const initialState = {
     systemMenuPath: '/system/user-manage',
     contentOfConfirmModal: {
         ...initContentOfConfirmModal
-    }
+    },
+    isShowSidebar: false
 }
 
 const appReducer = (state = initialState, action) => {
@@ -35,6 +36,11 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 language: action.language
+            }
+        case actionTypes.SET_SHOW_HIDE_SIDEBAR:
+            return {
+                ...state,
+                isShowSidebar: action.isShow
             }
         default:
             return state;

@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../MainContent/MainContent.scss'
 import { FormattedMessage } from 'react-intl';
 
 export const MainContent = () => {
+    const [placeholderText, setPlaceholder] = useState("main-content.search-specialty")
+
+    useEffect(() => {
+        let timer
+        timer = setTimeout(() => {
+            if (placeholderText == "main-content.search-specialty") {
+                setPlaceholder("main-content.search-hospital")
+            } else {
+                setPlaceholder("main-content.search-specialty")
+            }
+        }, 3000)
+        return () => {
+            clearTimeout(timer)
+        };
+    }, [placeholderText]);
+
+
     return <div className="main-content" >
         <div className="title">
             <h1><FormattedMessage id="main-content.health-base" /></h1>
@@ -10,7 +27,11 @@ export const MainContent = () => {
         </div>
         <div className="search-area">
             <i className="fas fa-search"></i>
-            <input type="text" placeholder={<FormattedMessage id="main-content.search-specialty" />} />
+            <FormattedMessage id={placeholderText} >
+                {placeholder =>
+                    <input placeholder={placeholder} />
+                }
+            </FormattedMessage>
         </div>
         <div className="download-app"></div>
         <div className="category">
@@ -31,7 +52,7 @@ export const MainContent = () => {
                 <h6 className="name"><FormattedMessage id="main-content.medical-test" /></h6>
             </div>
             <div className="category-item">
-                <i className="fas fa-smile-wink"></i>
+                <i class="far fa-smile"></i>
                 <h6 className="name"><FormattedMessage id="main-content.mental-health" /></h6>
             </div>
             <div className="category-item">
