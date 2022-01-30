@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Slider from "react-slick";
 
 import '../HomeAutoSlider/HomeSliderAutoScroll.scss'
 
 export const HomeSliderAutoScroll = () => {
+
+    const carousel = useRef(null)
 
     let settings = {
         dots: false,
@@ -66,38 +68,21 @@ export const HomeSliderAutoScroll = () => {
         }
     ]
     return <div className='slide-auto-scroll'>
-        <Slider {...settings}>
+        {/* <button onClick={() => { carousel.current.slickGoTo(3) }}>3</button> */}
+        <Slider {...settings} ref={carousel}>
             {slideList && slideList.length > 0 && slideList.map(slide => {
-                return <div >
-                    {/* <div className="slide-body">
-                        <img src={slide.linkImg} alt="" />
-                        <h3>{slide.id}</h3>
-                    </div> */}
-
-                    <h3><img src={slide.linkImg} alt="" /></h3>
-                </div>
-            })}
-            {/* {slideList && slideList.length > 0 && slideList.map(slide => {
-                return <div className='slide-item'>
+                return <div className='slide-item' key={slide.id}>
                     <div className="slide-body">
                         <img src={slide.linkImg} alt="" />
-
+                        <h5>{slide.title}</h5>
+                        <ul>
+                            {slide.content && slide.content.length > 0 && slide.content.map(content => {
+                                return <li key={content.id}>{content.title}</li>
+                            })}
+                        </ul>
                     </div>
                 </div>
-            })} */}
-            {/* <div>
-                <div>1</div>
-            </div>
-            <div>
-                <div>1</div>
-            </div>
-            <div>
-                <div>1</div>
-            </div>
-            <div>
-                <div>1</div>
-            </div> */}
-
+            })}
         </Slider>
     </div>;
 };
