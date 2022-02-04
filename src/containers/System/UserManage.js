@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
+import Header from '../Header/Header';
+
+
 class UserManage extends Component {
 
     state = {
@@ -14,7 +17,9 @@ class UserManage extends Component {
 
     render() {
         return (
-            <div className="text-center">Manage users</div>
+            <>
+                <Header />
+            </>
         );
     }
 
