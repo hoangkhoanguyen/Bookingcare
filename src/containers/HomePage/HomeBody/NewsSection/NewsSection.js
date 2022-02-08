@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import Slider from "react-slick";
 
-import '../HomeAutoSlider/HomeSliderAutoScroll.scss'
+import './NewsSection.scss'
 
-export const HomeSliderAutoScroll = () => {
+export const NewsSection = () => {
 
     const carousel = useRef(null)
 
@@ -11,7 +11,7 @@ export const HomeSliderAutoScroll = () => {
         dots: false,
         infinite: true,
         speed: 500,
-        slidesToShow: 3,
+        slidesToShow: 4,
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000
@@ -67,9 +67,21 @@ export const HomeSliderAutoScroll = () => {
             action: 'XEM CHI TIẾT'
         }
     ]
-    return <div className='slide-auto-scroll'>
-        {/* <button onClick={() => { carousel.current.slickGoTo(3) }}>3</button> */}
+    return <div className='news-section'>
         <Slider {...settings} ref={carousel}>
+            {slideList && slideList.length > 0 && slideList.map(slide => {
+                return <div className='slide-item' key={slide.id}>
+                    <div className="slide-body">
+                        <img src={slide.linkImg} alt="" />
+                        <h5>{slide.title}</h5>
+                        <ul>
+                            {slide.content && slide.content.length > 0 && slide.content.map(content => {
+                                return <li key={content.id}>{content.title}</li>
+                            })}
+                        </ul>
+                    </div>
+                </div>
+            })}
             {slideList && slideList.length > 0 && slideList.map(slide => {
                 return <div className='slide-item' key={slide.id}>
                     <div className="slide-body">

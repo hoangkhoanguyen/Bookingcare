@@ -10,6 +10,7 @@ import { HomeSidebar } from '../HomeSidebar/HomeSidebar';
 export const HomeHeader = () => {
 
     const isShowSidebar = useSelector(state => state.app.isShowSidebar)
+    const language = useSelector(state => state.app.language)
 
     const handleChangeLanguage = (language) => {
         dispatch(changeLanguage(language))
@@ -44,17 +45,17 @@ export const HomeHeader = () => {
             </div>
             <div className="nav-item">
                 <h6 className="nav-title"><FormattedMessage id="home-header.check-pagekage" /></h6>
-                <span className="sub-title"><FormattedMessage id="home-header.general-check" /></span>
+                <span className="sub-title"><FormattedMessage id="home-header.general-test" /></span>
             </div>
         </div>
         <div className="nav-right">
             <i class="fas fa-question-circle"></i>
             <span><FormattedMessage id="home-header.support" />
             </span>
-        </div>
-        <div className="change-language">
-            <button onClick={() => { handleChangeLanguage('vi') }}>VI</button>
-            <button onClick={() => { handleChangeLanguage('en') }}>EN</button>
+            <div className="change-language">
+                <span className={language == 'vi' ? 'language-item active' : 'language-item'} onClick={() => { handleChangeLanguage('vi') }}>VI</span>
+                <span className={language == 'en' ? 'language-item active' : 'language-item'} onClick={() => { handleChangeLanguage('en') }}>EN</span>
+            </div>
         </div>
         {isShowSidebar && <HomeSidebar />}
     </div>;

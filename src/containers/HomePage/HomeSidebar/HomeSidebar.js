@@ -30,7 +30,8 @@ export const HomeSidebar = () => {
                 <li className="sidebar-item">Quy chế hoạt động</li>
             </ul>
             <div className="contact-icons">
-
+                <i class="fab fa-facebook-square"></i>
+                <i class="fab fa-youtube-square"></i>
             </div>
         </div>
     </div>;

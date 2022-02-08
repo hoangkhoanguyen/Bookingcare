@@ -11,17 +11,54 @@
         top             : 0;
         left            : 0;
         bottom          : 0;
-        width           : 300px;
+        width           : 250px;
         background-color: #fff;
+        overflow-y      : auto;
+
+        ul {
+            margin         : 0;
+            list-style-type: none;
+            padding        : 0;
+            font-size      : 16px;
+        }
 
         .sidebar-list-up {}
 
-        h4 {}
+        h4 {
+            font-size       : 12px;
+            margin          : 0;
+            background-color: rgba($color: #ccc, $alpha: 0.5);
+            color           : rgba(0, 0, 0, 0.6);
+            padding         : 10px 20px;
+        }
 
         .sidebar-list-down {}
 
-        .sidebar-item {}
+        .sidebar-item {
+            padding      : 10px 20px;
+            color        : #45c3d2;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            width        : 100%;
+            margin       : 0;
+            cursor       : pointer;
+        }
 
-        .contact-icons {}
+        .contact-icons {
+            padding: 40px 10px;
+
+            i {
+                font-size   : 36px;
+                cursor      : pointer;
+                margin-right: 20px;
+            }
+
+            .fa-facebook-square {
+                color: rgb(43, 96, 243);
+            }
+
+            .fa-youtube-square {
+                color: rgb(211, 8, 8);
+            }
+        }
     }
 }

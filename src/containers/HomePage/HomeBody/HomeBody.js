@@ -1,12 +1,13 @@
 import React from 'react';
-import { HomeSliderAutoScroll } from './HomeAutoSlider/HomeSliderAutoScroll';
-import { HomeSlider } from './HomeSlider/HomeSlider';
+import { NewsSection } from './NewsSection/NewsSection';
+import { PopularSpecialtySection } from './PopularSpecialtySection/PopularSpecialtySection';
 import { MainContent } from './MainContent/MainContent';
+import '../HomeBody/HomeBody.scss'
 
 export const HomeBody = () => {
-    return <div className='body'>
+    return <div className='home-body'>
         <MainContent />
-        <HomeSliderAutoScroll />
-        <HomeSlider />
+        <NewsSection />
+        <PopularSpecialtySection />
     </div>;
 };

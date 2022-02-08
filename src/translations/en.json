@@ -7,7 +7,7 @@
         "doctor": "Doctor",
         "select-doctor": "Choose good doctor",
         "check-pagekage": "Checking pagekage",
-        "general-check": "General checking",
+        "general-test": "General checking",
         "support": "Support"
     },
     "main-content": {
@@ -51,16 +51,37 @@
         "userpass-wrong": "Invalid username or password!"
     },
     "menu": {
-        "system": {
-            "header": "System",
-            "system-administrator": {
-                "header": "System Administrator",
-                "user-manage": "User manage",
-                "user-redux": "Manage user using redux",
-                "register-package-group-or-account": "Register service package for group/account"
+        "user": {
+            "header": "Users",
+            "CRUD-user": {
+                "header": "CRUD user"
             },
-            "system-parameter": {
-                "header": "System-parameter"
+            "CRUD-redux": {
+                "header": "CRUD redux"
+            },
+            "doctor-manage": {
+                "header": "Manage doctor"
+            },
+            "admin-manage": {
+                "header": "Manage admin"
+            }
+        },
+        "clinic": {
+            "header": "Clinic",
+            "clinic-manage": {
+                "header": "Manage clinic"
+            }
+        },
+        "specialty": {
+            "header": "Specialty",
+            "specialty-manage": {
+                "header": "Manage specialty"
+            }
+        },
+        "handbook": {
+            "header": "Handbook",
+            "handbook-manage": {
+                "header": "Manage handbook"
             }
         }
     },

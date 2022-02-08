@@ -1,21 +1,130 @@
-.body {
+.home-body {
+
     .main-content {
-        display        : flex;
-        flex-direction : column;
-        justify-content: space-between;
-        height         : 500px;
-        box-sizing     : border-box;
+        display            : flex;
+        flex-direction     : column;
+        justify-content    : space-between;
+        height             : calc(100vh - 75px);
+        box-sizing         : border-box;
+        background         : linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url('./bookingcare-cover-4.jpg');
+        background-repeat  : no-repeat;
+        background-size    : 100% 130%;
+        position           : relative;
+        background-position: center;
 
-        .title {}
+        .title {
+            color      : white;
+            text-shadow: 1px 1px rgb(161, 159, 159);
+            margin-top : 40px;
 
-        .search-area {}
+            h1:nth-child(1) {
+                font-weight: 400;
+            }
 
-        .download-app {}
+            h1:nth-child(2) {
+                font-weight: 650;
+            }
+        }
+
+        .search-area {
+            margin          : 0 auto;
+            background-color: yellow;
+            height          : 50px;
+            color           : #333;
+            width           : 400px;
+            display         : flex;
+            justify-content : center;
+            border-radius   : 24px;
+            position        : relative;
+
+            i.fa-search {
+                font-size       : 20px;
+                width           : 50px;
+                height          : 50px;
+                line-height     : 50px;
+                background-color: transparent;
+                text-align      : center;
+                border-radius   : 24px 0 0 24px;
+                cursor          : pointer;
+            }
+
+            input {
+                flex            : 1;
+                border          : none;
+                outline         : none;
+                background-color: transparent;
+                border-radius   : 0 24px 24px 0;
+                margin-right    : 40px;
+            }
+
+            i.fa-times {
+                position   : absolute;
+                height     : 50px;
+                line-height: 50px;
+                right      : 28px;
+                color      : #4747d9;
+                cursor     : pointer;
+            }
+        }
+
+        .download-app {
+            display        : flex;
+            flex-direction : row;
+            justify-content: center;
+            width          : 100%;
+
+            .app-item {
+                width        : 90px;
+                height       : 30px;
+                border-radius: 4px;
+                margin-right : 10px;
+                cursor       : pointer;
+            }
+        }
 
         .category {
             display        : flex;
             flex-direction : row;
             justify-content: space-around;
+            background     : linear-gradient(to top, #fff, #fff 50%, transparent);
+            height         : 120px;
+
+            .category-item {
+                text-decoration: none;
+                display        : flex;
+                flex-direction : column;
+                justify-self   : center;
+                cursor         : pointer;
+                width          : 100px;
+                text-align     : center;
+
+                i {
+                    width           : 50px;
+                    height          : 50px;
+                    line-height     : 50px;
+                    background-color: #fff;
+                    border-radius   : 50%;
+                    box-shadow      : 0 1px rgba(0, 0, 0, 0.2);
+                    font-size       : 30px;
+                    text-align      : center;
+                    color           : #45c3d2;
+                    margin          : 4px auto;
+                }
+
+                h6 {
+                    font-weight: 600;
+                    opacity    : 0.7;
+                    font-size  : 16px;
+                    color      : black;
+                }
+
+                &:hover {
+                    h6 {
+                        color: #45c3d2;
+                    }
+                }
+            }
+
         }
     }
 }

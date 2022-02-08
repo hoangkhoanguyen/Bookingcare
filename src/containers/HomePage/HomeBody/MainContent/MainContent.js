@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import '../MainContent/MainContent.scss'
 import { FormattedMessage } from 'react-intl';
+import ggp from '../MainContent/logo-google-play.jpg'
+import aps from '../MainContent/logo-appstore.png'
 
 export const MainContent = () => {
     const [placeholderText, setPlaceholder] = useState("main-content.search-specialty")
+    const [searchText, setSearchText] = useState('')
+    const [isEmpty, setIsEmpty] = useState(true)
 
     useEffect(() => {
         let timer
@@ -19,6 +23,14 @@ export const MainContent = () => {
         };
     }, [placeholderText]);
 
+    const handleChangeSearchInput = (e) => {
+        if (e.target.value == '') {
+            setIsEmpty(true)
+        } else {
+            setIsEmpty(false)
+        }
+        setSearchText(e.target.value)
+    }
 
     return <div className="main-content" >
         <div className="title">
@@ -28,45 +40,47 @@ export const MainContent = () => {
         <div className="search-area">
             <i className="fas fa-search"></i>
             <FormattedMessage id={placeholderText} >
-                {placeholder =>
-                    <input placeholder={placeholder} />
-                }
+                {placeholder => <input onChange={handleChangeSearchInput} placeholder={placeholder} />}
             </FormattedMessage>
+            {!isEmpty && <i class="fasdownload-app fa-times"></i>}
         </div>
-        <div className="download-app"></div>
+        <div className="download-app">
+            <img src={ggp} className="app-item"></img>
+            <img src={aps} className="app-item"></img>
+        </div>
         <div className="category">
-            <div className="category-item">
+            <a className="category-item">
                 <i className="far fa-hospital"></i>
                 <h6 className="name"><FormattedMessage id="main-content.specialty-test" /></h6>
-            </div>
-            <div className="category-item">
+            </a>
+            <a className="category-item">
                 <i className="fas fa-mobile-alt"></i>
                 <h6 className="name"><FormattedMessage id="main-content.remote-test" /></h6>
-            </div>
-            <div className="category-item">
+            </a>
+            <a className="category-item">
                 <i className="fas fa-notes-medical"></i>
                 <h6 className="name"><FormattedMessage id="main-content.general-test" /></h6>
-            </div>
-            <div className="category-item">
+            </a>
+            <a className="category-item">
                 <i className="fas fa-vials"></i>
                 <h6 className="name"><FormattedMessage id="main-content.medical-test" /></h6>
-            </div>
-            <div className="category-item">
+            </a>
+            <a className="category-item">
                 <i class="far fa-smile"></i>
                 <h6 className="name"><FormattedMessage id="main-content.mental-health" /></h6>
-            </div>
-            <div className="category-item">
+            </a>
+            <a className="category-item">
                 <i className="far fa-hospital"></i>
                 <h6 className="name"><FormattedMessage id="main-content.dental-test" /></h6>
-            </div>
-            <div className="category-item">
+            </a>
+            <a className="category-item">
                 <i className="far fa-hospital"></i>
                 <h6 className="name"><FormattedMessage id="main-content.surgery pack" /></h6>
-            </div>
-            <div className="category-item">
+            </a>
+            <a className="category-item">
                 <i className="far fa-hospital"></i>
                 <h6 className="name"><FormattedMessage id="main-content.medical-product" /></h6>
-            </div>
+            </a>
         </div>
     </div>
 };

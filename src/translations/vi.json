@@ -51,16 +51,37 @@
         "userpass-wrong": "Sai tên đăng nhập hoặc mật khẩu!"
     },
     "menu": {
-        "system": {
-            "header": "Hệ thống",
-            "system-administrator": {
-                "header": "Quản trị hệ thống",
-                "user-manage": "Quản lý người sử dụng",
-                "user-redux": "Quản lý user redux",
-                "register-package-group-or-account": "Đăng ký gói dịch vụ cho nhóm/tài khoản"
+        "user": {
+            "header": "Người dùng",
+            "CRUD-user": {
+                "header": "CRUD user"
             },
-            "system-parameter": {
-                "header": "Tham số hệ thống"
+            "CRUD-redux": {
+                "header": "CRUD redux"
+            },
+            "doctor-manage": {
+                "header": "Quản lý bác sĩ"
+            },
+            "admin-manage": {
+                "header": "Quản lý admin"
+            }
+        },
+        "clinic": {
+            "header": "Phòng khám",
+            "clinic-manage": {
+                "header": "Quản lý phòng khám"
+            }
+        },
+        "specialty": {
+            "header": "Chuyên khoa",
+            "specialty-manage": {
+                "header": "Quản lý chuyên khoa"
+            }
+        },
+        "handbook": {
+            "header": "Cẩm nang",
+            "handbook-manage": {
+                "header": "Quản lý cẩm nang"
             }
         }
     },

@@ -1,7 +1,21 @@
 @import "../styles/common.scss";
 
-.main-container {
-    .content-container {
-        height: 100vh;
+#root {
+
+
+    .main-container {
+        // width     : 100%;
+        // box-sizing: border-box;
+        width       : 100vw;
+        height      : 100vh;
+        // min-width: 1300px;
+        overflow-x  : auto;
+
+        .content-container {
+            height   : 100%;
+            width    : 100%;
+            min-width: 1300px;
+
+        }
     }
 }
