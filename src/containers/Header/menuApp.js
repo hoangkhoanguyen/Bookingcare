@@ -4,6 +4,7 @@ export const adminMenu = [
         menus: [
             {
                 name: 'menu.user.CRUD-user.header',
+                link: '/system/user-manage'
                 // subMenus: [
                 //     { name: 'menu.system.system-administrator.user-manage', link: '/system/user-manage' },
                 //     { name: 'menu.system.system-administrator.user-redux', link: '/system/product-manage' },
@@ -11,12 +12,15 @@ export const adminMenu = [
             },
             {
                 name: 'menu.user.CRUD-redux.header',
+                link: '/system/user-redux'
             },
             {
                 name: 'menu.user.doctor-manage.header',
+                link: '/system/doctor-manage'
             },
             {
                 name: 'menu.user.admin-manage.header',
+                link: '/system/admin-manage'
             }
         ]
     },

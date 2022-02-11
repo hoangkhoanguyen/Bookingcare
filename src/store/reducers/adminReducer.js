@@ -25,6 +25,16 @@ const appReducer = (state = initialState, action) => {
                 isLoggedIn: false,
                 adminInfo: null
             }
+        case actionTypes.FETCH_GENDER_SUCCESS:
+            console.log('start 4')
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_GENDER_FAIL:
+            console.log('fail')
+            return {
+                ...state,
+            }
         default:
             return state;
     }

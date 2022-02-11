@@ -1,9 +1,9 @@
 import React, { useRef, useState } from 'react';
 import Slider from "react-slick";
 
-import '../PopularSpecialtySection/PopularSpecialtySection.scss'
+import '../MedicalFacilitySection/MedicalFacilitySection.scss'
 
-export const PopularSpecialtySection = () => {
+export const MedicalFacilitySection = () => {
 
     const carousel = useRef(null)
     const [number, setNumber] = useState(0)
@@ -19,43 +19,43 @@ export const PopularSpecialtySection = () => {
     const slideList = [
         {
             id: 1,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
+            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
+            name: 'Bệnh viện Chợ Rẫy'
         },
         {
             id: 2,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
+            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
+            name: 'Bệnh viện Chợ Rẫy'
         },
         {
             id: 3,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
+            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
+            name: 'Bệnh viện Chợ Rẫy'
         },
         {
             id: 4,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
+            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
+            name: 'Bệnh viện Chợ Rẫy'
         },
         {
             id: 5,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
+            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
+            name: 'Bệnh viện Chợ Rẫy'
         },
         {
             id: 6,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
+            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
+            name: 'Bệnh viện Chợ Rẫy'
         },
         {
             id: 7,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
+            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
+            name: 'Bệnh viện Chợ Rẫy'
         },
         {
             id: 8,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
+            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
+            name: 'Bệnh viện Chợ Rẫy'
         }
     ]
 
@@ -69,9 +69,9 @@ export const PopularSpecialtySection = () => {
         if (num > 0) { }
         carousel.current.slickGoTo(num - 1)
     }
-    return <div className='popular-specialty-section'>
+    return <div className='medical-facility-section'>
         <div className="header-section">
-            <h3 className='title-section'>Chuyên khoa phổ biến</h3>
+            <h3 className='title-section'>Cơ sở y tế nổi bật</h3>
             <div className="more-info-section">Xem thêm</div>
         </div>
         <Slider {...settings} ref={carousel} >

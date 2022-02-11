@@ -2,7 +2,10 @@ import actionTypes from '../actions/actionTypes';
 
 const initialState = {
     isLoggedIn: false,
-    userInfo: null
+    userInfo: null,
+    genderArr: [],
+    posArr: [],
+    roleArr: []
 }
 
 const appReducer = (state = initialState, action) => {
@@ -24,6 +27,33 @@ const appReducer = (state = initialState, action) => {
                 ...state,
                 isLoggedIn: false,
                 userInfo: null
+            }
+        case actionTypes.FETCH_GENDER_SUCCESS:
+            return {
+                ...state,
+                genderArr: action.data
+            }
+        case actionTypes.FETCH_GENDER_FAIL:
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_POSITION_SUCCESS:
+            return {
+                ...state,
+                posArr: action.data
+            }
+        case actionTypes.FETCH_POSITION_FAIL:
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_ROLE_SUCCESS:
+            return {
+                ...state,
+                roleArr: action.data
+            }
+        case actionTypes.FETCH_ROLE_FAIL:
+            return {
+                ...state,
             }
         default:
             return state;

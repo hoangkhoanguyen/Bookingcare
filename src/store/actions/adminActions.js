@@ -1,4 +1,5 @@
 import actionTypes from './actionTypes';
+import userService from '../../services/userService'
 
 export const adminLoginSuccess = (adminInfo) => ({
     type: actionTypes.ADMIN_LOGIN_SUCCESS,
@@ -12,3 +13,4 @@ export const adminLoginFail = () => ({
 export const processLogout = () => ({
     type: actionTypes.PROCESS_LOGOUT
 })
+

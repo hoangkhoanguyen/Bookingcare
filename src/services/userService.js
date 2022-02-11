@@ -13,6 +13,12 @@ const handleLogin = async ({ email, password }) => {
     }
 }
 
+const getAllCodesService = async (type) => {
+    let data = await axios.post('http://localhost:8080/api/allcodes/getAll', { type: type })
+    return data
+}
+
 export default {
     handleLogin: handleLogin,
+    getAllCodesService: getAllCodesService,
 }

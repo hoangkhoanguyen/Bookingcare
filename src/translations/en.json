@@ -24,6 +24,23 @@
         "surgery pack": "Surgery pack",
         "medical-product": "Medical product"
     },
+    "form-register": {
+        "enter-email": "Enter email",
+        "password": "Password",
+        "enter-password": "Enter password",
+        "first-name": "First Name",
+        "enter-first-name": "Enter first name",
+        "last-name": "Last Name",
+        "enter-last-name": "Enter last name",
+        "phone-number": "Phone number",
+        "enter-phone-number": "Enter phone number",
+        "address": "Address",
+        "enter-address": "Enter address",
+        "gender": "Gender",
+        "position": "Position",
+        "role": "Role",
+        "avatar": "Avatar"
+    },
     "common": {
         "add": "Add",
         "edit": "Edit",

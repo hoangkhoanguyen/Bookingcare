@@ -18,7 +18,7 @@ class UserManage extends Component {
     render() {
         return (
             <>
-                <Header />
+                <div className="title">haha</div>
             </>
         );
     }

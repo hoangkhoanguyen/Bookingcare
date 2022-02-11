@@ -24,6 +24,23 @@
         "surgery pack": "Gói phẫu thuật",
         "medical-product": "Sản phẩm y tế"
     },
+    "form-register": {
+        "enter-email": "Nhập email",
+        "password": "Mật khẩu",
+        "enter-password": "Nhập mật khẩu",
+        "first-name": "Tên",
+        "enter-first-name": "Nhập tên",
+        "last-name": "Họ",
+        "enter-last-name": "Nhập họ",
+        "phone-number": "Số điện thoại",
+        "enter-phone-number": "Nhập số điện thoại",
+        "address": "Địa chỉ",
+        "enter-address": "Nhập địa chỉ",
+        "gender": "Giới tính",
+        "position": "Chức danh",
+        "role": "Vai trò",
+        "avatar": "Ảnh đại diện"
+    },
     "common": {
         "add": "Thêm",
         "edit": "Sửa",

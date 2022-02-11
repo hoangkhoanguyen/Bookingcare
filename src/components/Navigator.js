@@ -9,7 +9,6 @@ class MenuGroup extends Component {
 
     render() {
         const { name, children } = this.props;
-        console.log('children', children)
         return (
             <li className="menu-group">
                 <div className="menu-group-name">
@@ -50,6 +49,7 @@ class Menu extends Component {
                     </Fragment>
                 ) : (
                     <Link to={link} className="menu-link" onClick={onLinkClick}>
+
                         <FormattedMessage id={name} />
                     </Link>
                 )}
