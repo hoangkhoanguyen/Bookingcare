@@ -5,7 +5,10 @@ const initialState = {
     userInfo: null,
     genderArr: [],
     posArr: [],
-    roleArr: []
+    roleArr: [],
+    userList: [],
+    userEdit: {},
+    isEditting: false,
 }
 
 const appReducer = (state = initialState, action) => {
@@ -36,6 +39,7 @@ const appReducer = (state = initialState, action) => {
         case actionTypes.FETCH_GENDER_FAIL:
             return {
                 ...state,
+                genderArr: []
             }
         case actionTypes.FETCH_POSITION_SUCCESS:
             return {
@@ -45,6 +49,7 @@ const appReducer = (state = initialState, action) => {
         case actionTypes.FETCH_POSITION_FAIL:
             return {
                 ...state,
+                posArr: []
             }
         case actionTypes.FETCH_ROLE_SUCCESS:
             return {
@@ -54,6 +59,22 @@ const appReducer = (state = initialState, action) => {
         case actionTypes.FETCH_ROLE_FAIL:
             return {
                 ...state,
+                roleArr: []
+            }
+        case actionTypes.FETCH_ALL_USERS_SUCCESS:
+            return {
+                ...state,
+                userList: action.data
+            }
+        case actionTypes.EDIT_MODE:
+            return {
+                ...state,
+                isEditting: action.data
+            }
+        case actionTypes.UPDATE_CHOSEN_USER:
+            return {
+                ...state,
+                userEdit: action.data
             }
         default:
             return state;

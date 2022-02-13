@@ -1,16 +1,31 @@
-export const ValidateNormalLetter = (input) => {
+
+const ValidateNormalLetter = (input) => {
     let regex = /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/
     return !regex.test(input.trim())
 }
 
-export const ValidateEmail = (input) => {
+const ValidateEmail = (input) => {
     let regex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
     return regex.test(input.trim())
 }
 
-export const ValidateMustNotEmpty = (input) => {
+const ValidateMustNotEmpty = (input) => {
+    // console.log(input)
+    // input = typeof input == 'string' ? input : input.toString()
     if (input.trim() != '') {
         return true
     }
     return false
+}
+
+const ValidateOnlyNumbers = (input) => {
+    let regex = /^[0-9]*$/
+    return regex.test(input)
+}
+
+export default {
+    ValidateNormalLetter: ValidateNormalLetter,
+    ValidateEmail: ValidateEmail,
+    ValidateMustNotEmpty: ValidateMustNotEmpty,
+    ValidateOnlyNumbers: ValidateOnlyNumbers,
 }

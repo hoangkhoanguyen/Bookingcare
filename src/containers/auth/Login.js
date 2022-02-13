@@ -6,7 +6,7 @@ import * as actions from "../../store/actions";
 import userService from '../../services/userService'
 
 import './Login.scss';
-import { ValidateNormalLetter, ValidateEmail, ValidateMustNotEmpty } from '../../services/Validate'
+import Validate from '../../services/Validate'
 import { validateLocaleAndSetLanguage } from 'typescript';
 
 class Login extends Component {
@@ -34,14 +34,14 @@ class Login extends Component {
     handleLoginButton = async () => {
         let newMessage = {}
         for (const key in this.state.userInfo) {
-            if (!ValidateMustNotEmpty(this.state.userInfo[key])) {
+            if (!Validate.ValidateMustNotEmpty(this.state.userInfo[key])) {
                 newMessage[key] = 'This field must not be empty!'
             } else {
                 newMessage[key] = ''
             }
         }
         if (newMessage.email == '') {
-            if (!ValidateEmail(this.state.userInfo.email)) {
+            if (!Validate.ValidateEmail(this.state.userInfo.email)) {
                 newMessage.email = 'This is not an email!'
             }
         }

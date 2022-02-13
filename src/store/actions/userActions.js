@@ -56,3 +56,26 @@ export const fetchSuccess = (type, data) => ({
 export const fetchFail = (type) => ({
     type: type
 })
+
+export const fetchGetAllUsersStart = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await userService.getAllUsers()
+            if (res && res.errCode === 0) {
+                dispatch(fetchSuccess(actionTypes.FETCH_ALL_USERS_SUCCESS, res.data))
+            }
+        } catch (error) {
+            dispatch(fetchFail(actionTypes.FETCH_ALL_USERS_FAIL))
+        }
+    }
+}
+
+export const setEditMode = (data) => ({
+    type: actionTypes.EDIT_MODE,
+    data: data
+})
+
+export const updateChosenUser = (user) => ({
+    type: actionTypes.UPDATE_CHOSEN_USER,
+    data: user
+})
