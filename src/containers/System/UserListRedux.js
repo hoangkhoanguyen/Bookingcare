@@ -21,43 +21,53 @@ export const UserListRedux = () => {
         dispatch(fetchGetAllUsersStart())
     }, [])
 
-    const handleClickEdit = (user) => {
+    const handleClickEdit = async (user) => {
         dispatch(setEditMode(true))
-        dispatch(updateChosenUser(user))
+        let imageBase64 = ''
+        if (user && user.image) {
+            imageBase64 = await new Buffer(user.image, 'base64').toString('binary')
+        }
+        dispatch(updateChosenUser({
+            ...user,
+            image: imageBase64
+        }))
     }
 
     return (
 
         <div className='container'>
             <table>
-                <tr>
-                    <th>Email</th>
-                    <th><FormattedMessage id='form-register.first-name' /></th>
-                    <th><FormattedMessage id='form-register.last-name' /></th>
-                    <th><FormattedMessage id='form-register.gender' /></th>
-                    <th><FormattedMessage id='form-register.last-name' /></th>
-                    <th><FormattedMessage id='form-register.address' /></th>
-                    <th><FormattedMessage id='form-register.position' /></th>
-                    <th><FormattedMessage id='form-register.role' /></th>
-                    <th>Actions</th>
-                </tr>
-                {userList && userList.length > 0 && userList.map((user) => {
-                    return <tr>
-                        <td>{user.email}</td>
-                        <td>{user.firstName}</td>
-                        <td>{user.lastName}</td>
-                        <td>{genderArr[genderKey.indexOf(user.gender)] && genderArr[genderKey.indexOf(user.gender)][language == languages.EN ? 'valueEn' : 'valueVi']}</td>
-                        <td>{user.phoneNumber}</td>
-                        <td>{user.address}</td>
-                        <td>{posArr[posKey.indexOf(user.position)] && posArr[posKey.indexOf(user.position)][language == languages.EN ? 'valueEn' : 'valueVi']}</td>
-                        <td>{roleArr[roleKey.indexOf(user.role)] && roleArr[roleKey.indexOf(user.role)][language == languages.EN ? 'valueEn' : 'valueVi']}</td>
-                        <td>
-                            <i class="fas fa-edit" onClick={() => { handleClickEdit(user) }}></i>
-                            <i class="fas fa-window-close"></i>
-                        </td>
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th><FormattedMessage id='form-register.first-name' /></th>
+                        <th><FormattedMessage id='form-register.last-name' /></th>
+                        <th><FormattedMessage id='form-register.gender' /></th>
+                        <th><FormattedMessage id='form-register.phone-number' /></th>
+                        <th><FormattedMessage id='form-register.address' /></th>
+                        <th><FormattedMessage id='form-register.position' /></th>
+                        <th><FormattedMessage id='form-register.role' /></th>
+                        <th>Actions</th>
                     </tr>
-                })}
-
+                </thead>
+                <tbody>
+                    {userList && userList.length > 0 && userList.map((user) => {
+                        return <tr key={user.id}>
+                            <td>{user.email}</td>
+                            <td>{user.firstName}</td>
+                            <td>{user.lastName}</td>
+                            <td>{genderArr[genderKey.indexOf(user.gender)] && genderArr[genderKey.indexOf(user.gender)][language == languages.EN ? 'valueEn' : 'valueVi']}</td>
+                            <td>{user.phoneNumber}</td>
+                            <td>{user.address}</td>
+                            <td>{posArr[posKey.indexOf(user.position)] && posArr[posKey.indexOf(user.position)][language == languages.EN ? 'valueEn' : 'valueVi']}</td>
+                            <td>{roleArr[roleKey.indexOf(user.role)] && roleArr[roleKey.indexOf(user.role)][language == languages.EN ? 'valueEn' : 'valueVi']}</td>
+                            <td>
+                                <i className="fas fa-edit" onClick={() => { handleClickEdit(user) }}></i>
+                                <i className="fas fa-window-close"></i>
+                            </td>
+                        </tr>
+                    })}
+                </tbody>
             </table>
         </div>
     )

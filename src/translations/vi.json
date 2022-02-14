@@ -41,7 +41,9 @@
         "role": "Vai trò",
         "avatar": "Ảnh đại diện",
         "create": "Tạo mới",
-        "choose": "Chọn..."
+        "choose": "Chọn...",
+        "save": "Lưu",
+        "cancel": "Hủy bỏ"
     },
     "common": {
         "add": "Thêm",

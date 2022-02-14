@@ -1,12 +1,13 @@
 import axios from "../axios";
 
+
 const handleLogin = async ({ email, password }) => {
     try {
         let body = {
             email: email,
             password: password
         }
-        const data = await axios.post('http://localhost:8080/api/user/login', body)
+        const data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/login`, body)
         return data
     } catch (error) {
         return null
@@ -15,7 +16,7 @@ const handleLogin = async ({ email, password }) => {
 
 const getAllUsers = async () => {
     try {
-        const data = await axios.get('http://localhost:8080/api/user/getAll')
+        const data = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/user/getAll`)
         return data
     } catch (error) {
         return null
@@ -23,16 +24,28 @@ const getAllUsers = async () => {
 }
 
 const getAllCodesService = async (type) => {
-    let data = await axios.post('http://localhost:8080/api/allcodes/getAll', { type: type })
+    let data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/allcodes/getAll`, { type: type })
     return data
 }
 
-const sendRequestCreateNewUser = (user) => {
-    console.log(user)
+const sendRequestCreateNewUser = async (user) => {
+    try {
+        let body = user
+        let data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/addNew`, body)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
 }
 
-const sendRequestUpdateUser = (user) => {
-    console.log(user)
+const sendRequestUpdateUser = async (user) => {
+    try {
+        let body = user
+        let data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/edit`, body)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export default {

@@ -10,8 +10,6 @@ const ValidateEmail = (input) => {
 }
 
 const ValidateMustNotEmpty = (input) => {
-    // console.log(input)
-    // input = typeof input == 'string' ? input : input.toString()
     if (input.trim() != '') {
         return true
     }

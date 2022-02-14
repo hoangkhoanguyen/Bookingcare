@@ -41,7 +41,9 @@
         "role": "Role",
         "avatar": "Avatar",
         "create": "Create",
-        "choose": "Choose..."
+        "choose": "Choose...",
+        "save": "Save",
+        "cancel": "Cancel"
     },
     "common": {
         "add": "Add",

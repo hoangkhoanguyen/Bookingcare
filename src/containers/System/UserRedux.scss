@@ -23,6 +23,7 @@
         font-family    : arial, sans-serif;
         border-collapse: collapse;
         width          : 100%;
+        margin-bottom  : 24px;
 
         td,
         th {
@@ -45,6 +46,61 @@
                 opacity: 1;
             }
         }
+
+        .preview {
+            border         : 1px dashed #fff;
+            width          : 40%;
+            height         : 40%;
+            margin         : auto;
+            color          : #fff;
+            text-align     : center;
+            border-radius  : 4px;
+            display        : flex;
+            flex-direction : column;
+            justify-content: center;
+            cursor         : pointer;
+            position       : relative;
+
+            img {
+                height  : 100%;
+                width   : 100%;
+                position: absolute;
+                top     : 0;
+                left    : 0;
+            }
+
+            .icon-upload {
+                font-size: 100px;
+            }
+
+            h2 {
+                margin: 0;
+            }
+        }
     }
 
+    .preview {
+        border       : 1px dashed #fff;
+        width        : 200px;
+        height       : 200px;
+        margin       : auto;
+        color        : #fff;
+        text-align   : center;
+        border-radius: 4px;
+        cursor       : pointer;
+        position     : relative;
+
+        img {
+            height  : 100%;
+            width   : 100%;
+            position: absolute;
+            top     : 0;
+            left    : 0;
+        }
+
+        .icon-upload {
+            font-size: 100px;
+            color    : #0043ff;
+        }
+    }
 }

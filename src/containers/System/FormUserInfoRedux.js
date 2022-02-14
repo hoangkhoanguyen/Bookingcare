@@ -3,10 +3,13 @@ import React, { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { languages } from '../../utils'
 import { FormattedMessage } from 'react-intl';
-import { fetchStart, updateChosenUser } from '../../store/actions/userActions';
+import { fetchStart, updateChosenUser, fetchGetAllUsersStart, setEditMode } from '../../store/actions/userActions';
 import '../System/UserRedux.scss'
 import userService from '../../services/userService'
 import Validate from '../../services/Validate';
+import CommonUtils from '../../utils/CommonUtils'
+import { toast } from 'react-toastify';
+
 
 export const FormUserInfoRedux = () => {
     const dispatch = useDispatch()
@@ -15,6 +18,8 @@ export const FormUserInfoRedux = () => {
     const roleArr = useSelector(state => state.user.roleArr)
     const isEditting = useSelector(state => state.user.isEditting)
     const userEdit = useSelector(state => state.user.userEdit)
+
+    const [imgBase64, setImgBase64] = useState('')
 
     const [newUserInfo, setNewUserInfo] = useState({
         email: '',
@@ -26,6 +31,7 @@ export const FormUserInfoRedux = () => {
         gender: '',
         position: '',
         role: '',
+        image: ''
     })
     const [errMessage, setErrorMessage] = useState({
         email: '',
@@ -37,6 +43,7 @@ export const FormUserInfoRedux = () => {
         gender: '',
         position: '',
         role: '',
+        image: ''
     })
 
     const language = useSelector(state => state.app.language)
@@ -47,14 +54,38 @@ export const FormUserInfoRedux = () => {
         dispatch(fetchStart('ROLE'))
     }, [])
 
-    const handleChangeInput = (key, e) => {
+    const handleChangeInput = async (key, e) => {
         if (!isEditting) {
+            if (key == 'image') {
+                let file = e.target.files[0]
+                if (file) {
+                    setNewUserInfo({
+                        ...newUserInfo,
+                        [key]: URL.createObjectURL(file)
+                    })
+                    let dataBase64 = await CommonUtils.getBase64(file)
+                    setImgBase64(dataBase64)
+                }
+                return
+            }
             setNewUserInfo({
                 ...newUserInfo,
                 [key]: e.target.value
             })
         }
         if (isEditting) {
+            if (key == 'image') {
+                let file = e.target.files[0]
+                if (file) {
+                    dispatch(updateChosenUser({
+                        ...userEdit,
+                        [key]: URL.createObjectURL(file)
+                    }))
+                    let dataBase64 = await CommonUtils.getBase64(file)
+                    setImgBase64(dataBase64)
+                }
+                return
+            }
             dispatch(updateChosenUser({
                 ...userEdit,
                 [key]: e.target.value
@@ -62,20 +93,27 @@ export const FormUserInfoRedux = () => {
         }
     }
 
-    const handleClickCreate = () => {
+    const handleClickSubmit = async () => {
         if (!isEditting) {
             let { isValid, errMsg } = validateInputValue(newUserInfo)
             if (!isValid) {
                 setErrorMessage(errMsg)
                 return
             }
-            userService.sendRequestCreateNewUser(newUserInfo)
+            let res = await userService.sendRequestCreateNewUser({
+                ...newUserInfo,
+                image: imgBase64
+            })
+            if (res && res.errCode === 0) {
+                toast.success('Create a new user successfully!')
+                dispatch(fetchGetAllUsersStart())
+                resetFormInputValue()
+            } else {
+                toast.error(res.errMessage)
+            }
         }
         if (isEditting) {
-            console.log(userEdit)
             let { isValid, errMsg } = validateInputValue({
-                email: userEdit.email,
-                password: userEdit.password,
                 firstName: userEdit.firstName,
                 lastName: userEdit.lastName,
                 phoneNumber: userEdit.phoneNumber,
@@ -83,14 +121,30 @@ export const FormUserInfoRedux = () => {
                 gender: userEdit.gender,
                 position: userEdit.position,
                 role: userEdit.role,
+                image: userEdit.image
             })
-            console.log(isValid, errMsg)
-            // if (!isValid) {
-            //     setErrorMessage(errMsg)
-            //     return
-            // }
-            // userService.sendRequestUpdateUser(userEdit)
+            if (!isValid) {
+                setErrorMessage(errMsg)
+                return
+            }
+            let res = await userService.sendRequestUpdateUser({
+                ...userEdit,
+                image: imgBase64
+            })
+            if (res && res.errCode === 0) {
+                toast.success('Update user successfully!')
+                dispatch(fetchGetAllUsersStart())
+                dispatch(setEditMode(false))
+                resetFormInputValue()
+            } else {
+                toast.error(res.errMessage)
+            }
         }
+    }
+
+    const handleClickCancel = () => {
+        resetFormInputValue()
+        dispatch(setEditMode(false))
     }
 
     const validateInputValue = (info) => {
@@ -154,14 +208,40 @@ export const FormUserInfoRedux = () => {
             [key]: ''
         })
     }
+
+    const resetFormInputValue = () => {
+        setNewUserInfo({
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            phoneNumber: '',
+            address: '',
+            gender: '',
+            position: '',
+            role: '',
+        })
+        setErrorMessage({
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            phoneNumber: '',
+            address: '',
+            gender: '',
+            position: '',
+            role: '',
+        })
+        dispatch(updateChosenUser({}))
+    }
     return (
         <div className="container">
             <div className=" row mb-2">
-                <div class="form-group col-3 position-relative">
+                <div className="form-group col-3 position-relative">
                     <label >Email</label>
                     <FormattedMessage id='form-register.enter-email'>
                         {
-                            placeholder => <input disabled={isEditting} value={isEditting ? userEdit.email : newUserInfo.email} type="email" class="form-control" placeholder={placeholder}
+                            placeholder => <input disabled={isEditting} value={isEditting ? userEdit.email : newUserInfo.email} type="email" className="form-control" placeholder={placeholder}
                                 onChange={(e) => { handleChangeInput('email', e) }}
                                 onInput={() => { handleStartType('email') }}
                             />
@@ -169,11 +249,11 @@ export const FormUserInfoRedux = () => {
                     </FormattedMessage>
                     {errMessage.email != '' && <div className="warning-message position-absolute top-0 ">{errMessage.email}</div>}
                 </div>
-                <div class="form-group col-3 position-relative">
+                <div className="form-group col-3 position-relative">
                     <label ><FormattedMessage id='form-register.password' /></label>
                     <FormattedMessage id='form-register.enter-password'>
                         {
-                            placeholder => <input disabled={isEditting} value={newUserInfo.password} type="password" class="form-control" placeholder={placeholder}
+                            placeholder => <input disabled={isEditting} value={newUserInfo.password} type="password" className="form-control" placeholder={placeholder}
                                 onChange={(e) => { handleChangeInput('password', e) }}
                                 onInput={() => { handleStartType('password') }}
                             />
@@ -181,11 +261,11 @@ export const FormUserInfoRedux = () => {
                     </FormattedMessage>
                     {errMessage.password != '' && <div className="warning-message position-absolute top-0 ">{errMessage.password}</div>}
                 </div>
-                <div class="form-group col-3 position-relative">
+                <div className="form-group col-3 position-relative">
                     <label ><FormattedMessage id='form-register.first-name' /></label>
                     <FormattedMessage id='form-register.enter-first-name'>
                         {
-                            placeholder => <input value={isEditting ? userEdit.firstName : newUserInfo.firstName} type="text" class="form-control" placeholder={placeholder}
+                            placeholder => <input value={isEditting ? userEdit.firstName : newUserInfo.firstName} type="text" className="form-control" placeholder={placeholder}
                                 onChange={(e) => { handleChangeInput('firstName', e) }}
                                 onInput={() => { handleStartType('firstName') }}
                             />
@@ -193,11 +273,11 @@ export const FormUserInfoRedux = () => {
                     </FormattedMessage>
                     {errMessage.firstName != '' && <div className="warning-message position-absolute top-0 ">{errMessage.firstName}</div>}
                 </div>
-                <div class="form-group col-3 position-relative">
+                <div className="form-group col-3 position-relative">
                     <label ><FormattedMessage id='form-register.last-name' /></label>
                     <FormattedMessage id='form-register.enter-last-name'>
                         {
-                            placeholder => <input value={isEditting ? userEdit.lastName : newUserInfo.lastName} type="text" class="form-control" placeholder={placeholder}
+                            placeholder => <input value={isEditting ? userEdit.lastName : newUserInfo.lastName} type="text" className="form-control" placeholder={placeholder}
                                 onChange={(e) => { handleChangeInput('lastName', e) }}
                                 onInput={() => { handleStartType('lastName') }}
                             />
@@ -207,11 +287,11 @@ export const FormUserInfoRedux = () => {
                 </div>
             </div>
             <div className="row mb-2">
-                <div class="form-group col-3 position-relative">
+                <div className="form-group col-3 position-relative">
                     <label ><FormattedMessage id='form-register.phone-number' /></label>
                     <FormattedMessage id='form-register.enter-phone-number'>
                         {
-                            placeholder => <input value={isEditting ? userEdit.phoneNumber : newUserInfo.phoneNumber} type="text" class="form-control" placeholder={placeholder}
+                            placeholder => <input value={isEditting ? userEdit.phoneNumber : newUserInfo.phoneNumber} type="text" className="form-control" placeholder={placeholder}
                                 onChange={(e) => { handleChangeInput('phoneNumber', e) }}
                                 onInput={() => { handleStartType('phoneNumber') }}
                             />
@@ -219,11 +299,11 @@ export const FormUserInfoRedux = () => {
                     </FormattedMessage>
                     {errMessage.phoneNumber != '' && <div className="warning-message position-absolute top-0 ">{errMessage.phoneNumber}</div>}
                 </div>
-                <div class="form-group col-9 position-relative">
+                <div className="form-group col-9 position-relative">
                     <label ><FormattedMessage id='form-register.address' /></label>
                     <FormattedMessage id='form-register.enter-address'>
                         {
-                            placeholder => <input value={isEditting ? userEdit.address : newUserInfo.address} type="text" class="form-control" placeholder={placeholder}
+                            placeholder => <input value={isEditting ? userEdit.address : newUserInfo.address} type="text" className="form-control" placeholder={placeholder}
                                 onChange={(e) => { handleChangeInput('address', e) }}
                                 onInput={() => { handleStartType('address') }}
                             />
@@ -233,13 +313,13 @@ export const FormUserInfoRedux = () => {
                 </div>
             </div>
             <div className="row mb-3">
-                <div class="form-group col-3 position-relative">
+                <div className="form-group col-3 position-relative">
                     <label ><FormattedMessage id='form-register.gender' /></label>
-                    <select class="form-control" value={isEditting ? userEdit.gender : newUserInfo.gender}
+                    <select className="form-control" value={isEditting ? userEdit.gender : newUserInfo.gender}
                         onChange={(e) => { handleChangeInput('gender', e) }}
                         onClick={() => { handleStartType('gender') }}
                     >
-                        <option selected>...</option>
+                        <option value='...'>...</option>
                         {genderArr && genderArr.length > 0 && genderArr.map(gender => {
                             return <option key={gender.id} value={gender.key}>
                                 {language == languages.EN ? gender.valueEn : gender.valueVi}
@@ -248,13 +328,13 @@ export const FormUserInfoRedux = () => {
                     </select>
                     {errMessage.gender != '' && <div className="warning-message position-absolute top-0 ">{errMessage.gender}</div>}
                 </div>
-                <div class="form-group col-3 position-relative">
+                <div className="form-group col-3 position-relative">
                     <label ><FormattedMessage id='form-register.position' /></label>
-                    <select class="form-control" value={isEditting ? userEdit.position : newUserInfo.position}
+                    <select className="form-control" value={isEditting ? userEdit.position : newUserInfo.position}
                         onChange={(e) => { handleChangeInput('position', e) }}
                         onClick={() => { handleStartType('position') }}
                     >
-                        <option selected>...</option>
+                        <option value='...'>...</option>
                         {posArr && posArr.length > 0 && posArr.map(pos => {
                             return <option key={pos.id} value={pos.key}>
                                 {language == languages.EN ? pos.valueEn : pos.valueVi}
@@ -264,13 +344,13 @@ export const FormUserInfoRedux = () => {
 
                     {errMessage.position != '' && <div className="warning-message position-absolute top-0 ">{errMessage.position}</div>}
                 </div>
-                <div class="form-group col-3 position-relative">
+                <div className="form-group col-3 position-relative">
                     <label ><FormattedMessage id='form-register.role' /></label>
-                    <select class="form-control" value={isEditting ? userEdit.role : newUserInfo.role}
+                    <select className="form-control" value={isEditting ? userEdit.role : newUserInfo.role}
                         onChange={(e) => { handleChangeInput('role', e) }}
                         onClick={() => { handleStartType('role') }}
                     >
-                        <option selected>...</option>
+                        <option value='...'>...</option>
                         {roleArr && roleArr.length > 0 && roleArr.map(role => {
                             return <option key={role.id} value={role.key}>
                                 {language == languages.EN ? role.valueEn : role.valueVi}
@@ -279,19 +359,33 @@ export const FormUserInfoRedux = () => {
                     </select>
                     {errMessage.role != '' && <div className="warning-message position-absolute top-0 ">{errMessage.role}</div>}
                 </div>
-                <div class="form-group col-3 position-relative">
+                <div className="form-group col-3 position-relative">
                     <label ><FormattedMessage id='form-register.avatar' /></label>
-                    <input type="text" class="form-control" />
+                    <label htmlFor="input-img" className='preview'>
+                        {!isEditting && newUserInfo && newUserInfo.image && <img src={newUserInfo.image} alt="" />}
+                        {isEditting && userEdit && userEdit.image && <img src={userEdit.image} alt="" />}
+                        <i class="fas fa-cloud-upload-alt icon-upload"></i>
+                    </label>
+                    <input type="file" hidden id='input-img' onChange={(e) => { handleChangeInput('image', e) }} />
+                    {errMessage.image != '' && <div className="warning-message position-absolute top-0 ">{errMessage.image}</div>}
                 </div>
             </div>
             <div className="row mb-2">
-                <div className="col-6 text-center">
-                    <FormattedMessage id='form-register.create'>
+                <div className="col-3 text-center">
+                    <FormattedMessage id={isEditting ? 'form-register.save' : 'form-register.create'}>
                         {
-                            value => <input onClick={handleClickCreate} className='form-control' type="button" value={value} />
+                            value => <input onClick={handleClickSubmit} className='form-control bg-success text-light' type="button" value={value} />
                         }
                     </FormattedMessage>
                 </div>
+                {isEditting && <div className="col-3 text-center">
+
+                    <FormattedMessage id='form-register.cancel'>
+                        {
+                            value => <input onClick={handleClickCancel} className='form-control' type="button" value={value} />
+                        }
+                    </FormattedMessage>
+                </div>}
             </div>
         </div>
     )
