@@ -48,10 +48,21 @@ const sendRequestUpdateUser = async (user) => {
     }
 }
 
+const sendRequestDeleteUser = async (email) => {
+    try {
+        let body = { email: email }
+        let data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/delete`, body)
+        return data
+    } catch (error) {
+        console.log(error)
+    }
+}
+
 export default {
     handleLogin: handleLogin,
     getAllCodesService: getAllCodesService,
     sendRequestCreateNewUser: sendRequestCreateNewUser,
     getAllUsers: getAllUsers,
-    sendRequestUpdateUser: sendRequestUpdateUser
+    sendRequestUpdateUser: sendRequestUpdateUser,
+    sendRequestDeleteUser: sendRequestDeleteUser,
 }

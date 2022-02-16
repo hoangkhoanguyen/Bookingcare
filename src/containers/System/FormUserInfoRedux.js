@@ -321,7 +321,7 @@ export const FormUserInfoRedux = () => {
                     >
                         <option value='...'>...</option>
                         {genderArr && genderArr.length > 0 && genderArr.map(gender => {
-                            return <option key={gender.id} value={gender.key}>
+                            return <option key={gender.id} value={gender.keyMap}>
                                 {language == languages.EN ? gender.valueEn : gender.valueVi}
                             </option>
                         })}
@@ -336,7 +336,7 @@ export const FormUserInfoRedux = () => {
                     >
                         <option value='...'>...</option>
                         {posArr && posArr.length > 0 && posArr.map(pos => {
-                            return <option key={pos.id} value={pos.key}>
+                            return <option key={pos.id} value={pos.keyMap}>
                                 {language == languages.EN ? pos.valueEn : pos.valueVi}
                             </option>
                         })}
@@ -352,7 +352,7 @@ export const FormUserInfoRedux = () => {
                     >
                         <option value='...'>...</option>
                         {roleArr && roleArr.length > 0 && roleArr.map(role => {
-                            return <option key={role.id} value={role.key}>
+                            return <option key={role.id} value={role.keyMap}>
                                 {language == languages.EN ? role.valueEn : role.valueVi}
                             </option>
                         })}
@@ -364,7 +364,7 @@ export const FormUserInfoRedux = () => {
                     <label htmlFor="input-img" className='preview'>
                         {!isEditting && newUserInfo && newUserInfo.image && <img src={newUserInfo.image} alt="" />}
                         {isEditting && userEdit && userEdit.image && <img src={userEdit.image} alt="" />}
-                        <i class="fas fa-cloud-upload-alt icon-upload"></i>
+                        <i className="fas fa-cloud-upload-alt icon-upload"></i>
                     </label>
                     <input type="file" hidden id='input-img' onChange={(e) => { handleChangeInput('image', e) }} />
                     {errMessage.image != '' && <div className="warning-message position-absolute top-0 ">{errMessage.image}</div>}
