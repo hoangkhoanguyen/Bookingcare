@@ -42,7 +42,7 @@ export const MainContent = () => {
             <FormattedMessage id={placeholderText} >
                 {placeholder => <input onChange={handleChangeSearchInput} placeholder={placeholder} />}
             </FormattedMessage>
-            {!isEmpty && <i class="fasdownload-app fa-times"></i>}
+            {!isEmpty && <i className="fasdownload-app fa-times"></i>}
         </div>
         <div className="download-app">
             <img src={ggp} className="app-item"></img>
@@ -66,7 +66,7 @@ export const MainContent = () => {
                 <h6 className="name"><FormattedMessage id="main-content.medical-test" /></h6>
             </a>
             <a className="category-item">
-                <i class="far fa-smile"></i>
+                <i className="far fa-smile"></i>
                 <h6 className="name"><FormattedMessage id="main-content.mental-health" /></h6>
             </a>
             <a className="category-item">

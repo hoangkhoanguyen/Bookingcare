@@ -20,7 +20,7 @@ export const adminMenu = [
             },
             {
                 name: 'menu.user.admin-manage.header',
-                link: '/system/admin-manage'
+                link: '/system/schedule-manage'
             }
         ]
     },
@@ -48,4 +48,16 @@ export const adminMenu = [
             },
         ]
     },
+];
+
+export const doctorMenu = [
+    { //nguoi dung
+        name: 'menu.doctor.header',
+        menus: [
+            {
+                name: 'menu.doctor.schedule-manage.header',
+                link: '/doctor-system/schedule-manage'
+            },
+        ]
+    }
 ];

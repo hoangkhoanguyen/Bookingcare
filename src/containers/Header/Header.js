@@ -3,16 +3,37 @@ import { connect } from 'react-redux';
 
 import * as actions from "../../store/actions";
 import Navigator from '../../components/Navigator';
-import { adminMenu } from './menuApp';
+import { adminMenu, doctorMenu } from './menuApp';
 import './Header.scss';
-import { languages } from '../../utils/constant';
+import { languages, USER_ROLE } from '../../utils/constant';
 
 // import { changeLanguage } from '../../store/actions';
 
 
 class Header extends Component {
 
+    constructor(props) {
+        super(props);
+        this.acceptBtnRef = React.createRef();
+    }
 
+    state = {
+        menu: [],
+    }
+
+    componentDidMount() {
+        let { userRole } = this.props
+        if (userRole == USER_ROLE.ADMIN) {
+            this.setState({
+                menu: adminMenu
+            })
+        }
+        if (userRole == USER_ROLE.DOCTOR) {
+            this.setState({
+                menu: doctorMenu
+            })
+        }
+    };
 
     render() {
 
@@ -25,7 +46,7 @@ class Header extends Component {
             <div className="header-container">
                 {/* thanh navigator */}
                 <div className="header-tabs-container">
-                    <Navigator menus={adminMenu} />
+                    <Navigator menus={this.state.menu} />
                 </div>
 
                 {/* nút logout */}
@@ -38,7 +59,6 @@ class Header extends Component {
                         <i className="fas fa-sign-out-alt"></i>
                     </div>
                 </div>
-
             </div>
         );
     }
@@ -47,7 +67,8 @@ class Header extends Component {
 
 const mapStateToProps = state => {
     return {
-        isLoggedIn: state.user.isLoggedIn
+        isLoggedIn: state.user.isLoggedIn,
+        userRole: state.user.userInfo.role
     };
 };
 

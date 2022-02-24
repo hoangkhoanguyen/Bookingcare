@@ -9,10 +9,15 @@ import '../DoctorOfWeek/DoctorOfWeek.scss'
 export const DoctorOfWeek = () => {
     const slideList = useSelector(state => state.homePage.doctorOfWeek)
     const language = useSelector(state => state.app.language)
+    const carousel = useRef(null)
 
     useEffect(() => {
-        dispatch(fetchDoctorOfWeekStart(2))
-    }, [])
+        dispatch(fetchDoctorOfWeekStart(8))
+        if (document.querySelector('.doctor-of-week-section .slick-prev')) {
+            document.querySelector('.doctor-of-week-section .slick-prev').classList.add('disabled-arrow')
+
+        }
+    }, [carousel])
 
     // useEffect(() => {
 
@@ -20,7 +25,6 @@ export const DoctorOfWeek = () => {
 
     const dispatch = useDispatch()
 
-    const carousel = useRef(null)
     const [number, setNumber] = useState(0)
 
     let settings = {
@@ -29,6 +33,15 @@ export const DoctorOfWeek = () => {
         speed: 500,
         slidesToShow: 4,
         slidesToScroll: 1,
+        afterChange: (index) => {
+            if (index == 0) {
+                console.log('start')
+                document.querySelector('.doctor-of-week-section .slick-prev').classList.add('disabled-arrow')
+            } else {
+                document.querySelector('.doctor-of-week-section .slick-prev').classList.remove('disabled-arrow')
+            }
+
+        }
     };
 
     // const slideList = [
@@ -82,6 +95,11 @@ export const DoctorOfWeek = () => {
     //     }
     // ]
 
+    const handleClickDoctorInfo = (id) => {
+
+        window.location.href = `doctor/doctor-${id}`
+    }
+
     return <div className='doctor-of-week-section'>
         {console.log(slideList)}
         <div className="header-section">
@@ -91,7 +109,8 @@ export const DoctorOfWeek = () => {
         <Slider {...settings} ref={carousel} >
             {slideList && slideList.length > 0 && slideList.map(slide => {
                 return <div className='slide-item' key={slide.id}>
-                    <div className="slide-body">
+                    {/* <a className="slide-body" href={`/doctor-${slide.id}`}> */}
+                    <div className='slide-body' onClick={() => { handleClickDoctorInfo(slide.id) }}>
                         <img src={slide.image} alt="" />
                         <h6 className='name'>{`${language == languages.EN ? slide.roleData.valueEn : slide.roleData.valueVi} ${slide.firstName} ${slide.lastName}`}</h6>
                         {/* <h6 className='sub-name'>{slide.specialty}</h6> */}

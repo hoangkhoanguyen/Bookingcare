@@ -4,7 +4,7 @@ import doctorService from '../../services/doctorService';
 export const fetchDoctorOfWeekStart = (limit,) => {
     return async (dispatch, getState) => {
         try {
-            let res = await doctorService.getDoctor(limit)
+            let res = await doctorService.getTopDoctor(limit)
             if (res && res.errCode === 0) {
                 let data
                 if (res.data && res.data.length > 0) {

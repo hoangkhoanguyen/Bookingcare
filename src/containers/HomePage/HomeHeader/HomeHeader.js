@@ -24,7 +24,7 @@ export const HomeHeader = () => {
     return <div className='home-header'>
         <div className="nav-left">
             <div className="menu-icon">
-                <i class="fas fa-bars" onClick={handleShowSidebar}></i>
+                <i className="fas fa-bars" onClick={handleShowSidebar}></i>
             </div>
             <div className="logo">
                 <img src="/img/Homepage/main-logo.png" alt="" />
@@ -49,7 +49,7 @@ export const HomeHeader = () => {
             </div>
         </div>
         <div className="nav-right">
-            <i class="fas fa-question-circle"></i>
+            <i className="fas fa-question-circle"></i>
             <span><FormattedMessage id="home-header.support" />
             </span>
             <div className="change-language">

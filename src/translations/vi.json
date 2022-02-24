@@ -87,6 +87,12 @@
                 "header": "Quản lý admin"
             }
         },
+        "doctor": {
+            "header": "Người dùng",
+            "schedule-manage": {
+                "header": "Quản lý lịch khám bệnh"
+            }
+        },
         "clinic": {
             "header": "Phòng khám",
             "clinic-manage": {

@@ -4,6 +4,7 @@ import { connectRouter } from 'connected-react-router';
 import appReducer from "./appReducer";
 import userReducer from "./userReducer";
 import homePageReducer from "./homePageReducer"
+import systemReducer from './systemReducer';
 
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import storage from 'redux-persist/lib/storage';
@@ -30,10 +31,16 @@ const homePagePersistConfig = {
     key: 'homePage',
     whitelist: ['doctorOfWeek']
 }
+const systemPersistConfig = {
+    ...persistCommonConfig,
+    key: 'system',
+    whitelist: ['allDoctor']
+}
 
 export default (history) => combineReducers({
     router: connectRouter(history),
     user: persistReducer(userPersistConfig, userReducer),
     app: persistReducer(appPersistConfig, appReducer),
-    homePage: persistReducer(homePagePersistConfig, homePageReducer)
+    homePage: persistReducer(homePagePersistConfig, homePageReducer),
+    system: persistReducer(systemPersistConfig, systemReducer),
 })

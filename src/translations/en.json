@@ -93,6 +93,12 @@
                 "header": "Manage clinic"
             }
         },
+        "doctor": {
+            "header": "User",
+            "schedule-manage": {
+                "header": "Manage schedule"
+            }
+        },
         "specialty": {
             "header": "Specialty",
             "specialty-manage": {

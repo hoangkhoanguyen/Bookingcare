@@ -72,6 +72,10 @@
         border          : 1px solid rgba($color: #000000, $alpha: 0.3);
     }
 
+    .slick-arrow.disabled-arrow {
+        display: none !important;
+    }
+
     .slick-next {
         right: 0px;
 
