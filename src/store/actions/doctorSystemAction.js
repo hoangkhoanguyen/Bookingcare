@@ -44,6 +44,40 @@ export const fetchAllScheduleTimeStart = (type) => {
     }
 }
 
+export const fetchAllCodeStart = (field) => {
+    return async (dispatch, getState) => {
+        let typeSuccess
+        let typeFail
+        switch (field) {
+            case 'PRICE':
+                typeSuccess = actionTypes.FETCH_ALLCODE_PRICE_SUCCESS
+                typeFail = actionTypes.FETCH_ALLCODE_PRICE_FAIL
+                break;
+            case 'PAYMENT':
+                typeSuccess = actionTypes.FETCH_ALLCODE_PAYMENT_SUCCESS
+                typeFail = actionTypes.FETCH_ALLCODE_PAYMENT_FAIL
+                break;
+            case 'PROVINCE':
+                typeSuccess = actionTypes.FETCH_ALLCODE_PROVINCE_SUCCESS
+                typeFail = actionTypes.FETCH_ALLCODE_PROVINCE_FAIL
+                break;
+            default:
+                break;
+        }
+        try {
+            let res = await userService.getAllCodesService(field)
+            if (res && res.errCode === 0) {
+                dispatch(fetchSuccess(typeSuccess, res.data))
+            } else {
+                dispatch(fetchFail(typeFail))
+            }
+        } catch (error) {
+            dispatch(fetchFail(typeFail))
+            console.log('fetchAllcodeStart error', error)
+        }
+    }
+}
+
 export const fetchFail = (type) => ({
     type: type
 })

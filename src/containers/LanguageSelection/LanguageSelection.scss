@@ -1,0 +1,14 @@
+.change-language {
+    .language-item {
+        margin-left: 4px;
+        cursor     : pointer;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    .language-item.active {
+        color: royalblue;
+    }
+}

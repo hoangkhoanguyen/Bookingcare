@@ -11,6 +11,7 @@ import moment from 'moment'
 import FormattedDate from '../../../components/Formating/FormattedDate';
 import { result } from 'lodash';
 import { toast } from 'react-toastify';
+import doctorService from '../../../services/doctorService';
 
 export const ScheduleManage = () => {
 
@@ -53,7 +54,7 @@ export const ScheduleManage = () => {
         setTimeRange(newCurrentRange)
     }
 
-    const handleClickSaveButton = () => {
+    const handleClickSaveButton = async () => {
         // console.log(timeRange)
         let result = validateBeforeSubmit()
         if (!result.isValid) {
@@ -69,9 +70,7 @@ export const ScheduleManage = () => {
                 timeType: item.keyMap
             }
         })
-        console.log(finalData)
-
-
+        let res = await doctorService.saveDoctorSchedule(finalData)
     }
 
     const validateBeforeSubmit = () => {
@@ -128,7 +127,7 @@ export const ScheduleManage = () => {
                             className='col-12 form-control'
                             onChange={handleChangeDatePicker}
                             value={currentDate}
-                            minDate={new Date()}
+                            minDate={new Date(new Date().setDate(new Date().getDate() - 1))}
                         />
                     </div>
                     <div className="col-12 pick-hour-container">

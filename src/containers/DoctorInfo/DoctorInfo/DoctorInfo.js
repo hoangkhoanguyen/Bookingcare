@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import doctorService from '../../../services/doctorService'
+import { LanguageSelection } from '../../LanguageSelection/LanguageSelection'
 import '../DoctorInfo/DoctorInfo.scss'
+import { DoctorSchedule } from './DoctorSchedule/DoctorSchedule'
 
 export const DoctorInfo = (props) => {
 
@@ -53,6 +55,9 @@ export const DoctorInfo = (props) => {
                 {!onTop && <div className="doctor-name">
                     {doctor && `${doctor.positionData && doctor.positionData.valueVi} ${doctor.lastName} ${doctor.firstName}`}
                 </div>}
+                <div className="content-right">
+                    <LanguageSelection />
+                </div>
             </div>
             <div className="doctor-details-breadcrum">
 
@@ -70,7 +75,7 @@ export const DoctorInfo = (props) => {
                         </div>
                     </div>
                 </div>
-                <div className="booking-content">Booking</div>
+                <DoctorSchedule doctorId={id} />
                 <div className="doctor-detail"></div>
                 <div className="feedback-patient"></div>
             </div>}

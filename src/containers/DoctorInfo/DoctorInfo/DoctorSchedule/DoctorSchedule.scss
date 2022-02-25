@@ -1,0 +1,22 @@
+.doctor-detail-body{
+    .doctor-schedule-section{
+        .date-select{}
+        .all-available-time{
+            .btn{
+                margin: 12px;
+                background-color: #c0edf7;
+                padding: 0 10px;
+                height: 30px;
+                width: 163px;
+                box-sizing: border-box;
+                &:hover{
+                    background-color: #85e0f5;
+                }
+            }
+            .btn.active{
+                border: 1px solid #1cc4d5;
+                background-color: #42b1fb;
+            }
+        }
+    }
+}

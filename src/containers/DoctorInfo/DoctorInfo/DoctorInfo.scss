@@ -11,9 +11,16 @@
         top             : 0;
         left            : 0;
         right           : 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
 
         .fa-arrow-left {
             cursor: pointer;
+            margin-left: 24px;
+        }
+        .content-right{
+            margin-right: 24px;
         }
     }
 

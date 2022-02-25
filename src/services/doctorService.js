@@ -45,9 +45,34 @@ const saveDoctorDetails = async (info) => {
     }
 }
 
+const saveDoctorSchedule = async (data) => {
+    try {
+        let url = `/api/doctor/bulk-create-schedule`
+        let body = data
+        let result = await axios.post(`${process.env.REACT_APP_BACKEND_URL}${url}`, body)
+        return result
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+
+const getDoctorScheduleByDate = async (doctorId, date) => {
+    try {
+        let url = `/api/doctor/get-doctor-schedule-by-date?doctorId=${doctorId}&date=${date}`
+        let result = await axios.get(`${process.env.REACT_APP_BACKEND_URL}${url}`)
+        return result
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+
 export default {
     getTopDoctor: getTopDoctor,
     getAllDoctor: getAllDoctor,
     getDoctorDetailsById: getDoctorDetailsById,
     saveDoctorDetails: saveDoctorDetails,
+    saveDoctorSchedule,
+    getDoctorScheduleByDate,
 }
