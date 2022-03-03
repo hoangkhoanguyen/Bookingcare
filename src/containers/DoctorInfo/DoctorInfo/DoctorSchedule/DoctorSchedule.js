@@ -5,6 +5,7 @@ import doctorService from '../../../../services/doctorService';
 import 'moment/locale/vi'
 import { languages } from '../../../../utils/constant';
 import '../DoctorSchedule/DoctorSchedule.scss'
+import { BookingModal } from '../BookingModal/BookingModal';
 
 export const DoctorSchedule = (props) => {
 
@@ -14,6 +15,9 @@ export const DoctorSchedule = (props) => {
     const language = useSelector(state => state.app.language)
     const [day, setDay] = useState(arrayDays[0])
     const [schedule, setSchedule] = useState()
+    const [chosenDate, setChosenDate] = useState('')
+    const [chosenTime, setChosenTime] = useState('')
+    const [isShowModal, setIsShowModal] = useState(false)
 
     useEffect(() => {
         let arr = []
@@ -52,19 +56,18 @@ export const DoctorSchedule = (props) => {
         setDay(e.target.value)
         let res = await doctorService.getDoctorScheduleByDate(doctorId, e.target.value)
         if (res && res.errCode === 0) {
-            setSchedule(res.data.map(item => { return { ...item, isSelected: false } }))
+            setSchedule(res.data)
         }
     }
 
-    const handleClickAvailableButton = (id) => {
-        let currentArr = schedule
-        currentArr = currentArr.map((item, index) => {
-            return index == id ? {
-                ...item,
-                isSelected: !item.isSelected
-            } : item
-        })
-        setSchedule(currentArr)
+    const handleClickAvailableButton = (time) => {
+        setChosenDate(day)
+        setChosenTime(time)
+        setIsShowModal(true)
+    }
+
+    const closeModal = () => {
+        setIsShowModal(false)
     }
     return (
         <div className='doctor-schedule-section'>
@@ -78,12 +81,20 @@ export const DoctorSchedule = (props) => {
             <div className="all-available-time">
                 {schedule && schedule.length > 0 ? schedule.map((item, index) => {
                     return <button
-                        onClick={() => { handleClickAvailableButton(index) }}
-                        className={item.isSelected ? 'btn active' : 'btn'} key={item.id}>
+                        onClick={() => { handleClickAvailableButton({ timeType: item.timeType, ...item.timeTypeData }) }}
+                        className={'btn'} key={item.id}>
                         {language == languages.EN ? item.timeTypeData.valueEn : item.timeTypeData.valueVi}
                     </button>
                 }) : <div>Không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác</div>}
             </div>
+            {isShowModal && <BookingModal
+                doctorId={doctorId}
+                date={chosenDate}
+                time={chosenTime}
+                firstName={schedule && schedule[0] && schedule[0].doctorData && schedule[0].doctorData.firstName}
+                lastName={schedule && schedule[0] && schedule[0].doctorData && schedule[0].doctorData.lastName}
+                closeModal={closeModal}
+            />}
         </div>
     )
 }

@@ -1,12 +1,39 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Slider from "react-slick";
-
+import specialtyService from '../../../../services/specialtyService'
 import '../PopularSpecialtySection/PopularSpecialtySection.scss'
 
 export const PopularSpecialtySection = () => {
 
     const carousel = useRef(null)
-    const [number, setNumber] = useState(0)
+    const [specialtyArr, setSpecialtyArr] = useState([])
+
+    useEffect(async () => {
+        try {
+            let res = await specialtyService.getSpecialty()
+            if (res && res.errCode === 0) {
+                let arr = res.data
+                if (arr.length > 0) {
+                    arr = arr.map(item => {
+                        let imageBase64 = ''
+                        if (item.image) {
+                            imageBase64 = new Buffer(item.image, 'base64').toString('binary')
+                        }
+                        return {
+                            ...item,
+                            image: imageBase64
+                        }
+                    })
+                }
+                setSpecialtyArr(arr)
+            } else {
+                setSpecialtyArr([])
+            }
+        } catch (error) {
+            console.log(error)
+            setSpecialtyArr([])
+        }
+    }, [])
 
     let settings = {
         dots: false,
@@ -16,71 +43,18 @@ export const PopularSpecialtySection = () => {
         slidesToScroll: 1,
     };
 
-    const slideList = [
-        {
-            id: 1,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
-        },
-        {
-            id: 2,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
-        },
-        {
-            id: 3,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
-        },
-        {
-            id: 4,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
-        },
-        {
-            id: 5,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
-        },
-        {
-            id: 6,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
-        },
-        {
-            id: 7,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
-        },
-        {
-            id: 8,
-            linkImg: '/Img/Homepage/PopularSpecialty/121146-tai-mui-hong.jpg',
-            name: 'Tai mũi họng'
-        }
-    ]
-
-    const handleCLickNext = (num) => {
-        if (slideList && num < slideList.length) {
-            carousel.current.slickGoTo(num + 1)
-            setNumber(num + 1)
-        }
-    }
-    const handleCLickPrev = (num) => {
-        if (num > 0) { }
-        carousel.current.slickGoTo(num - 1)
-    }
     return <div className='popular-specialty-section'>
         <div className="header-section">
             <h3 className='title-section'>Chuyên khoa phổ biến</h3>
             <div className="more-info-section">Xem thêm</div>
         </div>
         <Slider {...settings} ref={carousel} >
-            {slideList && slideList.length > 0 && slideList.map(slide => {
+            {specialtyArr && specialtyArr.length > 0 && specialtyArr.map(slide => {
                 return <div className='slide-item' key={slide.id}>
-                    <div className="slide-body">
-                        <img src={slide.linkImg} alt="" />
+                    <a href={`/specialty-${slide.id}`} className="slide-body">
+                        <img src={slide.image} alt="" />
                         <h6>{slide.name}</h6>
-                    </div>
+                    </a>
                 </div>
             })}
         </Slider>

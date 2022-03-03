@@ -1,0 +1,16 @@
+.specialty-container{
+    margin-top: 75px;
+    .specialty-content{
+        // background: url(var(--imgUrl));
+        height: 170px;
+        width: 100%;
+        overflow: hidden;
+    }
+    .specialty-content.expanded{
+        height: auto;
+    }
+    .actions-btns{
+        cursor: pointer;
+        
+    }
+}

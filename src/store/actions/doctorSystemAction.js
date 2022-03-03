@@ -78,6 +78,21 @@ export const fetchAllCodeStart = (field) => {
     }
 }
 
+// export const fetchDoctorInfo = (id) => {
+//     return async (dispatch,getState)=>{
+//         try {
+//             let result = await doctorService.getDoctorInfoById(id)
+//             if (result&& result.errCode===0)
+//             {
+//                 dispatch(fetchSuccess(actionTypes.FETCH_DOCTOR_INFO_SUCCESS,result.data))
+//             }
+//         } catch (error) {
+//             dispatch(fetchFail(actionTypes.FETCH_DOCTOR_INFO_FAIL))
+//             console.log('fetchDoctorInfo error', error)
+//         }
+//     }
+// }
+
 export const fetchFail = (type) => ({
     type: type
 })

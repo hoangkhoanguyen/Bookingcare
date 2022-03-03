@@ -33,7 +33,10 @@ export const DoctorManage = () => {
         doctor: {},
         price: {},
         payment: {},
-        province: {}
+        province: {},
+        addressClinic: '',
+        nameClinic: '',
+        note: '',
     })
     const [description, setDescription] = useState('')
 
@@ -51,25 +54,44 @@ export const DoctorManage = () => {
     }
 
     const handleClickSave = async () => {
-        console.log(selectedOption)
-        // if (selectedOption.doctor != {}) {
-        //     let result = await doctorService.saveDoctorDetails({
-        //         doctorId: selectedOption.doctor.value,
-        //         contentHTML: contentHTML,
-        //         contentMarkdown: contentMarkdown,
-        //         description: description
-        //     })
-        //     if (result && result.errCode === 0) {
-        //         resetDoctorDetailsForm()
-        //         dispatch(fetchGetAllDoctorStart())
-        //         toast.success('Save successfully!')
-        //     }
-        // }
+        if (selectedOption.doctor != {}) {
+            let result = await doctorService.saveDoctorDetails({
+                doctorId: selectedOption.doctor.value,
+                contentHTML,
+                contentMarkdown,
+                description,
+                priceId: selectedOption.price.value,
+                provinceId: selectedOption.province.value,
+                paymentId: selectedOption.payment.value,
+                addressClinic: selectedOption.addressClinic,
+                nameClinic: selectedOption.nameClinic,
+                note: selectedOption.note,
+            })
+            if (result && result.errCode === 0) {
+                resetDoctorDetailsForm()
+                dispatch(fetchGetAllDoctorStart())
+                toast.success('Save successfully!')
+            }
+            if (result && result.errCode !== 0) {
+                toast.error(result.errMessage)
+            }
+            if (!result) {
+                toast.error('Something error!')
+            }
+        }
     }
 
     const resetDoctorDetailsForm = () => {
         setContentMarkdown('')
-        setSelectedOption({})
+        setSelectedOption({
+            doctor: {},
+            price: {},
+            payment: {},
+            province: {},
+            addressClinic: '',
+            nameClinic: '',
+            note: '',
+        })
         setDescription('')
     }
 
@@ -79,27 +101,45 @@ export const DoctorManage = () => {
 
     const handleChangeSelection = async (key, value) => {
         let currentState = selectedOption
+
         setSelectedOption({
             ...currentState,
             [key]: value
         })
         if (key == 'doctor') {
-            let res = await doctorService.getDoctorDetailsById(value.value)
-            if (res && res.errCode === 0) {
-                if (res.data) {
-                    console.log(res.data)
-                    // setContentMarkdown(res.data.details.contentMarkdown)
-                    // setContentHTML(res.data.details.contentHTML)
-                    // setDescription(res.data.details.description)
+            let resDocDetails = await doctorService.getDoctorDetailsById(value.value)
+            if (resDocDetails && resDocDetails.errCode === 0) {
+                if (resDocDetails.data) {
+                    setContentMarkdown(resDocDetails.data.details.contentMarkdown)
+                    setContentHTML(resDocDetails.data.details.contentHTML)
+                    setDescription(resDocDetails.data.details.description)
+                    setSelectedOption({
+                        doctor: value,
+                        price: resDocDetails.data.priceId ? {
+                            label: language == languages.EN ? resDocDetails.data.priceData.valueEn : resDocDetails.data.priceData.valueVi,
+                            value: resDocDetails.data.priceId
+                        } : {},
+                        payment: resDocDetails.data.paymentId ? {
+                            label: language == languages.EN ? resDocDetails.data.paymentData.valueEn : resDocDetails.data.paymentData.valueVi,
+                            value: resDocDetails.data.paymentId
+                        } : {},
+                        province: resDocDetails.data.provinceId ? {
+                            label: language == languages.EN ? resDocDetails.data.provinceData.valueEn : resDocDetails.data.provinceData.valueVi,
+                            value: resDocDetails.data.provinceId
+                        } : {},
+                        addressClinic: resDocDetails.data.addressClinic,
+                        nameClinic: resDocDetails.data.nameClinic,
+                        note: resDocDetails.data.note,
+                    })
                 } else {
                     setContentMarkdown('')
                     setDescription('')
                 }
             }
-            if (res && res.errCode !== 0) {
-                toast.error(res.errMessage)
+            if (resDocDetails && resDocDetails.errCode !== 0) {
+                toast.error(resDocDetails.errMessage)
             }
-            if (!res) {
+            if (!resDocDetails) {
                 toast.error('Something error!')
             }
         }
@@ -108,9 +148,6 @@ export const DoctorManage = () => {
     return (
         <>
             <div className="doctor-manage-container container">
-                {console.log(priceList)}
-                {console.log(provinceList)}
-                {console.log(paymentList)}
                 <div className="manage-doctor-title">
                     Thêm thông tin doctor
                 </div>
@@ -175,6 +212,26 @@ export const DoctorManage = () => {
                         />
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-4 form-group">
+                        <label >Tên phòng khám</label>
+                        <input type="text" className='form-control'
+                            onChange={(e) => { handleChangeSelection('nameClinic', e.target.value) }}
+                            value={selectedOption.nameClinic} />
+                    </div>
+                    <div className="col-4 form-group">
+                        <label >Địa chỉ phòng khám</label>
+                        <input type="text" className='form-control'
+                            onChange={(e) => { handleChangeSelection('addressClinic', e.target.value) }}
+                            value={selectedOption.addressClinic} />
+                    </div>
+                    <div className="col-4 form-group">
+                        <label >Ghi chú</label>
+                        <input type="text" className='form-control'
+                            onChange={(e) => { handleChangeSelection('note', e.target.value) }}
+                            value={selectedOption.note} />
+                    </div>
+                </div>
                 <div className="manage-doctor-editor">
                     <MdEditor
                         value={contentMarkdown}
@@ -182,7 +239,6 @@ export const DoctorManage = () => {
                         renderHTML={text => mdParser.render(text)}
                         onChange={handleEditorChange} />
                 </div>
-                {/* <input className='submit-button' type="button" >Lưu thông tin</input> */}
                 <button className='submit-button'
                     onClick={handleClickSave}
                 >Lưu thông tin</button>

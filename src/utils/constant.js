@@ -4,7 +4,8 @@ export const path = {
     LOG_OUT: '/logout',
     SYSTEM: '/system',
     HOME_PAGE: '/homepage',
-    USER_REDUX: ''
+    USER_REDUX: '',
+    SPECIALTY: '/specialty-:id',
 };
 
 export const languages = {

@@ -71,6 +71,23 @@ export const ScheduleManage = () => {
             }
         })
         let res = await doctorService.saveDoctorSchedule(finalData)
+        if (res && res.errCode === 0) {
+            toast.success('Save successfully!')
+            resetInput()
+            return
+        }
+        if (res && res.errCode !== 0) {
+            toast.error(res.errMessage)
+            return
+        }
+        toast.error('Something wrong!')
+    }
+
+    const resetInput = () => {
+        setSelectedOption({})
+        setCurrentDate('')
+        let newTimeRange = timeRange.map(item => { return { ...item, isSelected: false } })
+        setTimeRange(newTimeRange)
     }
 
     const validateBeforeSubmit = () => {

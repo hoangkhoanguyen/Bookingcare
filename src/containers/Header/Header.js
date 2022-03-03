@@ -6,6 +6,7 @@ import Navigator from '../../components/Navigator';
 import { adminMenu, doctorMenu } from './menuApp';
 import './Header.scss';
 import { languages, USER_ROLE } from '../../utils/constant';
+import { LanguageSelection } from '../LanguageSelection/LanguageSelection';
 
 // import { changeLanguage } from '../../store/actions';
 
@@ -51,10 +52,7 @@ class Header extends Component {
 
                 {/* nút logout */}
                 <div className="header-right">
-                    <div className="language">
-                        <span className='language-vi' onClick={() => { handleChangeLanguage(languages.VI) }}>VN</span>
-                        <span className='language-en' onClick={() => { handleChangeLanguage(languages.EN) }}>EN</span>
-                    </div>
+                    <LanguageSelection />
                     <div className="btn btn-logout" onClick={processLogout}>
                         <i className="fas fa-sign-out-alt"></i>
                     </div>

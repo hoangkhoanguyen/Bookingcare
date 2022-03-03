@@ -21,6 +21,8 @@ import { HomePage } from './HomePage/HomePage';
 import CustomScrollbars from '../components/CustomScrollbars'
 import '../containers/App.scss'
 import { Doctor } from './DoctorInfo/Doctor';
+import { VerifyAppointment } from './VerifyAppointment/VerifyAppointment';
+import { Specialty } from './Specialty/Specialty';
 
 class App extends Component {
 
@@ -57,6 +59,8 @@ class App extends Component {
                                     <Route path='/doctor-system' component={userIsAuthenticated(DoctorSystem)} />
                                     <Route path={path.HOME_PAGE} component={(HomePage)} />
                                     <Route path="/doctor/doctor-:id" component={Doctor} />
+                                    <Route path={`/verify-booking`} component={VerifyAppointment} />
+                                    <Route path={path.SPECIALTY} component={Specialty} />
                                 </Switch>
                             </CustomScrollbars>
                         </div>

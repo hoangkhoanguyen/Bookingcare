@@ -68,11 +68,22 @@ const getDoctorScheduleByDate = async (doctorId, date) => {
     }
 }
 
+const getProfileDoctor = async (id) => {
+    try {
+        let url = `/api/doctor/get-doctor-profile-by-id?id=${id}`
+        let result = await axios.get(`${process.env.REACT_APP_BACKEND_URL}${url}`)
+        return result
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+
 export default {
     getTopDoctor: getTopDoctor,
     getAllDoctor: getAllDoctor,
     getDoctorDetailsById: getDoctorDetailsById,
     saveDoctorDetails: saveDoctorDetails,
     saveDoctorSchedule,
-    getDoctorScheduleByDate,
+    getDoctorScheduleByDate, getProfileDoctor,
 }
