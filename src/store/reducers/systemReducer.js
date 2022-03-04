@@ -6,6 +6,7 @@ const initialState = {
     priceList: [],
     paymentList: [],
     provinceList: [],
+    specialtyList: [],
 }
 
 const systemReducer = (state = initialState, action) => {
@@ -59,6 +60,16 @@ const systemReducer = (state = initialState, action) => {
             return {
                 ...state,
                 provinceList: []
+            }
+        case actionTypes.FETCH_SPECIALTY_NAME_SUCCESS:
+            return {
+                ...state,
+                specialtyList: action.data
+            }
+        case actionTypes.FETCH_SPECIALTY_NAME_FAIL:
+            return {
+                ...state,
+                specialtyList: []
             }
         default:
             return state;

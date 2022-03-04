@@ -8,7 +8,7 @@ import 'react-markdown-editor-lite/lib/index.css';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { fetchGetAllDoctorStart, fetchAllCodeStart } from '../../store/actions/doctorSystemAction';
+import { fetchGetAllDoctorStart, fetchAllCodeStart, fetchSpecialtyName } from '../../store/actions/doctorSystemAction';
 import { languages } from '../../utils';
 import doctorService from '../../services/doctorService';
 import { toast } from 'react-toastify';
@@ -26,6 +26,7 @@ export const DoctorManage = () => {
     const priceList = useSelector(state => state.system.priceList)
     const paymentList = useSelector(state => state.system.paymentList)
     const provinceList = useSelector(state => state.system.provinceList)
+    const specialtyList = useSelector(state => state.system.specialtyList)
     const language = useSelector(state => state.app.language)
     const [contentMarkdown, setContentMarkdown] = useState('')
     const [contentHTML, setContentHTML] = useState('')
@@ -37,6 +38,7 @@ export const DoctorManage = () => {
         addressClinic: '',
         nameClinic: '',
         note: '',
+        specialty: ''
     })
     const [description, setDescription] = useState('')
 
@@ -46,6 +48,7 @@ export const DoctorManage = () => {
         dispatch(fetchAllCodeStart('PRICE'))
         dispatch(fetchAllCodeStart('PROVINCE'))
         dispatch(fetchAllCodeStart('PAYMENT'))
+        dispatch(fetchSpecialtyName())
     }, [])
 
     const handleEditorChange = ({ html, text }) => {
@@ -66,6 +69,7 @@ export const DoctorManage = () => {
                 addressClinic: selectedOption.addressClinic,
                 nameClinic: selectedOption.nameClinic,
                 note: selectedOption.note,
+                specialtyId: selectedOption.specialty.value
             })
             if (result && result.errCode === 0) {
                 resetDoctorDetailsForm()
@@ -91,6 +95,7 @@ export const DoctorManage = () => {
             addressClinic: '',
             nameClinic: '',
             note: '',
+            specialty: ''
         })
         setDescription('')
     }
@@ -130,6 +135,10 @@ export const DoctorManage = () => {
                         addressClinic: resDocDetails.data.addressClinic,
                         nameClinic: resDocDetails.data.nameClinic,
                         note: resDocDetails.data.note,
+                        specialty: resDocDetails.data.details.specialtyId ? {
+                            label: specialtyList.filter(item => item.id == resDocDetails.data.details.specialtyId)[0].name,
+                            value: resDocDetails.data.details.specialtyId
+                        } : ''
                     })
                 } else {
                     setContentMarkdown('')
@@ -232,6 +241,29 @@ export const DoctorManage = () => {
                             value={selectedOption.note} />
                     </div>
                 </div>
+                <div className="row">
+                    <div className="col-4 form-group">
+                        <label >Chọn chuyên khoa</label>
+                        <Select
+                            value={selectedOption.specialty}
+                            onChange={(value) => { handleChangeSelection('specialty', value) }}
+                            options={specialtyList && specialtyList.length > 0 && specialtyList.map(item => {
+                                return {
+                                    value: item.id,
+                                    label: item.name
+                                }
+                            })}
+                        />
+                    </div>
+                    {/* <div className="col-4 form-group">
+                        <label >Chọn phòng khám</label>
+                        <input type="text" className='form-control'
+                            onChange={(e) => { handleChangeSelection('nameClinic', e.target.value) }}
+                            value={selectedOption.addressClinic} />
+                    </div> */}
+
+                </div>
+
                 <div className="manage-doctor-editor">
                     <MdEditor
                         value={contentMarkdown}

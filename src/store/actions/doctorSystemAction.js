@@ -1,6 +1,7 @@
 import actionTypes from './actionTypes';
 import userService from '../../services/userService'
 import doctorService from '../../services/doctorService';
+import specialtyService from '../../services/specialtyService';
 
 
 // export const adminLoginSuccess = (adminInfo) => ({
@@ -78,20 +79,21 @@ export const fetchAllCodeStart = (field) => {
     }
 }
 
-// export const fetchDoctorInfo = (id) => {
-//     return async (dispatch,getState)=>{
-//         try {
-//             let result = await doctorService.getDoctorInfoById(id)
-//             if (result&& result.errCode===0)
-//             {
-//                 dispatch(fetchSuccess(actionTypes.FETCH_DOCTOR_INFO_SUCCESS,result.data))
-//             }
-//         } catch (error) {
-//             dispatch(fetchFail(actionTypes.FETCH_DOCTOR_INFO_FAIL))
-//             console.log('fetchDoctorInfo error', error)
-//         }
-//     }
-// }
+export const fetchSpecialtyName = () => {
+    return async (dispatch, getState) => {
+        try {
+            let res = await specialtyService.getSpecialty()
+            if (res && res.errCode === 0) {
+                dispatch(fetchSuccess(actionTypes.FETCH_SPECIALTY_NAME_SUCCESS, res.data))
+            } else {
+                dispatch(fetchFail(actionTypes.FETCH_SPECIALTY_NAME_FAIL))
+            }
+        } catch (error) {
+            dispatch(fetchFail(actionTypes.FETCH_SPECIALTY_NAME_FAIL))
+            console.log('fetchAllcodeStart error', error)
+        }
+    }
+}
 
 export const fetchFail = (type) => ({
     type: type
