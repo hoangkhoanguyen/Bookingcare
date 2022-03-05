@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { HomeHeader } from '../HomePage/HomeHeader/HomeHeader'
+import { DoctorListBySpecialty } from './DoctorListBySpecialty/DoctorListBySpecialty'
 import { SpecialtyDetails } from './SpecialtyDetails/SpecialtyDetails'
 
 export const Specialty = () => {
@@ -10,6 +11,7 @@ export const Specialty = () => {
         <>
             <HomeHeader />
             <SpecialtyDetails id={id} />
+            <DoctorListBySpecialty id={id} />
         </>
     )
 }

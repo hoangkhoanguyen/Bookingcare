@@ -24,6 +24,21 @@ const getSpecialty = async (id) => {
     }
 }
 
+const getDoctorListBySpecialtyId = async (id, provinceId) => {
+    try {
+
+        let url = !provinceId ? `${process.env.REACT_APP_BACKEND_URL}/api/specialty/get-doctor-list-by-specialty-id?id=${id}` :
+            `${process.env.REACT_APP_BACKEND_URL}/api/specialty/get-doctor-list-by-specialty-id?id=${id}&provinceId=${provinceId}`
+        let result = await axios.get(url)
+        return result
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+
+
 export default {
-    saveSpecialtyInfo, getSpecialty
+    saveSpecialtyInfo, getSpecialty,
+    getDoctorListBySpecialtyId
 }

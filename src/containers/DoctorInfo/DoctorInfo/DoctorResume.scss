@@ -1,0 +1,34 @@
+.introduction {
+    display        : flex;
+    flex-direction : row;
+    justify-content: flex-start;
+    margin-top     : 20px;
+
+    .doctor-avatar {
+        width        : 150px;
+        height       : 150px;
+        border-radius: 50%;
+        overflow     : hidden;
+
+
+        img {
+            width : 100%;
+            height: 100%;
+        }
+    }
+
+    .info {
+        margin-left: 8px;
+
+        .doctor-name {
+            font-size    : 20px;
+            margin-bottom: 8px;
+            font-weight  : 600;
+        }
+
+        .doctor-description {
+            flex     : 1;
+            max-width: 600px;
+        }
+    }
+}

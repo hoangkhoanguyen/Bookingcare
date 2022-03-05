@@ -59,16 +59,6 @@ export const MedicalFacilitySection = () => {
         }
     ]
 
-    const handleCLickNext = (num) => {
-        if (slideList && num < slideList.length) {
-            carousel.current.slickGoTo(num + 1)
-            setNumber(num + 1)
-        }
-    }
-    const handleCLickPrev = (num) => {
-        if (num > 0) { }
-        carousel.current.slickGoTo(num - 1)
-    }
     return <div className='medical-facility-section'>
         <div className="header-section">
             <h3 className='title-section'>Cơ sở y tế nổi bật</h3>
@@ -76,12 +66,13 @@ export const MedicalFacilitySection = () => {
         </div>
         <Slider {...settings} ref={carousel} >
             {slideList && slideList.length > 0 && slideList.map(slide => {
-                return <div className='slide-item' key={slide.id}>
-                    <div className="slide-body">
-                        <img src={slide.linkImg} alt="" />
-                        <h6>{slide.name}</h6>
-                    </div>
-                </div>
+                return (
+                    <div className='slide-item' key={slide.id}>
+                        <a href={`/facility-${slide.id}`} className="slide-body">
+                            <img src={slide.linkImg} alt="" />
+                            <h6>{slide.name}</h6>
+                        </a>
+                    </div>)
             })}
         </Slider>
     </div>;

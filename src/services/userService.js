@@ -24,7 +24,7 @@ const getAllUsers = async () => {
 }
 
 const getAllCodesService = async (type) => {
-    let data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/allcodes/getAll`, { type: type })
+    let data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/allcodes/getAll`, { type })
     return data
 }
 

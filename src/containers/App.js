@@ -23,6 +23,7 @@ import '../containers/App.scss'
 import { Doctor } from './DoctorInfo/Doctor';
 import { VerifyAppointment } from './VerifyAppointment/VerifyAppointment';
 import { Specialty } from './Specialty/Specialty';
+import { Facility } from './Facility/Facility';
 
 class App extends Component {
 
@@ -61,6 +62,7 @@ class App extends Component {
                                     <Route path="/doctor/doctor-:id" component={Doctor} />
                                     <Route path={`/verify-booking`} component={VerifyAppointment} />
                                     <Route path={path.SPECIALTY} component={Specialty} />
+                                    <Route path={path.FACILITY} component={Facility} />
                                 </Switch>
                             </CustomScrollbars>
                         </div>

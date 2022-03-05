@@ -26,9 +26,9 @@ export const HomeHeader = () => {
             <div className="menu-icon">
                 <i className="fas fa-bars" onClick={handleShowSidebar}></i>
             </div>
-            <div className="logo">
+            <a href='/homepage' className="logo">
                 <img src="/img/Homepage/main-logo.png" alt="" />
-            </div>
+            </a>
         </div>
         <div className="nav-center">
             <div className="nav-item">
