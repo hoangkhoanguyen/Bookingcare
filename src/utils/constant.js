@@ -6,7 +6,7 @@ export const path = {
     HOME_PAGE: '/homepage',
     USER_REDUX: '',
     SPECIALTY: '/specialty-:id',
-    FACILITY: '/facility-:id',
+    CLINIC: '/clinic-:id',
 };
 
 export const languages = {

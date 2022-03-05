@@ -17,7 +17,7 @@ const getSpecialty = async (id) => {
         let url = id ? `${process.env.REACT_APP_BACKEND_URL}/api/specialty/get-specialty-info?id=${id}` :
             `${process.env.REACT_APP_BACKEND_URL}/api/specialty/get-specialty-info`
         let result = await axios.get(url)
-        return result.data
+        return result ? result.data : null
     } catch (error) {
         console.log(error)
         return null

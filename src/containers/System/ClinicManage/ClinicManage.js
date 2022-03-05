@@ -5,7 +5,7 @@ import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 // import style manually
 import 'react-markdown-editor-lite/lib/index.css';
-import specialtyService from '../../../services/specialtyService'
+import clinicService from '../../../services/clinicService'
 import { toast } from 'react-toastify';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
@@ -43,21 +43,28 @@ export const ClinicManage = () => {
 
     const handleClickSaveBtn = async () => {
         if (name == '') {
-            toast.error('Name of specialty is required')
+            toast.error('Name of clinic is required')
             return
         }
         if (!imageBase64) {
-            toast.error('Picture of specialty is required')
+            toast.error('Picture of clinic is required')
+            return
+        }
+        if (!address) {
+            toast.error('Address of clinic is required')
             return
         }
         let data2Send = {
-            name,
+            name, address,
             image: imageBase64,
             descriptionHTML: contentHTML,
             descriptionMarkdown: contentMarkdown
         }
+        console.log(data2Send)
+        // return
         try {
-            let res = await specialtyService.saveSpecialtyInfo(data2Send)
+            let res = await clinicService.saveClinicInfo(data2Send)
+            // console.log(res)
             if (res && res.errCode === 0) {
                 resetForm()
                 toast.success(res.errMessage)
