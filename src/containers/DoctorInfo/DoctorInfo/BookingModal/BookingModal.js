@@ -31,6 +31,7 @@ export const BookingModal = (props) => {
     const [birthday, setBirthday] = useState('')
 
     useEffect(() => {
+        console.log(time)
         dispatch(fetchStart('GENDER'))
     }, [])
 
@@ -51,23 +52,29 @@ export const BookingModal = (props) => {
             `${last} ${first}`
     }
 
+    const buildDMY = (dateData) => {
+        let a = new Date(+dateData);
+        let year = a.getFullYear();
+        let month = a.getMonth() + 1
+        month = month < 10 ? '0' + month : month;
+        let day = a.getDate() < 10 ? '0' + a.getDate() : a.getDate();
+        let result = day + '/' + month + '/' + year;
+        return result
+    }
+
     const handleClickSubmitBtn = async () => {
         //validate
-        // console.log(clientInfo)
-        // return
+
         //send request to server
         try {
-            let timeString = buildTimeDateDisplay({
-                valueEn: time.valueEn,
-                valueVi: time.valueVi
-            }, date)
             let doctorName = buildNameDisplay(firstName, lastName)
             let body = {
                 ...clientInfo,
                 doctorId,
-                timeString,
+                timeString: time.timeType,
                 language,
                 doctorName,
+                date: buildDMY(date),
                 birthday: new Date(birthday).getTime()
             }
             // console.log('body: ', body)
