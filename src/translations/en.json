@@ -96,7 +96,10 @@
         "doctor": {
             "header": "User",
             "schedule-manage": {
-                "header": "Manage schedule"
+                "header": "Schedule Manage"
+            },
+            "patient-manage": {
+                "header": "Patient manage"
             }
         },
         "specialty": {

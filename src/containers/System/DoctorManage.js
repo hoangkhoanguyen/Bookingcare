@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { fetchGetAllDoctorStart, fetchAllCodeStart, fetchSpecialtyName } from '../../store/actions/doctorSystemAction';
 import { languages } from '../../utils';
 import doctorService from '../../services/doctorService';
+import clinicService from '../../services/clinicService';
 import { toast } from 'react-toastify';
 
 // Register plugins if required
@@ -22,25 +23,34 @@ const mdParser = new MarkdownIt(/* Markdown-it options */);
 export const DoctorManage = () => {
 
     const dispatch = useDispatch()
+
+    const specialtyList = useSelector(state => state.system.specialtyList)
+    const provinceList = useSelector(state => state.system.provinceList)
+    const paymentList = useSelector(state => state.system.paymentList)
     const doctorList = useSelector(state => state.system.allDoctor)
     const priceList = useSelector(state => state.system.priceList)
-    const paymentList = useSelector(state => state.system.paymentList)
-    const provinceList = useSelector(state => state.system.provinceList)
-    const specialtyList = useSelector(state => state.system.specialtyList)
     const language = useSelector(state => state.app.language)
+
+    const [doctorOptions, setDoctorOptions] = useState([])
+    const [priceOptions, setPriceOptions] = useState([])
+    const [provinceOptions, setProvinceOptions] = useState([])
+    const [paymentOptions, setPaymentOptions] = useState([])
+    const [specialtyOptions, setSpecialtyOptions] = useState([])
+    const [clinicOptions, setClinicOptions] = useState([])
     const [contentMarkdown, setContentMarkdown] = useState('')
     const [contentHTML, setContentHTML] = useState('')
+    const [selectedDoctor, setSelectedDoctor] = useState({})
+    const [selectedPrice, setSelectedPrice] = useState({})
+    const [selectedPayment, setSelectedPayment] = useState({})
+    const [selectedProvince, setSelectedProvince] = useState({})
     const [selectedOption, setSelectedOption] = useState({
-        doctor: {},
-        price: {},
-        payment: {},
-        province: {},
         addressClinic: '',
         nameClinic: '',
         note: '',
-        specialty: ''
+        specialty: '',
+        clinic: '',
+        description: ''
     })
-    const [description, setDescription] = useState('')
 
 
     useEffect(() => {
@@ -50,6 +60,93 @@ export const DoctorManage = () => {
         dispatch(fetchAllCodeStart('PAYMENT'))
         dispatch(fetchSpecialtyName())
     }, [])
+
+    const buildArrOptions = (originArr) => {
+        let finalArr = originArr.map(item => {
+            return {
+                value: item.keyMap,
+                label: language == languages.VI ? item.valueVi : item.valueEn
+            }
+        })
+        return finalArr
+    }
+
+    useEffect(() => {
+        if (doctorList && doctorList.length > 0) {
+            let originArr = doctorList.map(item => {
+                return {
+                    value: item.id,
+                    label: language == languages.VI ? `${item.lastName} ${item.firstName}` : `${item.firstName} ${item.lastName}`
+                }
+            })
+            setDoctorOptions(originArr)
+            if (selectedDoctor) {
+                setSelectedDoctor(originArr.filter(item => item.value == selectedDoctor.value)[0])
+            }
+        }
+    }, [doctorList, language])
+
+    useEffect(async () => {
+        let clinicList = []
+        try {
+            let res = await clinicService.getClinic()
+            if (res && res.errCode === 0) {
+                clinicList = res.data
+                if (clinicList && clinicList.length > 0) {
+                    let originArr = clinicList.map(item => {
+                        return {
+                            value: item.id,
+                            label: item.name
+                        }
+                    })
+                    setClinicOptions(originArr)
+                }
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }, [])
+
+    useEffect(() => {
+        if (specialtyList && specialtyList.length > 0) {
+            let originArr = specialtyList.map(item => {
+                return {
+                    value: item.id,
+                    label: item.name
+                }
+            })
+            setSpecialtyOptions(originArr)
+        }
+    }, [specialtyList])
+
+    useEffect(() => {
+        if (priceList && priceList.length > 0) {
+            let arr = buildArrOptions(priceList)
+            setPriceOptions(arr)
+            if (selectedPrice) {
+                setSelectedPrice(arr.filter(item => item.value == selectedPrice.value)[0])
+            }
+        }
+    }, [priceList, language])
+
+    useEffect(() => {
+        if (provinceList && provinceList.length > 0) {
+            let arr = buildArrOptions(provinceList)
+            setProvinceOptions(arr)
+            if (selectedProvince) {
+                setSelectedProvince(arr.filter(item => item.value == selectedProvince.value)[0])
+            }
+        }
+    }, [provinceList, language])
+    useEffect(() => {
+        if (paymentList && paymentList.length > 0) {
+            let arr = buildArrOptions(paymentList)
+            setPaymentOptions(arr)
+            if (selectedPayment) {
+                setSelectedPayment(arr.filter(item => item.value == selectedPayment.value)[0])
+            }
+        }
+    }, [paymentList, language])
 
     const handleEditorChange = ({ html, text }) => {
         setContentHTML(html)
@@ -62,12 +159,13 @@ export const DoctorManage = () => {
                 doctorId: selectedOption.doctor.value,
                 contentHTML,
                 contentMarkdown,
-                description,
+                description: selectedOption.description,
                 priceId: selectedOption.price.value,
                 provinceId: selectedOption.province.value,
                 paymentId: selectedOption.payment.value,
                 addressClinic: selectedOption.addressClinic,
                 nameClinic: selectedOption.nameClinic,
+                clinicId: selectedOption.clinic.value,
                 note: selectedOption.note,
                 specialtyId: selectedOption.specialty.value
             })
@@ -87,21 +185,18 @@ export const DoctorManage = () => {
 
     const resetDoctorDetailsForm = () => {
         setContentMarkdown('')
+        setSelectedDoctor({})
+        setSelectedPrice({})
+        setSelectedPayment({})
+        setSelectedProvince({})
         setSelectedOption({
-            doctor: {},
-            price: {},
-            payment: {},
-            province: {},
             addressClinic: '',
             nameClinic: '',
             note: '',
-            specialty: ''
+            specialty: '',
+            clinic: '',
+            description: ''
         })
-        setDescription('')
-    }
-
-    const handleChangeDescription = (e) => {
-        setDescription(e.target.value)
     }
 
     const handleChangeSelection = async (key, value) => {
@@ -111,47 +206,50 @@ export const DoctorManage = () => {
             ...currentState,
             [key]: value
         })
-        if (key == 'doctor') {
-            let resDocDetails = await doctorService.getDoctorDetailsById(value.value)
-            if (resDocDetails && resDocDetails.errCode === 0) {
-                if (resDocDetails.data) {
-                    setContentMarkdown(resDocDetails.data.details.contentMarkdown)
-                    setContentHTML(resDocDetails.data.details.contentHTML)
-                    setDescription(resDocDetails.data.details.description)
-                    setSelectedOption({
-                        doctor: value,
-                        price: resDocDetails.data.priceId ? {
-                            label: language == languages.EN ? resDocDetails.data.priceData.valueEn : resDocDetails.data.priceData.valueVi,
-                            value: resDocDetails.data.priceId
-                        } : {},
-                        payment: resDocDetails.data.paymentId ? {
-                            label: language == languages.EN ? resDocDetails.data.paymentData.valueEn : resDocDetails.data.paymentData.valueVi,
-                            value: resDocDetails.data.paymentId
-                        } : {},
-                        province: resDocDetails.data.provinceId ? {
-                            label: language == languages.EN ? resDocDetails.data.provinceData.valueEn : resDocDetails.data.provinceData.valueVi,
-                            value: resDocDetails.data.provinceId
-                        } : {},
-                        addressClinic: resDocDetails.data.addressClinic,
-                        nameClinic: resDocDetails.data.nameClinic,
-                        note: resDocDetails.data.note,
-                        specialty: resDocDetails.data.details.specialtyId ? {
-                            label: specialtyList.filter(item => item.id == resDocDetails.data.details.specialtyId)[0].name,
-                            value: resDocDetails.data.details.specialtyId
-                        } : ''
-                    })
-                } else {
-                    setContentMarkdown('')
-                    setDescription('')
-                }
-            }
-            if (resDocDetails && resDocDetails.errCode !== 0) {
-                toast.error(resDocDetails.errMessage)
-            }
-            if (!resDocDetails) {
-                toast.error('Something error!')
+    }
+
+    const handleChangeSelectedDoctor = async (value) => {
+        setSelectedDoctor(value)
+        let resDocDetails = await doctorService.getDoctorDetailsById(value.value)
+        if (resDocDetails && resDocDetails.errCode === 0) {
+            if (resDocDetails.data) {
+                setContentMarkdown(resDocDetails.data.details.contentMarkdown)
+                setContentHTML(resDocDetails.data.details.contentHTML)
+                setSelectedProvince(resDocDetails.data.provinceId ? provinceOptions.filter(item => item.value == resDocDetails.data.provinceId)[0] : {})
+                setSelectedPayment(resDocDetails.data.paymentId ? paymentOptions.filter(item => item.value == resDocDetails.data.paymentId)[0] : {})
+                setSelectedPrice(resDocDetails.data.priceId ? priceOptions.filter(item => item.value == resDocDetails.data.priceId)[0] : {})
+                setSelectedOption({
+                    description: resDocDetails.data.details.description,
+                    clinic: resDocDetails.data.details.clinicId ? clinicOptions.filter(item => item.value == resDocDetails.data.details.clinicId)[0] : {},
+                    addressClinic: resDocDetails.data.addressClinic,
+                    nameClinic: resDocDetails.data.nameClinic,
+                    note: resDocDetails.data.note,
+                    specialty: resDocDetails.data.details.specialtyId ? specialtyOptions.filter(item => item.value == resDocDetails.data.details.specialtyId)[0] : {},
+                })
+            } else {
+                resetDoctorDetailsForm()
             }
         }
+        if (resDocDetails && resDocDetails.errCode !== 0) {
+            toast.error(resDocDetails.errMessage)
+            resetDoctorDetailsForm()
+        }
+        if (!resDocDetails) {
+            toast.error('Something error!')
+            resetDoctorDetailsForm()
+        }
+    }
+
+    const handleChangeSelectedPrice = (value) => {
+        setSelectedPrice(value)
+    }
+
+    const handleChangeSelectedPayment = (value) => {
+        setSelectedPayment(value)
+    }
+
+    const handleChangeSelectedProvince = (value) => {
+        setSelectedProvince(value)
     }
 
     return (
@@ -164,19 +262,14 @@ export const DoctorManage = () => {
                     <div className="content-left form-group col-5">
                         <label htmlFor="">Chọn bác sĩ</label>
                         <Select
-                            value={selectedOption.doctor}
-                            onChange={(value) => { handleChangeSelection('doctor', value) }}
-                            options={doctorList && doctorList.length > 0 && doctorList.map(doctor => {
-                                return {
-                                    value: `${doctor.id}`,
-                                    label: language == languages.VI ? `${doctor.lastName} ${doctor.firstName}` : `${doctor.firstName} ${doctor.lastName}`
-                                }
-                            })}
+                            value={selectedDoctor}
+                            onChange={handleChangeSelectedDoctor}
+                            options={doctorOptions}
                         />
                     </div>
                     <div className="content-right form-group col-7">
                         <label htmlFor="">Thông tin giới thiệu: </label>
-                        <textarea value={description} onChange={handleChangeDescription} className='form-control' cols="30" rows="4">
+                        <textarea value={selectedOption.description} onChange={(e) => { handleChangeSelection('description', e.target.value) }} className='form-control' cols="30" rows="4">
                         </textarea>
                     </div>
                 </div>
@@ -184,40 +277,25 @@ export const DoctorManage = () => {
                     <div className="col-4">
                         <label >Chọn giá</label>
                         <Select
-                            value={selectedOption.price}
-                            onChange={(value) => { handleChangeSelection('price', value) }}
-                            options={priceList && priceList.length > 0 && priceList.map(item => {
-                                return {
-                                    value: item.keyMap,
-                                    label: language == languages.VI ? item.valueVi : item.valueEn
-                                }
-                            })}
+                            value={selectedPrice}
+                            onChange={handleChangeSelectedPrice}
+                            options={priceOptions}
                         />
                     </div>
                     <div className="col-4">
                         <label >Chọn phương thức thanh toán</label>
                         <Select
-                            value={selectedOption.payment}
-                            onChange={(value) => { handleChangeSelection('payment', value) }}
-                            options={paymentList && paymentList.length > 0 && paymentList.map(item => {
-                                return {
-                                    value: item.keyMap,
-                                    label: language == languages.VI ? item.valueVi : item.valueEn
-                                }
-                            })}
+                            value={selectedPayment}
+                            onChange={handleChangeSelectedPayment}
+                            options={paymentOptions}
                         />
                     </div>
                     <div className="col-4">
                         <label >Chọn tỉnh</label>
                         <Select
-                            value={selectedOption.province}
-                            onChange={(value) => { handleChangeSelection('province', value) }}
-                            options={provinceList && provinceList.length > 0 && provinceList.map(item => {
-                                return {
-                                    value: item.keyMap,
-                                    label: language == languages.VI ? item.valueVi : item.valueEn
-                                }
-                            })}
+                            value={selectedProvince}
+                            onChange={handleChangeSelectedProvince}
+                            options={provinceOptions}
                         />
                     </div>
                 </div>
@@ -247,21 +325,17 @@ export const DoctorManage = () => {
                         <Select
                             value={selectedOption.specialty}
                             onChange={(value) => { handleChangeSelection('specialty', value) }}
-                            options={specialtyList && specialtyList.length > 0 && specialtyList.map(item => {
-                                return {
-                                    value: item.id,
-                                    label: item.name
-                                }
-                            })}
+                            options={specialtyOptions}
                         />
                     </div>
-                    {/* <div className="col-4 form-group">
+                    <div className="col-4 form-group">
                         <label >Chọn phòng khám</label>
-                        <input type="text" className='form-control'
-                            onChange={(e) => { handleChangeSelection('nameClinic', e.target.value) }}
-                            value={selectedOption.addressClinic} />
-                    </div> */}
-
+                        <Select
+                            value={selectedOption.clinic}
+                            onChange={(value) => { handleChangeSelection('clinic', value) }}
+                            options={clinicOptions}
+                        />
+                    </div>
                 </div>
 
                 <div className="manage-doctor-editor">

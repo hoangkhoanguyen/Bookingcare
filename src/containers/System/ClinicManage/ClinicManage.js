@@ -64,15 +64,15 @@ export const ClinicManage = () => {
         // return
         try {
             let res = await clinicService.saveClinicInfo(data2Send)
-            // console.log(res)
-            if (res && res.errCode === 0) {
+            console.log(res)
+            if (res && res.data && res.data.errCode === 0) {
                 resetForm()
-                toast.success(res.errMessage)
+                toast.success(res.data.errMessage)
             }
-            if (res && res.errCode !== 0) {
-                toast.error(res.errMessage)
+            if (res && res.data && res.data.errCode !== 0) {
+                toast.error(res.data.errMessage)
             }
-            if (!res) {
+            if (!res.data) {
                 toast.error('Something error!')
             }
         } catch (error) {

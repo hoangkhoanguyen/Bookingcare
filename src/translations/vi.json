@@ -91,6 +91,9 @@
             "header": "Người dùng",
             "schedule-manage": {
                 "header": "Quản lý lịch khám bệnh"
+            },
+            "patient-manage": {
+                "header": "Quản lý bệnh nhân"
             }
         },
         "clinic": {

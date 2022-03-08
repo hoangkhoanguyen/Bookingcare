@@ -60,6 +60,10 @@ export const doctorMenu = [
                 name: 'menu.doctor.schedule-manage.header',
                 link: '/doctor-system/schedule-manage'
             },
-        ]
+            {
+                name: 'menu.doctor.patient-manage.header',
+                link: '/doctor-system/patient-manage'
+            },
+        ],
     }
 ];

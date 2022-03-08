@@ -45,49 +45,6 @@ export const MedicalFacilitySection = () => {
         }
     }, [])
 
-    const slideList = [
-        {
-            id: 1,
-            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
-            name: 'Bệnh viện Chợ Rẫy'
-        },
-        {
-            id: 2,
-            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
-            name: 'Bệnh viện Chợ Rẫy'
-        },
-        {
-            id: 3,
-            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
-            name: 'Bệnh viện Chợ Rẫy'
-        },
-        {
-            id: 4,
-            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
-            name: 'Bệnh viện Chợ Rẫy'
-        },
-        {
-            id: 5,
-            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
-            name: 'Bệnh viện Chợ Rẫy'
-        },
-        {
-            id: 6,
-            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
-            name: 'Bệnh viện Chợ Rẫy'
-        },
-        {
-            id: 7,
-            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
-            name: 'Bệnh viện Chợ Rẫy'
-        },
-        {
-            id: 8,
-            linkImg: '/Img/Homepage/MedicalFacility/095119-benh-vien-cho-ray-h1.jpg',
-            name: 'Bệnh viện Chợ Rẫy'
-        }
-    ]
-
     return <div className='medical-facility-section'>
         <div className="header-section">
             <h3 className='title-section'>Cơ sở y tế nổi bật</h3>
@@ -101,7 +58,8 @@ export const MedicalFacilitySection = () => {
                             <img src={slide.image} alt="" />
                             <h6>{slide.name}</h6>
                         </a>
-                    </div>)
+                    </div>
+                )
             })}
         </Slider>
     </div>;

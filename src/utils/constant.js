@@ -3,10 +3,13 @@ export const path = {
     LOGIN: '/login',
     LOG_OUT: '/logout',
     SYSTEM: '/system',
+    DOCTOR_SYSTEM: '/doctor-system',
     HOME_PAGE: '/homepage',
     USER_REDUX: '',
     SPECIALTY: '/specialty-:id',
     CLINIC: '/clinic-:id',
+    DOCTOR: '/doctor-:id',
+    VERIFY_BOOKING: '/verify-booking'
 };
 
 export const languages = {

@@ -57,10 +57,10 @@ class App extends Component {
                                     <Route path={path.HOME} exact component={(Home)} />
                                     <Route path={path.LOGIN} component={userIsNotAuthenticated(Login)} />
                                     <Route path={path.SYSTEM} component={userIsAuthenticated(System)} />
-                                    <Route path='/doctor-system' component={userIsAuthenticated(DoctorSystem)} />
+                                    <Route path={path.DOCTOR_SYSTEM} component={userIsAuthenticated(DoctorSystem)} />
                                     <Route path={path.HOME_PAGE} component={(HomePage)} />
-                                    <Route path="/doctor/doctor-:id" component={Doctor} />
-                                    <Route path={`/verify-booking`} component={VerifyAppointment} />
+                                    <Route path={path.DOCTOR} component={Doctor} />
+                                    <Route path={path.VERIFY_BOOKING} component={VerifyAppointment} />
                                     <Route path={path.SPECIALTY} component={Specialty} />
                                     <Route path={path.CLINIC} component={Clinic} />
                                 </Switch>

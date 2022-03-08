@@ -95,6 +95,7 @@ export const fetchSpecialtyName = () => {
     }
 }
 
+
 export const fetchFail = (type) => ({
     type: type
 })

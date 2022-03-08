@@ -1,30 +1,26 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useParams } from 'react-router'
 import './Clinic.scss'
 import { HomeHeader } from '../HomePage/HomeHeader/HomeHeader'
-import { ClinicInfoItem } from './ClinicInfoItem/ClinicInfoItem'
 import { ClinicNavigation } from './ClinicNavigation/ClinicNavigation'
-import clinicService from '../../services/clinicService'
+import { ClinicDetails } from './ClinicDetails/ClinicDetails'
+import { DoctorListByClinic } from './DoctorListByClinic/DoctorListByClinic'
 
 export const Clinic = () => {
 
     const { id } = useParams()
 
-    useEffect(async () => {
-        if (!id) return
-        // console.log(id)
-        try {
-            let res = await clinicService.getClinic(id)
-            console.log(res)
-        } catch (error) {
-            console.log(error)
-        }
-    }, [id])
     return (
         <>
             <HomeHeader />
-            <ClinicNavigation />
-            <div className="clinic-details">
+            <div className="body">
+                {/* <ClinicNavigation /> */}
+                <div className="clinic-details">
+                    <ClinicDetails id={id} />
+                </div>
+                <div className="doctor-list-by-clinic">
+                    <DoctorListByClinic id={id} />
+                </div>
             </div>
         </>
     )
