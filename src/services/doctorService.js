@@ -79,11 +79,23 @@ const getProfileDoctor = async (id) => {
     }
 }
 
+const confirmStatusDone = async (id) => {
+    try {
+        let body = { id }
+        let url = `${process.env.REACT_APP_BACKEND_URL}/api/doctor/confirm-status-done`
+        let result = await axios.post(url, body)
+        return result
+    } catch (error) {
+        console.log(error)
+        return null
+    }
+}
+
 export default {
     getTopDoctor: getTopDoctor,
     getAllDoctor: getAllDoctor,
     getDoctorDetailsById: getDoctorDetailsById,
     saveDoctorDetails: saveDoctorDetails,
-    saveDoctorSchedule,
+    saveDoctorSchedule, confirmStatusDone,
     getDoctorScheduleByDate, getProfileDoctor,
 }

@@ -5,6 +5,8 @@ import { useSelector } from 'react-redux';
 import patientService from '../../../services/patientService';
 import moment from 'moment'
 import { languages } from '../../../utils'
+import doctorService from '../../../services/doctorService';
+import { toast } from 'react-toastify';
 
 export const PatientManage = () => {
 
@@ -34,8 +36,25 @@ export const PatientManage = () => {
         setDay2Send(day)
     }
 
-    const handleClickConfirmBtn = () => {
-
+    const handleClickConfirmBtn = async (idBooking) => {
+        // console.log(id)
+        try {
+            let result = await doctorService.confirmStatusDone(idBooking)
+            if (result && result.errCode === 0) {
+                toast.success(result.errMessage)
+                let id = userInfo.id
+                let day = day2Send
+                let res = await patientService.getPatientListByDoctorId(id, day)
+                if (res && res.errCode === 0) {
+                    setPatientList(res.data)
+                }
+            } else {
+                toast.error(result.errMessage)
+            }
+        } catch (error) {
+            console.log(error)
+            toast.error('Something wrong!')
+        }
     }
 
     const handleClickSendBillBtn = () => {
@@ -83,7 +102,7 @@ export const PatientManage = () => {
                                             </td>}
                                         <td>
                                             <button className='btn confirm-btn'
-                                                onClick={() => { handleClickConfirmBtn() }}
+                                                onClick={() => { handleClickConfirmBtn(item.id) }}
                                             >
                                                 Xác nhận</button>
                                             <button className='btn send-bill-btn'

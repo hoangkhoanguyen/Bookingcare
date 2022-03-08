@@ -45,8 +45,21 @@ export const DoctorSchedule = (props) => {
             object.value = moment(new Date()).add(i, 'days').startOf('day').valueOf()
             arr.push(object)
         }
+        setDay(arr[0].value)
         setArrayDays(arr)
     }, [language])
+
+    useEffect(async () => {
+        if (!day) return
+        try {
+            let res = await doctorService.getDoctorScheduleByDate(doctorId, day)
+            if (res && res.errCode === 0) {
+                setSchedule(res.data)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }, [day])
 
     const capitalizeFirstLetter = (string) => {
         return string.at(0).toUpperCase() + string.slice(1)
@@ -54,10 +67,6 @@ export const DoctorSchedule = (props) => {
 
     const handleChangeSelectDay = async (e) => {
         setDay(e.target.value)
-        let res = await doctorService.getDoctorScheduleByDate(doctorId, e.target.value)
-        if (res && res.errCode === 0) {
-            setSchedule(res.data)
-        }
     }
 
     const handleClickAvailableButton = (time) => {
@@ -69,6 +78,7 @@ export const DoctorSchedule = (props) => {
     const closeModal = () => {
         setIsShowModal(false)
     }
+
     return (
         <div className='doctor-schedule-section'>
             <div className="date-select">

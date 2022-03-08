@@ -26,25 +26,14 @@ export const BookingModal = (props) => {
         birthday: '',
         gender: '',
     })
+
     const genderArr = useSelector(state => state.user.genderArr)
     const language = useSelector(state => state.app.language)
     const [birthday, setBirthday] = useState('')
 
     useEffect(() => {
-        console.log(time)
         dispatch(fetchStart('GENDER'))
     }, [])
-
-    const buildTimeDateDisplay = (timeData, dateData) => {
-        if ({ timeData, dateData } && !_.isEmpty({ timeData, dateData })) {
-            let timeDisplay = language == languages.EN ?
-                timeData.valueEn : timeData.valueVi
-            let dateDisplay = language == languages.EN ?
-                moment.unix(+dateData / 1000).format('ddd - DD/MM/YYYY') :
-                moment.unix(+dateData / 1000).locale('vi').format('dddd - DD/MM/YYYY')
-            return `${timeDisplay} - ${dateDisplay}`
-        }
-    }
 
     const buildNameDisplay = (first, last) => {
         return language == languages.EN ?
@@ -77,13 +66,15 @@ export const BookingModal = (props) => {
                 date: buildDMY(date),
                 birthday: new Date(birthday).getTime()
             }
-            // console.log('body: ', body)
 
             let result = await patientService.sendRequestBookingAppointment(body)
             console.log(result)
             if (result && result.errCode === 0) {
+                console.log('ok')
                 toast.success(result.errMessage)
                 resetInput()
+                closeModal()
+
             }
             if (result && result.errCode !== 0) {
                 toast.error(result.errMessage)
@@ -97,7 +88,15 @@ export const BookingModal = (props) => {
     }
 
     const resetInput = () => {
-        setClientInfo({})
+        setClientInfo({
+            fullName: '',
+            phoneNumber: '',
+            email: '',
+            address: '',
+            reason: '',
+            birthday: '',
+            gender: '',
+        })
     }
 
     const validateBeforSubmit = () => {
@@ -115,9 +114,10 @@ export const BookingModal = (props) => {
     const handleChangeDatePicker = (pickerDate) => {
         setBirthday(pickerDate[0])
     }
+
     return (
-        <div className='booking-modal'>
-            <div className="booking-body">
+        <div className='booking-modal' onClick={closeModal}>
+            <div className="booking-body" onClick={(e) => { e.stopPropagation() }}>
                 <div className="modal-booking-title">Thông tin đặt lịch khám bệnh</div>
                 <div className="modal-booking-content">
                     <ProfileDoctor id={doctorId} date={date} time={time} isShowDescription={false} />
@@ -126,7 +126,6 @@ export const BookingModal = (props) => {
                             <label >Họ và tên</label>
                             <input value={clientInfo.fullName} type="text" className="form-control"
                                 onChange={(e) => { handleChangeInput(e.target.value, 'fullName') }} />
-
                         </div>
                         <div className="col-6">
                             <label >Số điện thoại</label>

@@ -59,6 +59,12 @@ class Login extends Component {
         }
     }
 
+    handlePressEnter = (e) => {
+        if (e.code == 'Enter') {
+            this.handleLoginButton()
+        }
+    }
+
     render() {
         return (
             <div className='background-login'>
@@ -74,7 +80,9 @@ class Login extends Component {
                     </div>
                     <div className="col-12 form-group">
                         <label >Password:</label>
-                        <input onChange={(e) => { this.handleChangeInput(e, 'password') }} value={this.state.userInfo.password} type="password" className='form-control' />
+                        <input onChange={(e) => { this.handleChangeInput(e, 'password') }}
+                            onKeyDown={this.handlePressEnter}
+                            value={this.state.userInfo.password} type="password" className='form-control' />
                         <span>{this.state.messageWarning.password}</span>
 
                     </div>
