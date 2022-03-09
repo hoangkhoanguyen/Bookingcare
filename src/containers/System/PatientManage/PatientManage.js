@@ -7,12 +7,15 @@ import moment from 'moment'
 import { languages } from '../../../utils'
 import doctorService from '../../../services/doctorService';
 import { toast } from 'react-toastify';
+import { SendReportEmailModal } from './SendReportEmailModal/SendReportEmailModal';
 
 export const PatientManage = () => {
 
     const userInfo = useSelector(state => state.user.userInfo)
     const language = useSelector(state => state.app.language)
     const [patientList, setPatientList] = useState([])
+    const [isShowModal, setIsShowModal] = useState(false)
+    const [info, setInfo] = useState({})
     const [currentDate, setCurrentDate] = useState(new Date())
     const [day2Send, setDay2Send] = useState(moment(new Date()).format("DD/MM/YYYY"))
 
@@ -36,8 +39,7 @@ export const PatientManage = () => {
         setDay2Send(day)
     }
 
-    const handleClickConfirmBtn = async (idBooking) => {
-        // console.log(id)
+    const sendConfirm = async (idBooking) => {
         try {
             let result = await doctorService.confirmStatusDone(idBooking)
             if (result && result.errCode === 0) {
@@ -57,8 +59,14 @@ export const PatientManage = () => {
         }
     }
 
-    const handleClickSendBillBtn = () => {
+    const handleClickConfirmBtn = (item) => {
+        console.log(item)
+        setInfo(item)
+        setIsShowModal(true)
+    }
 
+    const closeModal = () => {
+        setIsShowModal(false)
     }
 
     return (
@@ -102,12 +110,9 @@ export const PatientManage = () => {
                                             </td>}
                                         <td>
                                             <button className='btn confirm-btn'
-                                                onClick={() => { handleClickConfirmBtn(item.id) }}
+                                                onClick={() => { handleClickConfirmBtn(item) }}
                                             >
                                                 Xác nhận</button>
-                                            <button className='btn send-bill-btn'
-                                                onClick={() => { handleClickSendBillBtn() }}
-                                            >Gửi hóa đơn</button>
                                         </td>
                                     </tr>
                                 )
@@ -116,6 +121,7 @@ export const PatientManage = () => {
                     </table>
                 </div>
             </div>
+            {isShowModal && <SendReportEmailModal info={info} closeModal={closeModal} />}
         </>
     )
 }

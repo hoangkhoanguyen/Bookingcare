@@ -79,9 +79,9 @@ const getProfileDoctor = async (id) => {
     }
 }
 
-const confirmStatusDone = async (id) => {
+const confirmStatusDone = async (data) => {
     try {
-        let body = { id }
+        let body = data
         let url = `${process.env.REACT_APP_BACKEND_URL}/api/doctor/confirm-status-done`
         let result = await axios.post(url, body)
         return result
@@ -98,4 +98,5 @@ export default {
     saveDoctorDetails: saveDoctorDetails,
     saveDoctorSchedule, confirmStatusDone,
     getDoctorScheduleByDate, getProfileDoctor,
+
 }
