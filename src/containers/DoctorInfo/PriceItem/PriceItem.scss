@@ -1,0 +1,53 @@
+.address {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    padding      : 12px 0;
+    opacity      : 0.8;
+
+    p {
+        margin: 0;
+    }
+}
+
+.details-title {
+    text-transform: uppercase;
+    font-weight   : 600;
+}
+
+.price {
+    padding-top   : 12px;
+    opacity       : 0.8;
+    display       : flex;
+    flex-direction: row;
+
+    span {
+        margin-right: 4px;
+    }
+
+    span.more-btn {
+        color : #56c7e0;
+        cursor: pointer;
+    }
+}
+
+.price-more {
+    padding-top: 12px;
+    opacity    : 0.8;
+
+    .price-details {
+        display       : flex;
+        flex-direction: row;
+
+        span {
+            margin-right: 4px;
+        }
+    }
+
+    .price-foreing {}
+
+    .payment-details {}
+
+    .less-btn {
+        color : #56c7e0;
+        cursor: pointer;
+    }
+}

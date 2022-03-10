@@ -33,13 +33,13 @@ export const SpecialtyDetails = (props) => {
     return (
         <div className='specialty-container'>
             {specialtyInfo &&
-                <div className={isExpanded ? "specialty-content expanded" : "specialty-content"} style={{ background: `url(${specialtyInfo.image})` }}>
+                <div className={isExpanded ? "specialty-content expanded" : "specialty-content"} style={{ backgroundImage: `linear-gradient(to top,#fff, rgba(255,255,255,0.8) 100px, rgba(255,255,255,0.8) 100%), url(${specialtyInfo.image})` }}>
                     <h3>{specialtyInfo.name}</h3>
                     <div className="specialty-details" dangerouslySetInnerHTML={{ __html: specialtyInfo.descriptionHTML }}>
                     </div>
                 </div>}
             <div className="actions-btns" onClick={handleToggleExpanded}>
-                Đọc thêm
+                {isExpanded ? 'Ẩn bớt' : 'Đọc thêm'}
             </div>
         </div>
     )

@@ -13,8 +13,12 @@ export const DoctorItem = (props) => {
                 <DoctorResume id={id} />
             </div>
             <div className="doctor-booking">
-                <DoctorSchedule doctorId={id} />
-                <PriceItem id={id} />
+                <div className="schedule-info">
+                    <DoctorSchedule doctorId={id} />
+                </div>
+                <div className="price-info">
+                    <PriceItem id={id} />
+                </div>
             </div>
         </div>
     )

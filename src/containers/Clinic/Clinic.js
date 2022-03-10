@@ -14,7 +14,7 @@ export const Clinic = () => {
         <>
             <HomeHeader />
             <div className="body">
-                {/* <ClinicNavigation /> */}
+
                 <div className="clinic-details">
                     <ClinicDetails id={id} />
                 </div>

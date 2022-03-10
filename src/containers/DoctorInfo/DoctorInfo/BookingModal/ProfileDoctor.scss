@@ -1,34 +1,57 @@
-.profile-doctor{
-display        : flex;
-            flex-direction : row;
-            justify-content: flex-start;
-            margin-top     : 20px;
+.profile-doctor {
+    display           : flex;
+    flex-direction    : row;
+    justify-content   : flex-start;
+    // padding        : 16px;
 
-            .doctor-avatar {
-                width        : 150px;
-                height       : 150px;
-                border-radius: 50%;
-                overflow     : hidden;
+    .doctor-avatar {
+        width      : 100px;
+        height     : 100px;
+        overflow   : hidden;
+        // padding : 10px;
 
 
-                img {
-                    width : 100%;
-                    height: 100%;
-                }
-            }
+        img {
+            width        : 100%;
+            border-radius: 50%;
+            height       : 100%;
+        }
+    }
 
-            .info {
-                margin-left: 8px;
+    .info {
+        // margin-left: 16px;
+        padding: 0 16px;
+        flex   : 1;
 
-                .doctor-name {
-                    font-size    : 20px;
-                    margin-bottom: 8px;
-                    font-weight  : 600;
-                }
+        .doctor-name {
+            font-size       : 20px;
+            // margin-bottom: 8px;
+            font-weight     : 600;
+        }
 
-                .doctor-description {
-                    flex     : 1;
-                    max-width: 600px;
-                }
+        .doctor-description {
+            // max-width: 600px;
+            // margin: 0;
+        }
+
+        .date-time {
+            p {
+                margin: 0;
             }
         }
+
+        .modal-price {
+            width         : 100%;
+            height        : 100%;
+            display       : flex;
+            flex-direction: row;
+
+            span {
+                margin-right: 4px;
+            }
+
+            // margin: auto 16px;
+        }
+    }
+
+}

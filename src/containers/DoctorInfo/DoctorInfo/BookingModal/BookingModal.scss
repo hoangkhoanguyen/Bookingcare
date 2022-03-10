@@ -1,49 +1,71 @@
-.booking-modal{
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    background-color: rgba(0,0,0,0.2);
-    display: flex;
-    justify-content: center;
-    .booking-body{
-        margin: auto;
-        width: 800px;
-        // height: 400px;
-        background-color: #fff;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        .modal-booking-title{
-            font-weight: 600;
-            padding: 12px;
-            border-bottom: 1px solid rgba(0,0,0,0.4);
-        }
-        .modal-booking-content{
-            padding: 12px;
-            .modal-price{
+.booking-modal {
+    position        : fixed;
+    top             : 0;
+    bottom          : 0;
+    right           : 0;
+    left            : 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    display         : flex;
+    justify-content : center;
+    z-index         : 100;
 
+    .booking-body {
+        margin          : auto;
+        width           : 800px;
+        border-radius   : 8px;
+        box-shadow      : 0 0 8px rgba(0, 0, 0, 0.2);
+        background-color: #fff;
+        display         : flex;
+        flex-direction  : column;
+        justify-content : space-between;
+        animation       : fadeDown 0.2s;
+
+        @keyframes fadeDown {
+            0% {
+                transform: translateY(-20px);
+            }
+
+            100% {
+                transform: translateY(0);
             }
         }
-        .modal-booking-footer{
-            display: flex;
-            flex-direction: row;
+
+        .modal-booking-title {
+            font-weight     : 600;
+            padding         : 12px;
+            background-color: rgba(26, 147, 228, 0.5);
+            border-radius   : 8px 8px 0 0;
+        }
+
+        .modal-booking-content {
+            padding: 16px;
+
+            .row {
+                margin-bottom: 4px !important;
+            }
+        }
+
+        .modal-booking-footer {
+            display        : flex;
+            flex-direction : row;
             justify-content: flex-end;
-            align-items: center;
-            height: 60px;
-            margin-right: 12px;
-            .actions-btn{
+            align-items    : center;
+            height         : 60px;
+            margin-right   : 12px;
+
+            .actions-btn {
                 // margin: auto 0;
-                
-                .btn{
+
+                .btn {
                     padding: 0 12px;
                 }
-                .accept-btn{
+
+                .accept-btn {
                     background-color: rgb(218, 150, 26);
-                    margin-right: 12px;
+                    margin-right    : 12px;
                 }
-                .cancel-btn{
+
+                .cancel-btn {
                     background-color: gray;
                 }
             }

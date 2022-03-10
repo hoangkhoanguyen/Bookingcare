@@ -88,6 +88,10 @@ export const DoctorSchedule = (props) => {
                     })}
                 </select>
             </div>
+            <div className="schedule-title">
+                <i class="fa fa-calendar" ></i>
+                <span>Lịch khám</span>
+            </div>
             <div className="all-available-time">
                 {schedule && schedule.length > 0 ? schedule.map((item, index) => {
                     return <button
@@ -96,6 +100,11 @@ export const DoctorSchedule = (props) => {
                         {language == languages.EN ? item.timeTypeData.valueEn : item.timeTypeData.valueVi}
                     </button>
                 }) : <div>Không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác</div>}
+            </div>
+            <div className="description">
+                <span>Chọn </span>
+                <i class="far fa-hand-point-up"></i>
+                <span> và đặt lịch (Phí 0đ)</span>
             </div>
             {isShowModal && <BookingModal
                 doctorId={doctorId}

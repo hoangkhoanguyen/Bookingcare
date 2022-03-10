@@ -54,7 +54,7 @@ export const DoctorListBySpecialty = (props) => {
     return (
         <div className='doctor-list-container'>
             <select onChange={handleChangeSelectProvince} value={selectedProvince} className="province-selection">
-                <option value="all">All</option>
+                <option value="all">{language == languages.EN ? 'All' : 'Toàn quốc'}</option>
                 {provinceList && provinceList.length > 0 && provinceList.map(item => {
                     return <option key={item.keyMap} value={item.keyMap}>
                         {language == languages.EN ? item.valueEn : item.valueVi}
@@ -67,7 +67,11 @@ export const DoctorListBySpecialty = (props) => {
                         <DoctorItem id={item} />
                     </div>
                 })}
-
+                {(!doctorList || doctorList.length == 0) &&
+                    <div >
+                        Hiện hệ thống chưa có bác sĩ tại khu vực này
+                    </div>
+                }
             </div>
         </div>
     )

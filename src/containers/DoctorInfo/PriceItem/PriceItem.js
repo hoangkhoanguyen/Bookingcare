@@ -3,6 +3,7 @@ import doctorService from '../../../services/doctorService'
 import NumberFormat from 'react-number-format'
 import { languages } from '../../../utils'
 import { useSelector } from 'react-redux'
+import './PriceItem.scss'
 
 export const PriceItem = (props) => {
 
@@ -48,16 +49,16 @@ export const PriceItem = (props) => {
 
 
     return (
-        <div>
-            haha
+        <>
             {doctor &&
                 <div className="address">
-                    <h5>Địa chỉ khám</h5>
-                    <p><b>{doctor.nameClinic}</b></p>
+                    <p><span className='details-title'>Địa chỉ khám</span></p>
+                    <p>{doctor.nameClinic}</p>
                     <p>{doctor.addressClinic}</p>
                 </div>}
             {!isMorePrice ?
-                <div className="price">Giá khám
+                <div className="price">
+                    <span className='details-title'>Giá khám: </span>
                     <span>
                         {doctor &&
                             <NumberFormat
@@ -70,8 +71,9 @@ export const PriceItem = (props) => {
                     </span>
                     <span className='more-btn' onClick={handleChangeMorePriceMode}>Xem chi tiết</span>
                 </div> :
-                <div className='price'>
-                    <div className="price-details"><span>Giá khám</span>
+                <div className='price-more'>
+                    <div className="price-details">
+                        <span className='details-title'>Giá khám: </span>
                         <span>
                             {doctor &&
                                 <NumberFormat
@@ -83,10 +85,10 @@ export const PriceItem = (props) => {
                                 />}
                         </span>
                     </div>
-                    <div className="price-foreing">Giá khám dành cho người nước ngoài: {doctor.priceData && doctor.priceData.valueEn}</div>
+                    <div className="price-foreing">Giá khám dành cho người nước ngoài: {doctor.priceData && doctor.priceData.valueEn}$</div>
                     <div className="payment-details">{payment}</div>
                     <div className="less-btn" onClick={handleChangeMorePriceMode}>Ẩn bảng giá</div>
                 </div>}
-        </div>
+        </>
     )
 }

@@ -1,41 +1,68 @@
-.doctor-details-page {
-    overflow-y: scroll;
-    height    : 100vh;
+// .doctor-details-page {
+//     overflow-y: scroll;
+//     height    : 100vh;
 
-    .doctor-info-header {
-        background-color: #45c3d2;
-        height          : 64px;
-        box-sizing      : border-box;
-        width           : 100%;
-        position        : fixed;
-        top             : 0;
-        left            : 0;
-        right           : 0;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+.doctor-info-header {
+    background-color: #45c3d2;
+    height          : 64px;
+    box-sizing      : border-box;
+    width           : 100%;
+    position        : fixed;
+    top             : 0;
+    left            : 0;
+    right           : 0;
+    display         : flex;
+    flex-direction  : row;
+    justify-content : space-between;
 
-        .fa-arrow-left {
-            cursor: pointer;
-            margin-left: 24px;
-        }
-        .content-right{
-            margin-right: 24px;
-        }
+    .fa-arrow-left {
+        cursor     : pointer;
+        margin-left: 24px;
     }
 
-    .doctor-details-breadcrum {
-        margin-top: 64px;
-    }
-
-    .doctor-detail-body {
-        margin-top: 20px;
-
-        
-
-        .doctor-detail {
-            // height    : 500px;
-            // overflow-y: auto;
-        }
+    .content-right {
+        margin-right: 24px;
     }
 }
+
+.doctor-details-breadcrum {
+    margin-top: 64px;
+}
+
+.doctor-detail-body {
+    margin-top: 75px;
+
+    .introduction-container {}
+
+    .booking-info {
+        padding          : 16px;
+        display          : flex;
+        flex-direction   : row;
+        width            : 100%;
+        border-bottom    : 1px solid rgba(0, 0, 0, 0.2);
+        // align-items   : flex-end;
+
+        .schedule-info {
+            width: 55%;
+        }
+
+        .price-info {
+            width         : 45%;
+            margin-top    : 30px;
+            padding-left  : 24px;
+            border-left   : 1px solid rgba(0, 0, 0, 0.2);
+            padding-right : 20px;
+            padding-bottom: 16px;
+            align-items   : flex-end;
+        }
+
+    }
+
+    .doctor-detail {
+        // height    : 500px;
+        // overflow-y: auto;
+        padding: 16px;
+    }
+}
+
+// }

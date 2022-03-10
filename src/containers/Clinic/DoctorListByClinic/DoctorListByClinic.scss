@@ -1,0 +1,13 @@
+.doctor-list-container {
+    width    : 100vw;
+    max-width: 1200px;
+    margin   : 24px auto;
+
+    .doctor-info-item {
+        background-color: #fff;
+        border-radius   : 8px;
+        width           : 100%;
+        margin-bottom   : 16px;
+        box-shadow      : 0 0 8px rgba(0, 0, 0, 0.2);
+    }
+}

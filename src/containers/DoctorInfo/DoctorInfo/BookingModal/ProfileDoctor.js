@@ -46,12 +46,12 @@ export const ProfileDoctor = (props) => {
 
     }, [])
 
-    useEffect(() => {
-        if (doctor && doctor.details && isShowDescription) {
-            document.querySelector('.profile-doctor .doctor-description').innerText = doctor.details.description
-        }
+    // useEffect(() => {
+    //     if (doctor && doctor.details && isShowDescription) {
+    //         document.querySelector('.profile-doctor .doctor-description').innerText = doctor.details.description
+    //     }
 
-    }, [doctor])
+    // }, [doctor])
 
     return (
         <div className="profile-doctor">
@@ -62,21 +62,24 @@ export const ProfileDoctor = (props) => {
                 <div className="doctor-name">
                     {`${doctor.positionData && doctor.positionData.valueVi} ${doctor.lastName} ${doctor.firstName}`}
                 </div>
-                <div className="doctor-description">
-                </div>
+                {doctor.details && <div className="doctor-description" dangerouslySetInnerHTML={{ __html: doctor.details.description }}>
+
+                </div>}
                 {!isShowDescription && <div className="date-time">
                     <p>{timeDateDisplay}</p>
                     <p>Miễn phí đặt lịch</p>
                 </div>}
+                <div className="modal-price">
+                    <span>Giá khám:</span>
+                    <NumberFormat
+                        value={doctor && doctor.priceData && doctor.priceData.valueVi || 0}
+                        displayType={'text'}
+                        thousandSeparator={true}
+                        suffix={'VND'}
+                        renderText={(value, props) => <div {...props}>{value}</div>}
+                    />
+                </div>
             </div>}
-            <div className="modal-price">Giá khám
-                <NumberFormat
-                    value={doctor && doctor.priceData && doctor.priceData.valueVi || 0}
-                    displayType={'text'}
-                    thousandSeparator={true}
-                    suffix={'VND'}
-                    renderText={(value, props) => <div {...props}>{value}</div>}
-                /></div>
         </div>
     )
 }

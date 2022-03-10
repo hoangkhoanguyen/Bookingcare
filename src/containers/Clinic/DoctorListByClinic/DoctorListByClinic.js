@@ -21,7 +21,7 @@ export const DoctorListByClinic = (props) => {
         }
     }, [id])
     return (
-        <div className='doctor-list-contain er'>
+        <div className='doctor-list-container'>
             {doctorList && doctorList.length > 0 && doctorList.map((item, index) => {
                 return <div key={index} className="doctor-info-item">
                     <DoctorItem id={item} />

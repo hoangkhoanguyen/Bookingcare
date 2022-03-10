@@ -11,7 +11,9 @@
         justify-content: space-between;
         padding        : 10px 0;
 
-        .title-section {}
+        .title-section {
+            font-weight: bold;
+        }
 
         .more-info-section {
             text-transform  : uppercase;
@@ -36,11 +38,18 @@
         .slide-body {
             cursor: pointer;
             text-decoration: none;
+            &:hover{
+                h6{
+                    color: #337ab7;
+ 
+                } 
+             }
 
             h6 {
                 color    : #111;
                 padding  : 5px 0;
-                font-size: 13px;
+                font-size: 16px;
+                margin-top: 8px;
             }
 
             img {

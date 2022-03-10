@@ -7,6 +7,7 @@ import '../DoctorInfo/DoctorInfo.scss'
 import { DoctorSchedule } from './DoctorSchedule/DoctorSchedule'
 import { DoctorResume } from './DoctorResume'
 import { PriceItem } from '../PriceItem/PriceItem'
+import { HomeHeader } from '../../HomePage/HomeHeader/HomeHeader'
 
 export const DoctorInfo = (props) => {
 
@@ -52,7 +53,7 @@ export const DoctorInfo = (props) => {
 
     return (
         <>
-            <div className='doctor-info-header'>
+            {/* <div className='doctor-info-header'>
                 <i className="fas fa-arrow-left" onClick={() => { window.location.href = '/homepage' }}></i>
                 {!onTop && <div className="doctor-name">
                     {doctor && `${doctor.positionData && doctor.positionData.valueVi} ${doctor.lastName} ${doctor.firstName}`}
@@ -61,24 +62,29 @@ export const DoctorInfo = (props) => {
                     <LanguageSelection />
                 </div>
 
-            </div>
-            <div className="doctor-details-breadcrum">
+            </div> */}
+            <HomeHeader />
+            {/* <div className="doctor-details-breadcrum">
 
-            </div>
-            {doctor && <div className='doctor-detail-body'>
-                <div className="introduction-container">
-                    <DoctorResume id={id} />
-                </div>
-                <div className="booking-info">
-                    <DoctorSchedule doctorId={id} />
-                    <div className="more-detail">
-                        <PriceItem id={id} />
-
+            </div> */}
+            {doctor &&
+                <div className='doctor-detail-body'>
+                    <div className="introduction-container">
+                        <DoctorResume id={id} />
                     </div>
-                </div>
-                {doctor.details && <div className="doctor-detail" dangerouslySetInnerHTML={{ __html: doctor.details.contentHTML }}></div>}
-                <div className="feedback-patient"></div>
-            </div>}
+                    <div className="booking-info">
+                        <div className="schedule-info">
+                            <DoctorSchedule doctorId={id} />
+                        </div>
+                        <div className="price-info">
+                            <PriceItem id={id} />
+                        </div>
+                    </div>
+                    {doctor.details &&
+                        <div className="doctor-detail" dangerouslySetInnerHTML={{ __html: doctor.details.contentHTML }}>
+                        </div>}
+                    <div className="feedback-patient"></div>
+                </div>}
         </>
     )
 }
