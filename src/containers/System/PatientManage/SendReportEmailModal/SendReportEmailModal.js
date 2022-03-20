@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 
 export const SendReportEmailModal = (props) => {
 
-    const { info, closeModal } = props
+    const { info, closeModal, reloadPatientList } = props
     const language = useSelector(state => state.app.language)
     const [email2Send, setEmail2Send] = useState('')
     const [image, setImage] = useState()
@@ -42,6 +42,7 @@ export const SendReportEmailModal = (props) => {
             let res = await doctorService.confirmStatusDone(data)
             if (res && res.errCode === 0) {
                 toast.success(res.errMessage)
+                reloadPatientList()
                 closeModal()
             }
             else {

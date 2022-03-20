@@ -53,14 +53,16 @@ export const DoctorListBySpecialty = (props) => {
 
     return (
         <div className='doctor-list-container'>
-            <select onChange={handleChangeSelectProvince} value={selectedProvince} className="province-selection">
-                <option value="all">{language == languages.EN ? 'All' : 'Toàn quốc'}</option>
-                {provinceList && provinceList.length > 0 && provinceList.map(item => {
-                    return <option key={item.keyMap} value={item.keyMap}>
-                        {language == languages.EN ? item.valueEn : item.valueVi}
-                    </option>
-                })}
-            </select>
+            <div className="province-selection">
+                <select onChange={handleChangeSelectProvince} value={selectedProvince} className="province-selection">
+                    <option value="all">{language == languages.EN ? 'All' : 'Toàn quốc'}</option>
+                    {provinceList && provinceList.length > 0 && provinceList.map(item => {
+                        return <option key={item.keyMap} value={item.keyMap}>
+                            {language == languages.EN ? item.valueEn : item.valueVi}
+                        </option>
+                    })}
+                </select>
+            </div>
             <div className="doctor-info-container">
                 {doctorList && doctorList.length > 0 && doctorList.map((item, index) => {
                     return <div key={index} className="doctor-info-item">

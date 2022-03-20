@@ -22,6 +22,7 @@ export const MedicalFacilitySection = () => {
     useEffect(async () => {
         try {
             let res = await clinicService.getClinic()
+            console.log(res)
             if (res && res.errCode === 0) {
                 let arr = res.data
                 if (arr.length > 0) {

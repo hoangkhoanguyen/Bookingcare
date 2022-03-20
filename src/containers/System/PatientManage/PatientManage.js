@@ -39,6 +39,19 @@ export const PatientManage = () => {
         setDay2Send(day)
     }
 
+    const reloadPatientList = async () => {
+        try {
+            let id = userInfo.id
+            let day = day2Send
+            let res = await patientService.getPatientListByDoctorId(id, day)
+            if (res && res.errCode === 0) {
+                setPatientList(res.data)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const sendConfirm = async (idBooking) => {
         try {
             let result = await doctorService.confirmStatusDone(idBooking)
@@ -121,7 +134,8 @@ export const PatientManage = () => {
                     </table>
                 </div>
             </div>
-            {isShowModal && <SendReportEmailModal info={info} closeModal={closeModal} />}
+            {isShowModal && <SendReportEmailModal info={info}
+                closeModal={closeModal} reloadPatientList={reloadPatientList} />}
         </>
     )
 }

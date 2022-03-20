@@ -13,6 +13,7 @@ export const DoctorListByClinic = (props) => {
         if (!id) return
         try {
             let res = await clinicService.getDoctorListByClinicId(id)
+            console.log(res)
             if (res && res.errCode === 0) {
                 setDoctorList(res.data)
             }
@@ -22,11 +23,13 @@ export const DoctorListByClinic = (props) => {
     }, [id])
     return (
         <div className='doctor-list-container'>
-            {doctorList && doctorList.length > 0 && doctorList.map((item, index) => {
-                return <div key={index} className="doctor-info-item">
-                    <DoctorItem id={item} />
-                </div>
-            })}
+            <div className="doctor-info-container">
+                {doctorList && doctorList.length > 0 && doctorList.map((item, index) => {
+                    return <div key={index} className="doctor-info-item">
+                        <DoctorItem id={item} />
+                    </div>
+                })}
+            </div>
         </div>
     )
 }
