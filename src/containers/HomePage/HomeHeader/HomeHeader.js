@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeLanguage, showHideSidebar } from '../../../store/actions/appActions';
+import { LanguageSelection } from '../../LanguageSelection/LanguageSelection';
 import '../HomeHeader/HomeHeader.scss'
 import { HomeSidebar } from '../HomeSidebar/HomeSidebar';
 
@@ -53,8 +54,9 @@ export const HomeHeader = () => {
             <span><FormattedMessage id="home-header.support" />
             </span>
             <div className="change-language">
-                <span className={language == 'vi' ? 'language-item active' : 'language-item'} onClick={() => { handleChangeLanguage('vi') }}>VI</span>
-                <span className={language == 'en' ? 'language-item active' : 'language-item'} onClick={() => { handleChangeLanguage('en') }}>EN</span>
+                <LanguageSelection />
+                {/* <span className={language == 'vi' ? 'language-item active' : 'language-item'} onClick={() => { handleChangeLanguage('vi') }}>VI</span>
+                <span className={language == 'en' ? 'language-item active' : 'language-item'} onClick={() => { handleChangeLanguage('en') }}>EN</span> */}
             </div>
         </div>
         {isShowSidebar && <HomeSidebar />}

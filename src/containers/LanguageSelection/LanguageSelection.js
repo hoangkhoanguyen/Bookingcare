@@ -7,13 +7,20 @@ import '../LanguageSelection/LanguageSelection.scss'
 export const LanguageSelection = () => {
     const language = useSelector(state => state.app.language)
     const dispatch = useDispatch()
-    const handleChangeLanguage = (language) => {
-        dispatch(changeLanguage(language))
+    const handleChangeLanguage = () => {
+        if (language == languages.EN) {
+            dispatch(changeLanguage(languages.VI))
+        }
+        if (language == languages.VI) {
+            dispatch(changeLanguage(languages.EN))
+        }
     }
     return (
-        <div className="change-language">
-            <span className={language == languages.VI ? 'language-item active' : 'language-item'} onClick={() => { handleChangeLanguage('vi') }}>VI</span>
-            <span className={language == languages.EN ? 'language-item active' : 'language-item'} onClick={() => { handleChangeLanguage('en') }}>EN</span>
+        <div className="change-language-container"
+            onClick={handleChangeLanguage} >
+            <div className={language == languages.EN ? 'switch-item en-active' : 'switch-item vi-active'}></div>
+            <span>VI</span>
+            <span>EN</span>
         </div>
     )
 }

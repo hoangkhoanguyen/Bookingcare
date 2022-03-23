@@ -7,18 +7,119 @@
     display        : flex;
     justify-content: center;
 
-    .login-container {
-        max-width       : 500px;
-        min-width       : 300px;
-        min-height      : 600px;
-        max-height      : 700px;
-        width           : 30%;
-        height          : 60%;
-        margin          : auto;
-        background-color: #FFFFFF;
-        border-radius   : 25px;
-        padding         : 20px;
 
-        .text-login {}
+    .login-body {
+        margin             : auto;
+        background-color   : #fff;
+        border-radius      : 8px;
+        display            : flex;
+        flex-direction     : column;
+        justify-content    : space-around;
+        // min-width       : 400px;
+        width              : 400px;
+        padding            : 40px;
+        box-sizing         : border-box;
+
+        h1 {
+            text-align: center;
+            margin    : 0;
+        }
+
+        .info-content {
+            margin         : 20px 0;
+            display        : flex;
+            flex-direction : column;
+            justify-content: space-between;
+
+
+            div {
+                position: relative;
+
+                &::before {
+                    content      : '';
+                    width        : 100%;
+                    position     : absolute;
+                    bottom       : 20px;
+                    left         : 0;
+                    width        : 100%;
+                    animation    : slide 0.3s;
+                    border-bottom: 2px solid var(--colorBottom);
+
+                    @keyframes slide {
+                        0% {
+                            width: 0%;
+                        }
+
+                        100% {
+                            width: 100%;
+                        }
+                    }
+                }
+
+                span {
+                    position : absolute;
+                    left     : 20px;
+                    bottom   : 0;
+                    font-size: 14px;
+                    color    : red;
+                    width    : 100%;
+                }
+
+                input {
+                    width        : 100%;
+                    margin-bottom: 20px;
+                    height       : 50px;
+                    font-size    : 20px;
+                    padding      : 0;
+                    outline      : none;
+                    border-top   : none;
+                    border-left  : none;
+                    border-right : none;
+
+                    &:focus {
+                        ~span::after {
+                            position     : absolute;
+                            content      : '';
+                            bottom       : 20px;
+                            left         : -20px;
+                            width        : 100%;
+                            animation    : slide 0.3s;
+                            border-bottom: 3px solid rgb(38, 133, 241);
+
+                            @keyframes slide {
+                                0% {
+                                    width: 0%;
+                                }
+
+                                100% {
+                                    width: 100%;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            .submid-btn {
+                border          : none;
+                border-radius   : 50px;
+                height          : 40px;
+                margin-top      : 20px;
+                font-size       : 20px;
+                text-align      : center;
+                background-color: rgb(38, 133, 241);
+                color           : white;
+                cursor          : pointer;
+                transition      : 0.4s;
+
+                &:hover {
+                    background-color: rgb(26, 87, 156);
+                    transition      : 0.4s;
+                }
+            }
+        }
     }
+
+    // .text-login {}
+    // }
 }
