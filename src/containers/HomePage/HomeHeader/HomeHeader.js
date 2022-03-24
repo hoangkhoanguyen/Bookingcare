@@ -55,8 +55,6 @@ export const HomeHeader = () => {
             </span>
             <div className="change-language">
                 <LanguageSelection />
-                {/* <span className={language == 'vi' ? 'language-item active' : 'language-item'} onClick={() => { handleChangeLanguage('vi') }}>VI</span>
-                <span className={language == 'en' ? 'language-item active' : 'language-item'} onClick={() => { handleChangeLanguage('en') }}>EN</span> */}
             </div>
         </div>
         {isShowSidebar && <HomeSidebar />}

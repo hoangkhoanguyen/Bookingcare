@@ -52,7 +52,9 @@ class Header extends Component {
 
                 {/* nút logout */}
                 <div className="header-right">
-                    <LanguageSelection />
+                    <div className="change-language">
+                        <LanguageSelection />
+                    </div>
                     <div className="btn btn-logout" onClick={processLogout}>
                         <i className="fas fa-sign-out-alt"></i>
                     </div>
