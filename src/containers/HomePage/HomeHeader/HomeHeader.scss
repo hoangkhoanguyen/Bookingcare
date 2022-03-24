@@ -5,7 +5,7 @@
     height          : 75px;
     width           : 100vw;
     min-width       : 1300px;
-    padding         : 20px 40px;
+    padding         : 0 24px;
     box-shadow      : 0px 0px 8px rgba($color: #000000, $alpha: 0.3);
     position        : fixed;
     background-color: #fff;
@@ -17,18 +17,24 @@
     .nav-left {
         display       : flex;
         flex-direction: row;
+        margin        : auto 0;
 
         .menu-icon {
             font-size   : 32px;
             margin-right: 12px;
             opacity     : 0.5;
             cursor      : pointer;
+
+            i {
+                font-size: 32px;
+            }
         }
 
         .logo {
             height: 40px;
             width : 180px;
             cursor: pointer;
+            margin: auto;
 
             img {
                 height: 100%;
@@ -47,6 +53,7 @@
 
         .nav-item {
             margin: auto 20px;
+            width : 182px;
             cursor: pointer;
 
             .nav-title {
@@ -58,32 +65,27 @@
     }
 
     .nav-right {
-        margin         : auto 10px;
+        margin         : auto 0;
         font           : 14px /1.5 'Montserrat', sans-serif;
         opacity        : 0.7;
         display        : flex;
         flex-direction : row;
         justify-content: space-between;
 
-        .fa-question-circle {
-            color: #45c3d2;
+        .support {
+            cursor      : pointer;
+            width       : 70px;
+            margin      : auto 0;
+            margin-right: 8px;
+
+            .fa-question-circle {
+                color       : #45c3d2;
+                margin-right: 4px;
+            }
         }
 
         .change-language {
-            margin-left: 20px;
-
-            .language-item {
-                margin-left: 4px;
-                cursor     : pointer;
-
-                &:hover {
-                    opacity: 0.8;
-                }
-            }
-
-            .language-item.active {
-                color: royalblue;
-            }
+            margin: auto 0;
         }
     }
 }

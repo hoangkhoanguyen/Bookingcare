@@ -50,9 +50,11 @@ export const HomeHeader = () => {
             </div>
         </div>
         <div className="nav-right">
-            <i className="fas fa-question-circle"></i>
-            <span><FormattedMessage id="home-header.support" />
-            </span>
+            <div className="support">
+                <i className="fas fa-question-circle"></i>
+                <span><FormattedMessage id="home-header.support" />
+                </span>
+            </div>
             <div className="change-language">
                 <LanguageSelection />
             </div>
