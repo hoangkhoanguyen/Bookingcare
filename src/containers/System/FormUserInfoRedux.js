@@ -360,7 +360,7 @@ export const FormUserInfoRedux = () => {
                     {errMessage.role != '' && <div className="warning-message position-absolute top-0 ">{errMessage.role}</div>}
                 </div>
                 <div className="form-group col-3 position-relative">
-                    <label ><FormattedMessage id='form-register.avatar' /></label>
+                    <label ></label>
                     <label htmlFor="input-img" className='preview'>
                         {!isEditting && newUserInfo && newUserInfo.image && <img src={newUserInfo.image} alt="" />}
                         {isEditting && userEdit && userEdit.image && <img src={userEdit.image} alt="" />}

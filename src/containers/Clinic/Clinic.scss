@@ -1,9 +1,15 @@
 .body {
     margin-top      : 75px;
     background-color: #eeeeee;
+    padding-bottom  : 12px;
 
     // width           : 100vw;
     // max-width       : 1200px;
+    .clinic-details {
+        margin-bottom: 24px;
+    }
 
-    .doctor-list-by-clinic {}
+    .doctor-list-by-clinic {
+        margin-bottom: 24px;
+    }
 }

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Select from 'react-select';
 import '../System/ManageDoctor.scss'
+import { FormattedMessage } from 'react-intl';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 // import style manually
@@ -256,11 +257,11 @@ export const DoctorManage = () => {
         <>
             <div className="doctor-manage-container container">
                 <div className="manage-doctor-title">
-                    Thêm thông tin doctor
+                    <FormattedMessage id='doctor-info.add-doctor-info' />
                 </div>
                 <div className="more row info mb-4">
                     <div className="content-left form-group col-5">
-                        <label htmlFor="">Chọn bác sĩ</label>
+                        <label htmlFor=""><FormattedMessage id='doctor-info.choose-doctor' /></label>
                         <Select
                             value={selectedDoctor}
                             onChange={handleChangeSelectedDoctor}
@@ -268,14 +269,14 @@ export const DoctorManage = () => {
                         />
                     </div>
                     <div className="content-right form-group col-7">
-                        <label htmlFor="">Thông tin giới thiệu: </label>
+                        <label htmlFor=""><FormattedMessage id='doctor-info.intro-info' /></label>
                         <textarea value={selectedOption.description} onChange={(e) => { handleChangeSelection('description', e.target.value) }} className='form-control' cols="30" rows="4">
                         </textarea>
                     </div>
                 </div>
                 <div className="row">
                     <div className="col-4">
-                        <label >Chọn giá</label>
+                        <label ><FormattedMessage id='doctor-info.choose-price' /></label>
                         <Select
                             value={selectedPrice}
                             onChange={handleChangeSelectedPrice}
@@ -283,7 +284,7 @@ export const DoctorManage = () => {
                         />
                     </div>
                     <div className="col-4">
-                        <label >Chọn phương thức thanh toán</label>
+                        <label ><FormattedMessage id='doctor-info.choose-payment' /></label>
                         <Select
                             value={selectedPayment}
                             onChange={handleChangeSelectedPayment}
@@ -291,7 +292,7 @@ export const DoctorManage = () => {
                         />
                     </div>
                     <div className="col-4">
-                        <label >Chọn tỉnh</label>
+                        <label ><FormattedMessage id='doctor-info.choose-province' /></label>
                         <Select
                             value={selectedProvince}
                             onChange={handleChangeSelectedProvince}
@@ -301,19 +302,19 @@ export const DoctorManage = () => {
                 </div>
                 <div className="row">
                     <div className="col-4 form-group">
-                        <label >Tên phòng khám</label>
+                        <label ><FormattedMessage id='doctor-info.clinic-name' /></label>
                         <input type="text" className='form-control'
                             onChange={(e) => { handleChangeSelection('nameClinic', e.target.value) }}
                             value={selectedOption.nameClinic} />
                     </div>
                     <div className="col-4 form-group">
-                        <label >Địa chỉ phòng khám</label>
+                        <label ><FormattedMessage id='doctor-info.clinic-address' /></label>
                         <input type="text" className='form-control'
                             onChange={(e) => { handleChangeSelection('addressClinic', e.target.value) }}
                             value={selectedOption.addressClinic} />
                     </div>
                     <div className="col-4 form-group">
-                        <label >Ghi chú</label>
+                        <label ><FormattedMessage id='doctor-info.note' /></label>
                         <input type="text" className='form-control'
                             onChange={(e) => { handleChangeSelection('note', e.target.value) }}
                             value={selectedOption.note} />
@@ -321,7 +322,7 @@ export const DoctorManage = () => {
                 </div>
                 <div className="row">
                     <div className="col-4 form-group">
-                        <label >Chọn chuyên khoa</label>
+                        <label ><FormattedMessage id='doctor-info.choose-specialty' /></label>
                         <Select
                             value={selectedOption.specialty}
                             onChange={(value) => { handleChangeSelection('specialty', value) }}
@@ -329,7 +330,7 @@ export const DoctorManage = () => {
                         />
                     </div>
                     <div className="col-4 form-group">
-                        <label >Chọn phòng khám</label>
+                        <label ><FormattedMessage id='doctor-info.choose-clinic' /></label>
                         <Select
                             value={selectedOption.clinic}
                             onChange={(value) => { handleChangeSelection('clinic', value) }}
@@ -347,7 +348,7 @@ export const DoctorManage = () => {
                 </div>
                 <button className='submit-button'
                     onClick={handleClickSave}
-                >Lưu thông tin</button>
+                ><FormattedMessage id='doctor-info.save' /></button>
             </div>
         </>
     )

@@ -92,24 +92,17 @@ class Login extends Component {
                         <button onClick={this.handleLoginButton} className='submid-btn' >Log in</button>
                     </div>
                 </div>
-                {/* <div className="card-body row"> */}
-                {/* <h1 className="text-center col-12 text-login title-login">
+                {/* <div className="login-container row">
+                    <div className="text-center col-12 text-login">
                         Login
-                    </h1>
-                    <div style={{ '--colorBottom': this.state.messageWarning.email == '' ? 'transparent' : 'red' }}>
-                        <input onChange={(e) => {
-                            // e.stopPropagation()
-                            this.handleChangeInput(e, 'email')
-                        }} value={this.state.userInfo.email} type="text" />
-                        <span>{this.state.messageWarning.email}</span>
-                    </div> */}
-                {/* <div className="col-12 form-group label-login">
+                    </div>
+                    <div className="col-12 form-group">
                         <label >Email:</label>
                         <input onChange={(e) => { this.handleChangeInput(e, 'email') }} value={this.state.userInfo.email} type="text" className='form-control' />
                         <span>{this.state.messageWarning.email}</span>
 
-                    </div> */}
-                {/* <div className="col-12 form-group label-login">
+                    </div>
+                    <div className="col-12 form-group">
                         <label >Password:</label>
                         <input onChange={(e) => { this.handleChangeInput(e, 'password') }}
                             onKeyDown={this.handlePressEnter}
@@ -125,8 +118,8 @@ class Login extends Component {
                     </div>
                     <div className="col-12">
 
-                    </div> */}
-                {/* </div> */}
+                    </div>
+                </div> */}
             </div>
         )
     }

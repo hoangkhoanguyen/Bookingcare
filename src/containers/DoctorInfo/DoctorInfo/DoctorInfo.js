@@ -53,20 +53,7 @@ export const DoctorInfo = (props) => {
 
     return (
         <>
-            {/* <div className='doctor-info-header'>
-                <i className="fas fa-arrow-left" onClick={() => { window.location.href = '/homepage' }}></i>
-                {!onTop && <div className="doctor-name">
-                    {doctor && `${doctor.positionData && doctor.positionData.valueVi} ${doctor.lastName} ${doctor.firstName}`}
-                </div>}
-                <div className="content-right">
-                    <LanguageSelection />
-                </div>
-
-            </div> */}
             <HomeHeader />
-            {/* <div className="doctor-details-breadcrum">
-
-            </div> */}
             {doctor &&
                 <div className='doctor-detail-body'>
                     <div className="introduction-container">
@@ -84,7 +71,8 @@ export const DoctorInfo = (props) => {
                         <div className="doctor-detail" dangerouslySetInnerHTML={{ __html: doctor.details.contentHTML }}>
                         </div>}
                     <div className="feedback-patient"></div>
-                </div>}
+                </div>
+            }
         </>
     )
 }

@@ -63,7 +63,11 @@
         "forbiden-request": "Thông tin truyền vào không hợp lệ",
         "fail-to-load-all-code": "Không thể tải về dữ liệu allcode",
         "sum": "Tổng",
-        "date-range-invalid": "Khoảng thời gian không hợp lệ"
+        "date-range-invalid": "Khoảng thời gian không hợp lệ",
+        "schedule": "Lịch khám",
+        "no-schedule-in-this-time": "Không có lịch khám còn trống trong thời gian này.",
+        "choose": "Chọn",
+        "and-booking-free": "và đặt lịch miễn phí"
     },
     "login": {
         "login": "Đăng nhập",
@@ -192,5 +196,34 @@
             "remove-assign-fail": "Bỏ gán gói dịch vụ cho khách hàng thất bại",
             "sure-delete-assign": "Bạn có chắc chắn muốn bỏ gán gói dịch vụ cho khách hàng?"
         }
+    },
+    "doctor-info": {
+        "add-doctor-info": "Thêm thông tin bác sĩ",
+        "choose-doctor": "Chọn bác sĩ",
+        "intro-info": "Thông tin giới thiệu:",
+        "choose-price": "Chọn giá",
+        "choose-payment": "Chọn phương thức thanh toán",
+        "choose-province": "Chọn tỉnh",
+        "clinic-name": "Tên phòng khám",
+        "clinic-address": "Địa chỉ phòng khám",
+        "note": "Ghi chú",
+        "choose-specialty": "Chọn chuyên khoa",
+        "choose-clinic": "Chọn phòng khám",
+        "save": "Lưu thông tin"
+    },
+    "clinic-info": {
+        "clinic-manage": "Quản lý phòng khám",
+        "clinic-name": "Tên phòng khám",
+        "clinic-address": "Địa chỉ phòng khám",
+        "clinic-image": "Ảnh phòng khám",
+        "clinic-details": "Chi tiết phòng khám",
+        "save": "Lưu thông tin"
+    },
+    "specialty-info": {
+        "specialty-manage": "Quản lý chuyên khoa",
+        "specialty-name": "Tên chuyên khoa",
+        "specialty-image": "Ảnh chuyên khoa",
+        "specialty-details": "Chi tiết chuyên khoa",
+        "save": "Lưu thông tin"
     }
 }

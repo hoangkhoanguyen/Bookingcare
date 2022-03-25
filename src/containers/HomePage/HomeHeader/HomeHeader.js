@@ -28,7 +28,7 @@ export const HomeHeader = () => {
                 <i className="fas fa-bars" onClick={handleShowSidebar}></i>
             </div>
             <a href='/homepage' className="logo">
-                <img src="/img/Homepage/main-logo.png" alt="" />
+                <img src="https://bookingcare.vn/assets/icon/bookingcare-2020.svg" alt="" />
             </a>
         </div>
         <div className="nav-center">

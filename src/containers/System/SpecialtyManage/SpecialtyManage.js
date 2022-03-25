@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import '../SpecialtyManage/SpecialtyManage.scss'
 import CommonUtils from '../../../utils/CommonUtils'
+import { FormattedMessage } from 'react-intl';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 // import style manually
@@ -79,18 +80,19 @@ export const SpecialtyManage = () => {
 
     return (
         <div className='specialty-manage'>
-            <h2 className='text-center'>Quản lý chuyên khoa</h2>
+            <h2 className='text-center'><FormattedMessage id='specialty-info.specialty-manage' /></h2>
             <div className="specialty-manage-body container">
                 <div className="row">
                     <div className="form-group col-6">
-                        <label >Chọn chuyên khoa</label>
+                        <label ><FormattedMessage id='specialty-info.specialty-name' /></label>
                         <input className='form-control' type="text" value={name} onChange={handleChangeName} />
                     </div>
                     <div className="form-group col-6">
-                        <label >Ảnh chuyên khoa</label>
+                        <label ><FormattedMessage id='specialty-info.specialty-image' /></label>
                         <input className='form-control' value={image} type="file" onChange={handleChangeImage} />
                     </div>
                     <div className="col-12 ">
+                        <label><FormattedMessage id='specialty-info.specialty-details' /></label>
                         <MdEditor
                             value={contentMarkdown}
                             style={{ height: '500px' }}
@@ -98,7 +100,7 @@ export const SpecialtyManage = () => {
                             onChange={handleEditorChange} />
                     </div>
                     <div className="col-12 action-btns">
-                        <button className='btn save-btn' onClick={handleClickSaveBtn}>Lưu thông tin</button>
+                        <button className='btn save-btn' onClick={handleClickSaveBtn}><FormattedMessage id='specialty-info.save' /></button>
                     </div>
                 </div>
             </div>

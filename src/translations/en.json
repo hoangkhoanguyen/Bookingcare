@@ -63,7 +63,11 @@
         "forbiden-request": "Invalid input data",
         "fail-to-load-all-code": "Fail to load data from allcode",
         "sum": "Sum",
-        "date-range-invalid": "Date range invalid"
+        "date-range-invalid": "Date range invalid",
+        "schedule": "Schedule",
+        "no-schedule-in-this-time": "There's no available time.",
+        "choose": "Choose",
+        "and-booking-free": "and booking freely"
     },
     "login": {
         "login": "Login",
@@ -192,5 +196,34 @@
             "remove-assign-fail": "Fail to unassign service package to customer",
             "sure-delete-assign": "Are you sure to unassign service package to customer?"
         }
+    },
+    "doctor-info": {
+        "add-doctor-info": "Add doctor information",
+        "choose-doctor": "Choose doctor",
+        "intro-info": "Introduction information",
+        "choose-price": "Choose price",
+        "choose-payment": "Choose payment",
+        "choose-province": "Choose province",
+        "clinic-name": "Name of clinic",
+        "clinic-address": "Address of clinic",
+        "note": "Note",
+        "choose-specialty": "Choose specialty",
+        "choose-clinic": "Choose clinic",
+        "save": "Save"
+    },
+    "clinic-info": {
+        "clinic-manage": "Clinic Manage",
+        "clinic-name": "Name of clinic",
+        "clinic-address": "Address of clinic",
+        "clinic-image": "Image of clinic",
+        "clinic-details": "Details of clinic",
+        "save": "Save"
+    },
+    "specialty-info": {
+        "specialty-manage": "Clinic Manage",
+        "specialty-name": "Name of specialty",
+        "specialty-image": "Image of specialty",
+        "specialty-details": "Details of specialty",
+        "save": "Save"
     }
 }

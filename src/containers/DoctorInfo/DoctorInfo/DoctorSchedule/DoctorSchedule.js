@@ -6,6 +6,7 @@ import 'moment/locale/vi'
 import { languages } from '../../../../utils/constant';
 import '../DoctorSchedule/DoctorSchedule.scss'
 import { BookingModal } from '../BookingModal/BookingModal';
+import { FormattedMessage } from 'react-intl';
 
 export const DoctorSchedule = (props) => {
 
@@ -90,7 +91,7 @@ export const DoctorSchedule = (props) => {
             </div>
             <div className="schedule-title">
                 <i class="fa fa-calendar" ></i>
-                <span>Lịch khám</span>
+                <span><FormattedMessage id='common.schedule' /></span>
             </div>
             <div className="all-available-time">
                 {schedule && schedule.length > 0 ? schedule.map((item, index) => {
@@ -99,12 +100,12 @@ export const DoctorSchedule = (props) => {
                         className={'btn'} key={item.id}>
                         {language == languages.EN ? item.timeTypeData.valueEn : item.timeTypeData.valueVi}
                     </button>
-                }) : <div>Không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác</div>}
+                }) : <div><FormattedMessage id='common.no-schedule-in-this-time' /></div>}
             </div>
             <div className="description">
-                <span>Chọn </span>
+                <span><FormattedMessage id='common.choose' /> </span>
                 <i class="far fa-hand-point-up"></i>
-                <span> và đặt lịch (Phí 0đ)</span>
+                <span> <FormattedMessage id='common.and-booking-free' /> (0đ)</span>
             </div>
             {isShowModal && <BookingModal
                 doctorId={doctorId}

@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import doctorService from '../../../services/doctorService'
+import { languages } from '../../../utils'
 import '../DoctorInfo/DoctorResume.scss'
 
 export const DoctorResume = (props) => {
     const { id } = props
-    const [doctor, setDoctor] = useState({})
+    const language = useSelector(state => state.app.language)
+    const [doctor, setDoctor] = useState()
 
     useEffect(async () => {
-        if (!id) {
-            return
-        }
         try {
+            if (!id) return
             let result = await doctorService.getDoctorDetailsById(id)
             if (result && result.errCode === 0) {
                 if (result.data && result.data.image && result.data.image.type == "Buffer") {
@@ -22,25 +23,50 @@ export const DoctorResume = (props) => {
                     return
                 }
                 setDoctor(result.data)
+            } else {
+                setDoctor(null)
             }
         } catch (error) {
             console.log(error)
+            setDoctor(null)
         }
     }, [id])
     return (
-        <div className="introduction">
-            {doctor && <div className="doctor-avatar">
-                <img src={doctor.image} alt="Doctor Avatar" />
-            </div>}
-            {doctor && <div className="info">
-                <div className="doctor-name">
-                    {`${doctor.positionData && doctor.positionData.valueVi} ${doctor.lastName} ${doctor.firstName}`}
-                </div>
-                {doctor.details &&
-                    <div className="doctor-description" >
-                        {doctor.details.description}
+        <>
+            {doctor &&
+                <div className="introduction">
+                    {doctor.image && <div className="doctor-avatar">
+                        <img src={doctor.image} alt="Doctor Avatar" />
                     </div>}
-            </div>}
-        </div>
+                    {doctor.positionData &&
+                        <div className="info">
+                            <div className="doctor-name">
+                                {language == languages.VI ?
+                                    `${doctor.positionData.valueVi} ${doctor.lastName} ${doctor.firstName}` :
+                                    `${doctor.positionData.valueEn} ${doctor.firstName} ${doctor.lastName}`}
+                            </div>
+                            {doctor.details &&
+                                <div className="doctor-description" >
+                                    {doctor.details.description}
+                                </div>}
+                        </div>}
+                </div>}
+            {!doctor &&
+                <div className="introduction-loading">
+                    <div className="doctor-avatar">
+                        <div className="loading"></div>
+                    </div>
+                    <div className="info">
+                        <div className="doctor-name">
+                            <div className="loading"></div>
+                        </div>
+
+                        <div className="doctor-description" >
+                            <div className="loading"></div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </>
     )
 }

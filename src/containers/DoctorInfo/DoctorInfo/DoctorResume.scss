@@ -35,3 +35,50 @@
         }
     }
 }
+
+.introduction-loading {
+    display        : flex;
+    flex-direction : row;
+    justify-content: flex-start;
+    border-right   : 1px solid rgba(0, 0, 0, 0.2);
+    padding        : 16px;
+
+    .doctor-avatar {
+        width        : 100px;
+        height       : 100px;
+        border-radius: 50%;
+        overflow     : hidden;
+    }
+
+    .info {
+        margin-left: 12px;
+
+        .doctor-name {
+            height       : 45px;
+            width        : 300px;
+            margin-bottom: 8px;
+        }
+
+        .doctor-description {
+            flex  : 1;
+            height: 100px;
+            width : 500px;
+        }
+    }
+
+    .loading {
+        height          : 100%;
+        animation       : loading 1s infinite;
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    @keyframes loading {
+        0% {
+            width: 0%;
+        }
+
+        100% {
+            width: 100%;
+        }
+    }
+}

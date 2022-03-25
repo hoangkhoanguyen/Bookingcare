@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './ClinicManage.scss'
 import CommonUtils from '../../../utils/CommonUtils'
+import { FormattedMessage } from 'react-intl';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 // import style manually
@@ -92,25 +93,26 @@ export const ClinicManage = () => {
 
     return (
         <div className='specialty-manage'>
-            <h2 className='text-center'>Quản lý phòng khám</h2>
+            <h2 className='text-center'><FormattedMessage id='clinic-info.clinic-manage' /></h2>
             <div className="specialty-manage-body container">
                 <div className="row">
                     <div className="form-group col-6">
-                        <label >Tên phòng khám</label>
+                        <label ><FormattedMessage id='clinic-info.clinic-name' /></label>
                         <input className='form-control' type="text" value={name} onChange={handleChangeName} />
                     </div>
                     <div className="form-group col-6">
-                        <label >Ảnh phòng khám</label>
+                        <label ><FormattedMessage id='clinic-info.clinic-image' /></label>
                         <input className='form-control' value={image} type="file" onChange={handleChangeImage} />
                     </div>
                 </div>
                 <div className="row">
                     <div className="form-group col-6">
-                        <label >Địa chỉ phòng khám</label>
+                        <label ><FormattedMessage id='clinic-info.clinic-address' /></label>
                         <input className='form-control' type="text" value={address} onChange={handleChangeAddress} />
                     </div>
                 </div>
                 <div className='row'>
+                    <label><FormattedMessage id='clinic-info.clinic-details' /></label>
                     <div className="col-12 ">
                         <MdEditor
                             value={contentMarkdown}
@@ -120,7 +122,7 @@ export const ClinicManage = () => {
                         />
                     </div>
                     <div className="col-12 action-btns">
-                        <button className='btn save-btn' onClick={handleClickSaveBtn}>Lưu thông tin</button>
+                        <button className='btn save-btn' onClick={handleClickSaveBtn}><FormattedMessage id='clinic-info.save' /></button>
                     </div>
                 </div>
             </div>
