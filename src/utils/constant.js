@@ -9,7 +9,10 @@ export const path = {
     SPECIALTY: '/specialty-:id',
     CLINIC: '/clinic-:id',
     DOCTOR: '/doctor-:id',
-    VERIFY_BOOKING: '/verify-booking'
+    VERIFY_BOOKING: '/verify-booking',
+    DOCTOR_LIST: '/search-doctor-page',
+    SPECIALTY_LIST: '/search-specialty-page',
+    CLINIC_LIST: '/search-clinic--page',
 };
 
 export const languages = {

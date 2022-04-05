@@ -94,13 +94,29 @@ export const DoctorSchedule = (props) => {
                 <span><FormattedMessage id='common.schedule' /></span>
             </div>
             <div className="all-available-time">
-                {schedule && schedule.length > 0 ? schedule.map((item, index) => {
+                {schedule && schedule.length > 0 && schedule.map((item, index) => {
                     return <button
                         onClick={() => { handleClickAvailableButton({ timeType: item.timeType, ...item.timeTypeData }) }}
                         className={'btn'} key={item.id}>
                         {language == languages.EN ? item.timeTypeData.valueEn : item.timeTypeData.valueVi}
                     </button>
-                }) : <div><FormattedMessage id='common.no-schedule-in-this-time' /></div>}
+                })}
+                {schedule && schedule.length == 0 &&
+                    <div><FormattedMessage id='common.no-schedule-in-this-time' /></div>
+                }
+                {!schedule &&
+                    <div className="schedule-loading">
+                        <div className="schedule-btn">
+                            <div className="loading"></div>
+                        </div>
+                        <div className="schedule-btn">
+                            <div className="loading"></div>
+                        </div>
+                        <div className="schedule-btn">
+                            <div className="loading"></div>
+                        </div>
+                    </div>
+                }
             </div>
             <div className="description">
                 <span><FormattedMessage id='common.choose' /> </span>

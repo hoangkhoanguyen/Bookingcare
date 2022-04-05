@@ -1,9 +1,9 @@
-import axios from 'axios'
+import axios from "../../src/axios";
 
 const saveClinicInfo = async (data) => {
     try {
         let body = data
-        let url = `${process.env.REACT_APP_BACKEND_URL}/api/clinic/save-clinic-info`
+        let url = `/api/clinic/save-clinic-info`
         let result = await axios.post(url, body)
         return result
     } catch (error) {
@@ -15,7 +15,7 @@ const saveClinicInfo = async (data) => {
 const getClinic = async (id) => {
     try {
         let query = id ? `?id=${id}` : ''
-        let url = `${process.env.REACT_APP_BACKEND_URL}/api/clinic/get-clinic-info` + query
+        let url = `/api/clinic/get-clinic-info` + query
         let result = await axios.get(url)
         return result.data
     } catch (error) {
@@ -27,7 +27,7 @@ const getClinic = async (id) => {
 const getDoctorListByClinicId = async (id, provinceId) => {
     try {
         let query = id ? `?id=${id}` : ''
-        let url = `${process.env.REACT_APP_BACKEND_URL}/api/clinic/get-doctor-list-by-clinic-id` + query
+        let url = `/api/clinic/get-doctor-list-by-clinic-id` + query
         let result = await axios.get(url)
         return result.data
     } catch (error) {

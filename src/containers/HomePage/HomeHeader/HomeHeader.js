@@ -10,6 +10,7 @@ import { HomeSidebar } from '../HomeSidebar/HomeSidebar';
 
 export const HomeHeader = () => {
 
+    const dispatch = useDispatch()
     const isShowSidebar = useSelector(state => state.app.isShowSidebar)
     const language = useSelector(state => state.app.language)
 
@@ -21,7 +22,10 @@ export const HomeHeader = () => {
         dispatch(showHideSidebar(true))
     }
 
-    const dispatch = useDispatch()
+    const handleOpenListPage = (name) => {
+        window.location.href = `/search-${name}-page`
+    }
+
     return <div className='home-header'>
         <div className="nav-left">
             <div className="menu-icon">
@@ -40,7 +44,7 @@ export const HomeHeader = () => {
                 <h6 className="nav-title"><FormattedMessage id="home-header.health-facility" /></h6>
                 <span className="sub-title"><FormattedMessage id="home-header.select-clinic" /></span>
             </div>
-            <div className="nav-item">
+            <div className="nav-item" onClick={() => { handleOpenListPage('doctor') }}>
                 <h6 className="nav-title"><FormattedMessage id="home-header.doctor" /></h6>
                 <span className="sub-title"><FormattedMessage id="home-header.select-doctor" /></span>
             </div>

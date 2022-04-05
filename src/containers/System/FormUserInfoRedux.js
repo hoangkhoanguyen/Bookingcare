@@ -13,11 +13,13 @@ import { toast } from 'react-toastify';
 
 export const FormUserInfoRedux = () => {
     const dispatch = useDispatch()
+    const language = useSelector(state => state.app.language)
     const genderArr = useSelector(state => state.user.genderArr)
     const posArr = useSelector(state => state.user.posArr)
     const roleArr = useSelector(state => state.user.roleArr)
     const isEditting = useSelector(state => state.user.isEditting)
     const userEdit = useSelector(state => state.user.userEdit)
+    const userLogin = useSelector(state => state.user.userInfo)
 
     const [imgBase64, setImgBase64] = useState('')
 
@@ -46,7 +48,7 @@ export const FormUserInfoRedux = () => {
         image: ''
     })
 
-    const language = useSelector(state => state.app.language)
+
 
     useEffect(async () => {
         dispatch(fetchStart('GENDER'))
@@ -55,6 +57,7 @@ export const FormUserInfoRedux = () => {
     }, [])
 
     const handleChangeInput = async (key, e) => {
+        console.log('change')
         if (!isEditting) {
             if (key == 'image') {
                 let file = e.target.files[0]
@@ -203,6 +206,7 @@ export const FormUserInfoRedux = () => {
     }
 
     const handleStartType = (key) => {
+        console.log('type')
         setErrorMessage({
             ...errMessage,
             [key]: ''
@@ -246,7 +250,12 @@ export const FormUserInfoRedux = () => {
                                 onInput={() => { handleStartType('email') }}
                             />
                         }
+
                     </FormattedMessage>
+                    {console.log('token: ', userLogin)}
+                    {console.log('edit: ', userEdit.email)}
+                    {console.log('new: ', newUserInfo.email)}
+                    {console.log('value: ', isEditting ? userEdit.email : newUserInfo.email)}
                     {errMessage.email != '' && <div className="warning-message position-absolute top-0 ">{errMessage.email}</div>}
                 </div>
                 <div className="form-group col-3 position-relative">

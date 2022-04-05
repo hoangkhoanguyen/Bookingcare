@@ -79,3 +79,10 @@ export const updateChosenUser = (user) => ({
     type: actionTypes.UPDATE_CHOSEN_USER,
     data: user
 })
+
+export const updateNewAccessToken = (accessToken) => (dispatch) => {
+    dispatch({
+        type: actionTypes.UPDATE_NEW_ACCESS_TOKEN,
+        data: accessToken,
+    })
+}

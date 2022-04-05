@@ -3,15 +3,15 @@ import { useEffect } from 'react'
 import '../SpecialtyDetails/SpecialtyDetails.scss'
 import specialtyService from '../../../services/specialtyService'
 import { useState } from 'react'
+import { FormattedMessage } from 'react-intl'
 
 export const SpecialtyDetails = (props) => {
     const { id } = props
-    const [specialtyInfo, setSpecialtyInfo] = useState({})
+    const [specialtyInfo, setSpecialtyInfo] = useState()
     const [isExpanded, setIsExpanded] = useState(false)
 
     useEffect(async () => {
         try {
-            console.log(id)
             let res = await specialtyService.getSpecialty(id)
             if (res && res.errCode === 0) {
                 let item = res.data
@@ -38,8 +38,18 @@ export const SpecialtyDetails = (props) => {
                     <div className="specialty-details" dangerouslySetInnerHTML={{ __html: specialtyInfo.descriptionHTML }}>
                     </div>
                 </div>}
+            {!specialtyInfo &&
+                <div className="specialty-content-loading">
+                    <div className='specialty-title'>
+                        <div className='loading'></div>
+                    </div>
+                    <div className="specialty-details">
+                        <div className='loading'></div>
+                    </div>
+                </div>
+            }
             <div className="actions-btns" onClick={handleToggleExpanded}>
-                {isExpanded ? 'Ẩn bớt' : 'Đọc thêm'}
+                {isExpanded ? <FormattedMessage id='common.less' /> : <FormattedMessage id='common.read-more' />}
             </div>
         </div>
     )

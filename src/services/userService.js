@@ -1,4 +1,4 @@
-import axios from "../axios";
+import axios from "../../src/axios";
 
 
 const handleLogin = async ({ email, password }) => {
@@ -7,7 +7,7 @@ const handleLogin = async ({ email, password }) => {
             email: email,
             password: password
         }
-        const data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/login`, body)
+        const data = await axios.post(`/api/user/login`, body)
         return data
     } catch (error) {
         return null
@@ -16,7 +16,7 @@ const handleLogin = async ({ email, password }) => {
 
 const getAllUsers = async () => {
     try {
-        const data = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/user/getAll`)
+        const data = await axios.get(`/api/user/getAll`)
         return data
     } catch (error) {
         return null
@@ -24,14 +24,14 @@ const getAllUsers = async () => {
 }
 
 const getAllCodesService = async (type) => {
-    let data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/allcodes/getAll`, { type })
+    let data = await axios.post(`/api/allcodes/getAll`, { type })
     return data
 }
 
 const sendRequestCreateNewUser = async (user) => {
     try {
         let body = user
-        let data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/addNew`, body)
+        let data = await axios.post(`/api/user/addNew`, body)
         return data
     } catch (error) {
         console.log(error)
@@ -41,7 +41,7 @@ const sendRequestCreateNewUser = async (user) => {
 const sendRequestUpdateUser = async (user) => {
     try {
         let body = user
-        let data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/edit`, body)
+        let data = await axios.post(`/api/user/edit`, body)
         return data
     } catch (error) {
         console.log(error)
@@ -51,7 +51,7 @@ const sendRequestUpdateUser = async (user) => {
 const sendRequestDeleteUser = async (email) => {
     try {
         let body = { email: email }
-        let data = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/user/delete`, body)
+        let data = await axios.post(`/api/user/delete`, body)
         return data
     } catch (error) {
         console.log(error)

@@ -1,0 +1,47 @@
+.patient-manage-body {
+    table {
+        border-collapse: collapse;
+        width          : 100%;
+        margin-top     : 24px;
+
+        thead {
+            background-color: #00b2ff;
+            color           : white;
+        }
+
+        td,
+        th {
+            border    : 1px solid #dddddd;
+            text-align: left;
+            padding   : 8px;
+        }
+
+        th {
+            text-align : center;
+            font-weight: bold;
+        }
+
+        tr {
+            td:nth-child(1) {
+                text-align: center;
+            }
+        }
+
+        tr:nth-child(even) {
+            background-color: #d1c2c2;
+        }
+
+        tr:last-child() {
+            text-align: center;
+        }
+
+        .confirm-btn {
+            background-color: #45c3d2;
+            color           : white;
+            padding         : 0 12px;
+            &:hover{
+                opacity: 0.8;
+            }
+        }
+    }
+}

@@ -8,14 +8,29 @@
             margin        : 20px 0;
         }
 
-        .more info {
+        .more .info {
             .content-left {}
 
             .content-right {}
         }
 
-        .manage-doctor-editor {}
+        .manage-doctor-editor {
+            margin-top: 12px;
+        }
 
-        .submit-button {}
+        .action-btn{
+            text-align: center;
+            .submit-button {
+                margin: 20px;
+                outline: none;
+                border: none;
+                padding: 8px 16px;
+                background-color: #009aff;
+                color: white;
+                &:hover{
+                    opacity: 0.8;
+                }
+            }
+        }
     }
 }

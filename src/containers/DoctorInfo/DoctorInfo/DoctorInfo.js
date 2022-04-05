@@ -8,12 +8,15 @@ import { DoctorSchedule } from './DoctorSchedule/DoctorSchedule'
 import { DoctorResume } from './DoctorResume'
 import { PriceItem } from '../PriceItem/PriceItem'
 import { HomeHeader } from '../../HomePage/HomeHeader/HomeHeader'
+import { LikeAndShare } from '../../SocialPlugin/LikeAndShare'
+import { Comment } from '../../SocialPlugin/Comment'
 
 export const DoctorInfo = (props) => {
 
     const [doctor, setDoctor] = useState({})
     const [onTop, setOnTop] = useState(true)
-
+    const [currentUrl, setCurrentUrl] = useState(process.env.REACT_APP_IS_LOCALHOST != 1 ? window.location.href :
+        'https://bookingcare-frontend-khoa.herokuapp.com')
 
     const { id } = props
     const language = useSelector(state => state.app.language)
@@ -59,6 +62,9 @@ export const DoctorInfo = (props) => {
                     <div className="introduction-container">
                         <DoctorResume id={id} />
                     </div>
+                    <div className="like-share-container">
+                        <LikeAndShare dataHref={currentUrl} />
+                    </div>
                     <div className="booking-info">
                         <div className="schedule-info">
                             <DoctorSchedule doctorId={id} />
@@ -70,7 +76,9 @@ export const DoctorInfo = (props) => {
                     {doctor.details &&
                         <div className="doctor-detail" dangerouslySetInnerHTML={{ __html: doctor.details.contentHTML }}>
                         </div>}
-                    <div className="feedback-patient"></div>
+                    <div className="feedback-patient">
+                        <Comment dataHref={currentUrl} width={'100%'} />
+                    </div>
                 </div>
             }
         </>

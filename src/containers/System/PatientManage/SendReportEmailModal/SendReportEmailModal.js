@@ -17,8 +17,8 @@ export const SendReportEmailModal = (props) => {
         setEmail2Send(info.patientInfo.email)
     }, [])
 
-    const handleChangeEmail = () => {
-
+    const handleChangeEmail = (e) => {
+        setEmail2Send(e.target.value)
     }
 
     const handleChangeInputFile = async (e) => {
@@ -31,6 +31,14 @@ export const SendReportEmailModal = (props) => {
     }
 
     const handleSendRequest = async () => {
+        if (email2Send.trim() == '') {
+            toast.error('Email is empty')
+            return
+        }
+        if (!image) {
+            toast.error('Image of result is empty')
+            return
+        }
         try {
             let data = {
                 id: info.id,
@@ -55,22 +63,22 @@ export const SendReportEmailModal = (props) => {
     }
 
     return (
-        <div className='modal-container' onClick={closeModal}>
+        <div className='modal-send-report-container' onClick={closeModal}>
             <div className="modal-card " onClick={(e) => { e.stopPropagation() }}>
-                <div className="row">
+                <div className="modal-send-title">
                     Gửi hóa đơn khám bệnh thành công
                 </div>
-                <div className="row">
-                    <div className=" col-6">
+                <div className="modal-send-content">
+                    <div className="email-input ">
                         <label >Email</label>
                         <input type="text" value={email2Send} onChange={handleChangeEmail} />
                     </div>
-                    <div className=" col-6">
+                    <div className="file-input ">
                         <input type="file" value={image} onChange={handleChangeInputFile} />
                     </div>
                 </div>
-                <div className="row action-btns">
-                    <button onClick={handleSendRequest}>Send</button>
+                <div className="action-btns">
+                    <button className='save-btn' onClick={handleSendRequest}>Send</button>
                     <button onClick={closeModal}>Cancel</button>
                 </div>
             </div>

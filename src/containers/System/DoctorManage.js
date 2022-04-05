@@ -53,7 +53,6 @@ export const DoctorManage = () => {
         description: ''
     })
 
-
     useEffect(() => {
         dispatch(fetchGetAllDoctorStart())
         dispatch(fetchAllCodeStart('PRICE'))
@@ -157,13 +156,13 @@ export const DoctorManage = () => {
     const handleClickSave = async () => {
         if (selectedOption.doctor != {}) {
             let result = await doctorService.saveDoctorDetails({
-                doctorId: selectedOption.doctor.value,
+                doctorId: selectedDoctor.value,
                 contentHTML,
                 contentMarkdown,
                 description: selectedOption.description,
-                priceId: selectedOption.price.value,
-                provinceId: selectedOption.province.value,
-                paymentId: selectedOption.payment.value,
+                priceId: selectedPrice.value,
+                provinceId: selectedProvince.value,
+                paymentId: selectedPayment.value,
                 addressClinic: selectedOption.addressClinic,
                 nameClinic: selectedOption.nameClinic,
                 clinicId: selectedOption.clinic.value,
@@ -346,9 +345,11 @@ export const DoctorManage = () => {
                         renderHTML={text => mdParser.render(text)}
                         onChange={handleEditorChange} />
                 </div>
-                <button className='submit-button'
-                    onClick={handleClickSave}
-                ><FormattedMessage id='doctor-info.save' /></button>
+                <div className="action-btn">
+                    <button className='submit-button'
+                        onClick={handleClickSave}
+                    ><FormattedMessage id='doctor-info.save' /></button>
+                </div>
             </div>
         </>
     )

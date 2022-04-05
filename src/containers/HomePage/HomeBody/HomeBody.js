@@ -6,6 +6,7 @@ import '../HomeBody/HomeBody.scss'
 import { MedicalFacilitySection } from './MedicalFacilitySection/MedicalFacilitySection';
 import { DoctorOfWeek } from './DoctorOfWeek/DoctorOfWeek';
 import { AboutMe } from './AboutMe/AboutMe';
+import { AboutPage } from '../../AboutPage/AboutPage';
 
 export const HomeBody = () => {
     return <div className='home-body'>
@@ -14,6 +15,6 @@ export const HomeBody = () => {
         <PopularSpecialtySection />
         <MedicalFacilitySection />
         <DoctorOfWeek />
-        <AboutMe />
+        <AboutPage />
     </div>;
 };

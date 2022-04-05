@@ -1,4 +1,4 @@
-import axios from '../axios';
+import axios from "../../src/axios";
 import * as queryString from 'query-string';
 
 const adminService = {

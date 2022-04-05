@@ -56,7 +56,9 @@ export const MedicalFacilitySection = () => {
                 return (
                     <div className='slide-item' key={slide.id}>
                         <a href={`/clinic-${slide.id}`} className="slide-body">
-                            <img src={slide.image} alt="" />
+                            <div className="slide-img">
+                                <img src={slide.image} alt="" />
+                            </div>
                             <h6>{slide.name}</h6>
                         </a>
                     </div>

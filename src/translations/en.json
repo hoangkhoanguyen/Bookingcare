@@ -67,7 +67,13 @@
         "schedule": "Schedule",
         "no-schedule-in-this-time": "There's no available time.",
         "choose": "Choose",
-        "and-booking-free": "and booking freely"
+        "and-booking-free": "and booking freely",
+        "price": "Price",
+        "read-more": "Read more",
+        "less": "Less",
+        "verify-success": "You confirmed booking successfully!",
+        "verify-fail": "Your appoinment is cancelled or does not exist!",
+        "back-homepage": "Back to Homepage Booking Care"
     },
     "login": {
         "login": "Login",

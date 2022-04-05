@@ -14,6 +14,7 @@ const initialState = {
 const appReducer = (state = initialState, action) => {
     switch (action.type) {
         case actionTypes.USER_LOGIN_SUCCESS:
+            console.log(action.userInfo.accessToken)
             return {
                 ...state,
                 isLoggedIn: true,
@@ -75,6 +76,14 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
                 userEdit: action.data
+            }
+        case actionTypes.UPDATE_NEW_ACCESS_TOKEN:
+            return {
+                ...state,
+                userInfo: {
+                    ...state.userInfo,
+                    accessToken: action.data
+                }
             }
         default:
             return state;

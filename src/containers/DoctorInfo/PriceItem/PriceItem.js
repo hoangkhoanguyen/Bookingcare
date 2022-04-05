@@ -56,7 +56,19 @@ export const PriceItem = (props) => {
                     <p>{doctor.nameClinic}</p>
                     <p>{doctor.addressClinic}</p>
                 </div>}
-            {!isMorePrice ?
+            {!doctor &&
+                <div className="address-loading">
+                    <div className='details-title'>
+                        <div className="loading"></div>
+                    </div>
+                    <div className='details-name'>
+                        <div className="loading"></div>
+                    </div>
+                    <div className='details-address'>
+                        <div className="loading"></div>
+                    </div>
+                </div>}
+            {doctor && !isMorePrice &&
                 <div className="price">
                     <span className='details-title'>Giá khám: </span>
                     <span>
@@ -70,7 +82,9 @@ export const PriceItem = (props) => {
                             />}
                     </span>
                     <span className='more-btn' onClick={handleChangeMorePriceMode}>Xem chi tiết</span>
-                </div> :
+                </div>
+            }
+            {doctor && isMorePrice &&
                 <div className='price-more'>
                     <div className="price-details">
                         <span className='details-title'>Giá khám: </span>
@@ -88,7 +102,15 @@ export const PriceItem = (props) => {
                     <div className="price-foreing">Giá khám dành cho người nước ngoài: {doctor.priceData && doctor.priceData.valueEn}$</div>
                     <div className="payment-details">{payment}</div>
                     <div className="less-btn" onClick={handleChangeMorePriceMode}>Ẩn bảng giá</div>
-                </div>}
+                </div>
+            }
+            {!doctor &&
+                <div className="price-loading">
+                    <div className="price-title">
+                        <div className="loading"></div>
+                    </div>
+                </div>
+            }
         </>
     )
 }

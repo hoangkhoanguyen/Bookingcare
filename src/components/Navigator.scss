@@ -11,6 +11,8 @@
     }
 
     .menu-group {
+        width: 115px;
+
         &:hover {
             cursor          : pointer;
             background-color: darken($colormain, 5);

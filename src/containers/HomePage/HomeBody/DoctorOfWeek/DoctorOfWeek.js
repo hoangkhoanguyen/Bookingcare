@@ -45,7 +45,9 @@ export const DoctorOfWeek = () => {
             {slideList && slideList.length > 0 && slideList.map(slide => {
                 return <div className='slide-item' key={slide.id}>
                     <a className='slide-body' href={`/doctor-${slide.id}`}>
-                        <img src={slide.image} alt="" />
+                        <div className="card-img">
+                            <img src={slide.image} alt="" />
+                        </div>
                         <h6 className='name'>{`${language == languages.EN ? slide.roleData.valueEn : slide.roleData.valueVi} ${slide.firstName} ${slide.lastName}`}</h6>
                     </a>
                 </div>

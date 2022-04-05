@@ -111,16 +111,25 @@ export const PatientManage = () => {
                                 return (
                                     <tr key={item.id}>
                                         <td>{index + 1}</td>
-                                        <td>{item.timeType}</td>
-                                        {item.patientInfo &&
-                                            <td>{item.patientInfo.firstName}</td>}
-                                        {item.patientInfo &&
-                                            <td>{item.patientInfo.address}</td>}
-                                        {item.patientInfo && item.patientInfo.genderData &&
+                                        {item.timeData ?
+                                            <td>{language == languages.EN ?
+                                                item.timeData.valueEn :
+                                                item.timeData.valueVi}
+                                            </td> :
+                                            <td></td>
+                                        }
+                                        {item.patientInfo ?
+                                            <td>{item.patientInfo.firstName}</td> :
+                                            <td></td>}
+                                        {item.patientInfo ?
+                                            <td>{item.patientInfo.address}</td> :
+                                            <td></td>}
+                                        {item.patientInfo && item.patientInfo.genderData ?
                                             <td>{language == languages.EN ?
                                                 item.patientInfo.genderData.valueEn :
                                                 item.patientInfo.genderData.valueVi}
-                                            </td>}
+                                            </td> :
+                                            <td></td>}
                                         <td>
                                             <button className='btn confirm-btn'
                                                 onClick={() => { handleClickConfirmBtn(item) }}

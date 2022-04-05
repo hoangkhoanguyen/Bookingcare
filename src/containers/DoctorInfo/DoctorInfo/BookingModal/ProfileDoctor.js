@@ -53,33 +53,55 @@ export const ProfileDoctor = (props) => {
 
     // }, [doctor])
 
-    return (
-        <div className="profile-doctor">
+    return (<>
+        {doctor && <div className="profile-doctor">
             <div className="doctor-avatar">
-                {doctor && <img src={doctor.image} alt="Doctor Avatar" />}
+                <img src={doctor.image} alt="Doctor Avatar" />
             </div>
-            {doctor && <div className="info">
-                <div className="doctor-name">
-                    {`${doctor.positionData && doctor.positionData.valueVi} ${doctor.lastName} ${doctor.firstName}`}
-                </div>
-                {doctor.details && <div className="doctor-description" dangerouslySetInnerHTML={{ __html: doctor.details.description }}>
+            <div className="info">
+                {doctor.positionData &&
+                    <div className="doctor-name">
+                        {`${doctor.positionData.valueVi} ${doctor.lastName} ${doctor.firstName}`}
+                    </div>
+                }
+                {doctor.details &&
+                    <div className="doctor-description" dangerouslySetInnerHTML={{ __html: doctor.details.description }}>
 
-                </div>}
-                {!isShowDescription && <div className="date-time">
-                    <p>{timeDateDisplay}</p>
-                    <p>Miễn phí đặt lịch</p>
-                </div>}
-                <div className="modal-price">
-                    <span>Giá khám:</span>
-                    <NumberFormat
-                        value={doctor && doctor.priceData && doctor.priceData.valueVi || 0}
-                        displayType={'text'}
-                        thousandSeparator={true}
-                        suffix={'VND'}
-                        renderText={(value, props) => <div {...props}>{value}</div>}
-                    />
+                    </div>}
+                {!isShowDescription &&
+                    <div className="date-time">
+                        <p>{timeDateDisplay}</p>
+                        <p>Miễn phí đặt lịch</p>
+                    </div>}
+                {doctor.priceData &&
+                    <div className="modal-price">
+                        <span>Giá khám:</span>
+                        <NumberFormat
+                            value={doctor.priceData.valueVi || 0}
+                            displayType={'text'}
+                            thousandSeparator={true}
+                            suffix={'VND'}
+                            renderText={(value, props) => <div {...props}>{value}</div>}
+                        />
+                    </div>
+                }
+            </div>
+        </div>}
+        {!doctor &&
+            <div className="profile-doctor-loading">
+                <div className="doctor-avatar">
+                    <div className="loading"></div>
                 </div>
-            </div>}
-        </div>
+                <div className="info">
+                    <div className="doctor-name">
+                        <div className="loading"></div>
+                    </div>
+                    <div className="doctor-description">
+                        <div className="loading"></div>
+                    </div>
+                </div>
+            </div>
+        }
+    </>
     )
 }

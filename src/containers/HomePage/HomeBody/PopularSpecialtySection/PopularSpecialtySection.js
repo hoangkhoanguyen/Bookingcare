@@ -52,7 +52,9 @@ export const PopularSpecialtySection = () => {
             {specialtyArr && specialtyArr.length > 0 && specialtyArr.map(slide => {
                 return <div className='slide-item' key={slide.id}>
                     <a href={`/specialty-${slide.id}`} className="slide-body">
-                        <img src={slide.image} alt="" />
+                        <div className="slide-img">
+                            <img src={slide.image} alt="" />
+                        </div>
                         <h6>{slide.name}</h6>
                     </a>
                 </div>

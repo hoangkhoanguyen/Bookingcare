@@ -67,7 +67,12 @@
         "schedule": "Lịch khám",
         "no-schedule-in-this-time": "Không có lịch khám còn trống trong thời gian này.",
         "choose": "Chọn",
-        "and-booking-free": "và đặt lịch miễn phí"
+        "and-booking-free": "và đặt lịch miễn phí",
+        "read-more": "Đọc thêm",
+        "less": "Ẩn bớt",
+        "verify-success": "Xác nhận đặt lịch thành công!",
+        "verify-fail": "Lịch hẹn bị hủy hoặc không tồn tại!",
+        "back-homepage": "Trở về trang chủ Booking Care"
     },
     "login": {
         "login": "Đăng nhập",

@@ -1,4 +1,4 @@
-import axios from "../axios";
+import axios from "../../src/axios";
 
 
 const sendRequestBookingAppointment = async (data) => {
@@ -6,7 +6,7 @@ const sendRequestBookingAppointment = async (data) => {
         let body = data
         console.log(body)
         let url = '/api/patient/booking-appointment'
-        const result = await axios.post(`${process.env.REACT_APP_BACKEND_URL}${url}`, body)
+        const result = await axios.post(`${url}`, body)
         return result
     } catch (error) {
         return null
@@ -16,7 +16,7 @@ const sendRequestBookingAppointment = async (data) => {
 const getPatientListByDoctorId = async (id, day) => {
     try {
         let query = `?id=${id}&day=${day}`
-        let url = `${process.env.REACT_APP_BACKEND_URL}/api/patient/get-patient-list-by-doctor-id` + query
+        let url = `/api/patient/get-patient-list-by-doctor-id` + query
         let result = await axios.get(url)
         return result
     } catch (error) {

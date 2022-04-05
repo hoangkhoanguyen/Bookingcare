@@ -17,10 +17,17 @@
         }
     }
     .action-btns{
+        text-align: center;
         .btn {
-            padding: 0 10px;
-            width: 120px;
-            box-sizing: border-box;
+            margin: 20px;
+            outline: none;
+            border: none;
+            padding: 8px 16px;
+            background-color: #009aff;
+            color: white;
+            &:hover{
+                opacity: 0.8;
+            }
         }
     }
 }

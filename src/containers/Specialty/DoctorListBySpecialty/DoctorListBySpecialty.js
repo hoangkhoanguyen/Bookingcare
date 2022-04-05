@@ -45,9 +45,12 @@ export const DoctorListBySpecialty = (props) => {
             let res = await specialtyService.getDoctorListBySpecialtyId(id, provinceId)
             if (res && res.data && res.data.errCode === 0) {
                 setDoctorList(res.data.data)
+            } else {
+                setDoctorList(null)
             }
         } catch (error) {
             console.log(error)
+            setDoctorList(null)
         }
     }
 
@@ -69,7 +72,7 @@ export const DoctorListBySpecialty = (props) => {
                         <DoctorItem id={item} />
                     </div>
                 })}
-                {(!doctorList || doctorList.length == 0) &&
+                {doctorList && doctorList.length == 0 &&
                     <div >
                         Hiện hệ thống chưa có bác sĩ tại khu vực này
                     </div>

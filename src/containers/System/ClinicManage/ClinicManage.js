@@ -92,9 +92,9 @@ export const ClinicManage = () => {
     }
 
     return (
-        <div className='specialty-manage'>
+        <div className='clinic-manage'>
             <h2 className='text-center'><FormattedMessage id='clinic-info.clinic-manage' /></h2>
-            <div className="specialty-manage-body container">
+            <div className="clinic-manage-body container">
                 <div className="row">
                     <div className="form-group col-6">
                         <label ><FormattedMessage id='clinic-info.clinic-name' /></label>
