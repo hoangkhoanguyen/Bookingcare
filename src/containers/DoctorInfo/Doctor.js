@@ -11,10 +11,7 @@ export const Doctor = () => {
 
     return (
         <div className="doctor-details-page">
-            {/* <Header /> */}
             <DoctorInfo id={id} />
-            <AboutPage />
-            <HomeFooter />
         </div>
     )
 }

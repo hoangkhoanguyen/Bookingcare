@@ -1,0 +1,37 @@
+import React, { Component } from 'react';
+import { connect } from "react-redux";
+import { Redirect, Route, Switch } from 'react-router-dom';
+import Header from '../../containers/Header/Header';
+import { ClinicManage } from '../../containers/System/ClinicManage/ClinicManage';
+import { DoctorManage } from '../../containers/System/DoctorManage';
+import { PatientManage } from '../../containers/System/PatientManage/PatientManage';
+import { ScheduleManage } from '../../containers/System/ScheduleManage/ScheduleManage';
+import { SpecialtyManage } from '../../containers/System/SpecialtyManage/SpecialtyManage';
+import { UserRedux } from '../../containers/System/UserRedux';
+import { path } from '../../utils';
+
+class Admin extends Component {
+    render() {
+        return (
+            <Switch>
+                <Route path={path.ADMIN_SYSTEM_USER_MANAGE} component={UserRedux} />
+                <Route path={path.ADMIN_SYSTEM_DOCTOR_MANAGE} component={DoctorManage} />
+                <Route path={path.ADMIN_SYSTEM_CLINIC_MANAGE} component={ClinicManage} />
+                <Route path={path.ADMIN_SYSTEM_SPECIALTY_MANAGE} component={SpecialtyManage} />
+            </Switch>
+        );
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        systemMenuPath: state.app.systemMenuPath
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Admin);

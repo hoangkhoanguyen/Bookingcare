@@ -1,7 +1,9 @@
 import { set } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import clinicService from '../../../../services/clinicService';
+import { path } from '../../../../utils';
 
 import '../MedicalFacilitySection/MedicalFacilitySection.scss'
 
@@ -22,7 +24,6 @@ export const MedicalFacilitySection = () => {
     useEffect(async () => {
         try {
             let res = await clinicService.getClinic()
-            console.log('clinic', res)
             if (res && res.errCode === 0) {
                 let arr = res.data
                 if (arr.length > 0) {
@@ -37,7 +38,6 @@ export const MedicalFacilitySection = () => {
                         }
                     })
                 }
-                console.log(arr)
                 setClinicList(arr)
             } else {
                 setClinicList([])
@@ -50,20 +50,18 @@ export const MedicalFacilitySection = () => {
     return <div className='medical-facility-section'>
         <div className="header-section">
             <h3 className='title-section'>Cơ sở y tế nổi bật</h3>
-            <div className="more-info-section">Xem thêm</div>
+            <Link to={path.CLINIC_LIST} className="more-info-section">Xem thêm</Link>
         </div>
         <Slider {...settings} ref={carousel} >
-            {console.log(clinicList)}
             {clinicList && clinicList.length > 0 && clinicList.map(slide => {
                 return (
                     <div className='slide-item' key={slide.id}>
-                        {console.log('item', slide.name)}
-                        <a href={`/clinic-${slide.id}`} className="slide-body">
+                        <Link to={`/clinic-${slide.id}`} className="slide-body">
                             <div className="slide-img">
                                 <img src={slide.image} alt="" />
                             </div>
                             <h6>{slide.name}</h6>
-                        </a>
+                        </Link>
                     </div>
                 )
             })}

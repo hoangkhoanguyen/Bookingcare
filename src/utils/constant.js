@@ -3,8 +3,18 @@ export const path = {
     LOGIN: '/login',
     LOG_OUT: '/logout',
     SYSTEM: '/system',
-    DOCTOR_SYSTEM: '/doctor-system',
-    HOME_PAGE: '/homepage',
+
+    ADMIN_SYSTEM: '/system/admin',
+    ADMIN_SYSTEM_USER_MANAGE: '/system/admin/user-manage',
+    ADMIN_SYSTEM_DOCTOR_MANAGE: '/system/admin/doctor-manage',
+    ADMIN_SYSTEM_CLINIC_MANAGE: '/system/admin/clinic-manage',
+    ADMIN_SYSTEM_SPECIALTY_MANAGE: '/system/admin/specialty-manage',
+
+    DOCTOR_SYSTEM: '/system/doctor',
+    DOCTOR_SYSTEM_SCHEDULE_MANAGE: '/system/doctor/schedule-manage',
+    DOCTOR_SYSTEM_PATIENT_MANAGE: '/system/doctor/patient-manage',
+
+    HOME_PAGE: '/',
     USER_REDUX: '',
     SPECIALTY: '/specialty-:id',
     CLINIC: '/clinic-:id',

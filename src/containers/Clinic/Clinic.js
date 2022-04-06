@@ -14,7 +14,6 @@ export const Clinic = () => {
 
     return (
         <>
-            <HomeHeader />
             <div className="body">
 
                 <div className="clinic-details">
@@ -24,8 +23,6 @@ export const Clinic = () => {
                     <DoctorListByClinic id={id} />
                 </div>
             </div>
-            <AboutPage />
-            <HomeFooter />
         </>
     )
 }

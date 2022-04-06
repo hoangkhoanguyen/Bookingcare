@@ -11,15 +11,12 @@ export const Specialty = () => {
     const { id } = useParams()
     return (
         <>
-            <HomeHeader />
             <div className="specialty-details">
                 <SpecialtyDetails id={id} />
             </div>
             <div className="doctor-list-by-specialty">
                 <DoctorListBySpecialty id={id} />
             </div>
-            <AboutPage />
-            <HomeFooter />
         </>
     )
 }

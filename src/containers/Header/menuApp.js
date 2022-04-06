@@ -1,27 +1,17 @@
+import { path } from "../../utils";
+
 export const adminMenu = [
     { //nguoi dung
         name: 'menu.user.header',
         menus: [
             {
-                name: 'menu.user.CRUD-user.header',
-                link: '/system/user-manage'
-                // subMenus: [
-                //     { name: 'menu.system.system-administrator.user-manage', link: '/system/user-manage' },
-                //     { name: 'menu.system.system-administrator.user-redux', link: '/system/product-manage' },
-                //     { name: 'menu.system.system-administrator.register-package-group-or-account', link: '/system/register-package-group-or-account' },
-            },
-            {
                 name: 'menu.user.CRUD-redux.header',
-                link: '/system/user-redux'
+                link: path.ADMIN_SYSTEM_USER_MANAGE
             },
             {
                 name: 'menu.user.doctor-manage.header',
-                link: '/system/doctor-manage'
+                link: path.ADMIN_SYSTEM_DOCTOR_MANAGE
             },
-            {
-                name: 'menu.user.admin-manage.header',
-                link: '/system/schedule-manage'
-            }
         ]
     },
     {
@@ -29,7 +19,7 @@ export const adminMenu = [
         menus: [
             {
                 name: 'menu.clinic.clinic-manage.header',
-                link: '/system/clinic-manage'
+                link: path.ADMIN_SYSTEM_CLINIC_MANAGE
             },
         ]
     },
@@ -38,7 +28,7 @@ export const adminMenu = [
         menus: [
             {
                 name: 'menu.specialty.specialty-manage.header',
-                link: '/system/specialty-manage'
+                link: path.ADMIN_SYSTEM_SPECIALTY_MANAGE
             },
         ]
     },
@@ -58,11 +48,11 @@ export const doctorMenu = [
         menus: [
             {
                 name: 'menu.doctor.schedule-manage.header',
-                link: '/doctor-system/schedule-manage'
+                link: path.DOCTOR_SYSTEM_SCHEDULE_MANAGE
             },
             {
                 name: 'menu.doctor.patient-manage.header',
-                link: '/doctor-system/patient-manage'
+                link: path.DOCTOR_SYSTEM_PATIENT_MANAGE
             },
         ],
     }

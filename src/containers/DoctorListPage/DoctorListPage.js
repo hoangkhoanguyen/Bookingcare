@@ -52,7 +52,6 @@ export const DoctorListPage = () => {
     }
 
     return (<>
-        <HomeHeader />
         <div className='doctor-list-background'>
             <div className="doctor-list-body">
                 <h2 >Bác sĩ</h2>

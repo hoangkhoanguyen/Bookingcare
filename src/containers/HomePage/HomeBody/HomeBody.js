@@ -15,6 +15,5 @@ export const HomeBody = () => {
         <PopularSpecialtySection />
         <MedicalFacilitySection />
         <DoctorOfWeek />
-        <AboutPage />
     </div>;
 };

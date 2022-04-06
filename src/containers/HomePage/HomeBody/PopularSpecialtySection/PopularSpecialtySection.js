@@ -1,6 +1,8 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import specialtyService from '../../../../services/specialtyService'
+import { path } from '../../../../utils';
 import '../PopularSpecialtySection/PopularSpecialtySection.scss'
 
 export const PopularSpecialtySection = () => {
@@ -46,17 +48,17 @@ export const PopularSpecialtySection = () => {
     return <div className='popular-specialty-section'>
         <div className="header-section">
             <h3 className='title-section'>Chuyên khoa phổ biến</h3>
-            <div className="more-info-section">Xem thêm</div>
+            <Link to={path.SPECIALTY_LIST} className="more-info-section">Xem thêm</Link>
         </div>
         <Slider {...settings} ref={carousel} >
             {specialtyArr && specialtyArr.length > 0 && specialtyArr.map(slide => {
                 return <div className='slide-item' key={slide.id}>
-                    <a href={`/specialty-${slide.id}`} className="slide-body">
+                    <Link to={`/specialty-${slide.id}`} className="slide-body">
                         <div className="slide-img">
                             <img src={slide.image} alt="" />
                         </div>
                         <h6>{slide.name}</h6>
-                    </a>
+                    </Link>
                 </div>
             })}
         </Slider>

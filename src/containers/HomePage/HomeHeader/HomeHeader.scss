@@ -52,9 +52,11 @@
         opacity        : 0.7;
 
         .nav-item {
-            margin: auto 20px;
-            width : 182px;
-            cursor: pointer;
+            margin         : auto 20px;
+            width          : 182px;
+            cursor         : pointer;
+            text-decoration: none;
+            color          : black;
 
             .nav-title {
                 font-weight: 600;
