@@ -16,7 +16,7 @@ const getSpecialty = async (id) => {
         let url = id ? `/api/specialty/get-specialty-info?id=${id}` :
             `/api/specialty/get-specialty-info`
         let result = await axios.get(url)
-        return result ? result.data : null
+        return result
     } catch (error) {
         console.log(error)
         return null

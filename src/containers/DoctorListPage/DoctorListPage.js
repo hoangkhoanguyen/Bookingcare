@@ -28,12 +28,11 @@ export const DoctorListPage = () => {
     }, [])
 
     useEffect(() => {
-        console.log('all', allDoctor)
         if (!allDoctor || allDoctor.length == 0) {
             setDoctorList()
             return
         }
-        console.log('max:', process.env.MAX_DOCTORS)
+        console.log(process.env.MAX_DOCTORS)
         let currentList = allDoctor.filter((item, index) => index < 4)
         setDoctorList(currentList)
     }, [allDoctor])
@@ -45,17 +44,23 @@ export const DoctorListPage = () => {
         setDoctorList(newList)
     }
 
+    const handleLoadMore = () => {
+        let oldList = doctorList
+        let moreList = allDoctor.filter(item => oldList.indexOf(item) == -1).filter((item, index) => index < 4)
+        let newList = oldList.concat(moreList)
+        setDoctorList(newList)
+    }
+
     return (<>
         <HomeHeader />
         <div className='doctor-list-background'>
             <div className="doctor-list-body">
                 <h2 >Bác sĩ</h2>
                 <div className="search-area">
-                    <i class="fas fa-search"></i>
+                    <i className="fas fa-search"></i>
                     <input onChange={(e) => { handleChangeValue(e) }} value={keyWord} type="text" placeholder='Nhập tên bác sĩ...' />
                 </div>
                 <div className="list">
-                    {console.log(doctorList)}
                     {isLoading && 'Loading...'}
                     {!isLoading && <ul>
                         {doctorList && doctorList.map(item => {
@@ -66,7 +71,7 @@ export const DoctorListPage = () => {
                     </ul>}
                 </div>
                 <div className="load-more">
-                    <span>Xem thêm</span>
+                    <span onClick={handleLoadMore}>Xem thêm</span>
                 </div>
             </div>
         </div>

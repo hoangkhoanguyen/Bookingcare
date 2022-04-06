@@ -13,6 +13,7 @@ export const LikeAndShare = (props) => {
         }
         let locale = language == languages.EN ? 'en_US' : 'vi_VN'
         window.fbAsyncInit = () => {
+
             window.FB.init({
                 appId: process.env.REACT_APP_FACEBOOK_APP_ID,
                 cookie: true, //enable cookies to allow the server to access the session

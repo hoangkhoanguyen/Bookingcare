@@ -17,7 +17,7 @@ const getClinic = async (id) => {
         let query = id ? `?id=${id}` : ''
         let url = `/api/clinic/get-clinic-info` + query
         let result = await axios.get(url)
-        return result.data
+        return result
     } catch (error) {
         console.log(error)
         return null

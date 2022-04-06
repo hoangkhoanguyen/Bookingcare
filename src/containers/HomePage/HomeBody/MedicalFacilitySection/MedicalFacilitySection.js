@@ -22,7 +22,7 @@ export const MedicalFacilitySection = () => {
     useEffect(async () => {
         try {
             let res = await clinicService.getClinic()
-            console.log(res)
+            console.log('clinic', res)
             if (res && res.errCode === 0) {
                 let arr = res.data
                 if (arr.length > 0) {
@@ -37,6 +37,7 @@ export const MedicalFacilitySection = () => {
                         }
                     })
                 }
+                console.log(arr)
                 setClinicList(arr)
             } else {
                 setClinicList([])
@@ -52,9 +53,11 @@ export const MedicalFacilitySection = () => {
             <div className="more-info-section">Xem thêm</div>
         </div>
         <Slider {...settings} ref={carousel} >
+            {console.log(clinicList)}
             {clinicList && clinicList.length > 0 && clinicList.map(slide => {
                 return (
                     <div className='slide-item' key={slide.id}>
+                        {console.log('item', slide.name)}
                         <a href={`/clinic-${slide.id}`} className="slide-body">
                             <div className="slide-img">
                                 <img src={slide.image} alt="" />

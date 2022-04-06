@@ -16,8 +16,14 @@ export const DoctorListItem = (props) => {
             setImage(imageBase64)
         }
     }, [doctor])
+
+    const handleClickChooseDoctor = () => {
+        if (doctor) {
+            window.location.href = `/doctor-${doctor.id}`
+        }
+    }
     return (
-        <div className='doctor-item-container'>
+        <div className='doctor-item-container' onClick={handleClickChooseDoctor}>
             <div className="avatar-doctor">
                 {image &&
                     <img src={image} alt="" />

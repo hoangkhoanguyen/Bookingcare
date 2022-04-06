@@ -12,7 +12,7 @@ export const path = {
     VERIFY_BOOKING: '/verify-booking',
     DOCTOR_LIST: '/search-doctor-page',
     SPECIALTY_LIST: '/search-specialty-page',
-    CLINIC_LIST: '/search-clinic--page',
+    CLINIC_LIST: '/search-clinic-page',
 };
 
 export const languages = {
