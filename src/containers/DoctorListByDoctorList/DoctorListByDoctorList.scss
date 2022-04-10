@@ -1,0 +1,15 @@
+.doctor-list-container{
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    
+    .doctor-list-item{
+        background-color: #fff;
+        border-radius   : 8px;
+        width           : 100%;
+        box-shadow      : 0 0 8px rgba(0, 0, 0, 0.2);
+    }
+}

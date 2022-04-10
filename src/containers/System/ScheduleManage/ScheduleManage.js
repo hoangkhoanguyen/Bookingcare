@@ -55,7 +55,6 @@ export const ScheduleManage = () => {
     }
 
     const handleClickSaveButton = async () => {
-        // console.log(timeRange)
         let result = validateBeforeSubmit()
         if (!result.isValid) {
             toast.error(result.mess)
@@ -91,9 +90,6 @@ export const ScheduleManage = () => {
     }
 
     const validateBeforeSubmit = () => {
-        // console.log(doctor, date, schedule)
-        // let isValid = [doctor !== {}, date !== '', schedule !== []]
-        // return isValid.reduce((result, valid) => valid && result, true)
         if (!selectedOption.value) {
             return {
                 isValid: false,
@@ -120,7 +116,6 @@ export const ScheduleManage = () => {
 
     return (
         <div className='schedule-manage'>
-            {/* {console.log(timeRange)} */}
             <h2 className='text-center'>Quản lý kế hoạch khám bệnh của bác sĩ</h2>
             <div className="schedule-manage-body container">
                 <div className="row">

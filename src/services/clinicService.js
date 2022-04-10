@@ -29,7 +29,7 @@ const getDoctorListByClinicId = async (id, provinceId) => {
         let query = id ? `?id=${id}` : ''
         let url = `/api/clinic/get-doctor-list-by-clinic-id` + query
         let result = await axios.get(url)
-        return result.data
+        return result
     } catch (error) {
         console.log(error)
         return null

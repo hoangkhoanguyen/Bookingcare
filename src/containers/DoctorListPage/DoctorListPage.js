@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import doctorService from '../../services/doctorService'
-import { HomeHeader } from '../HomePage/HomeHeader/HomeHeader'
 import { DoctorListItem } from './DoctorListItem/DoctorListItem'
 import './DoctorListPage.scss'
 

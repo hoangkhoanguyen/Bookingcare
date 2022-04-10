@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
-import Header from '../../containers/Header/Header';
 import { ClinicManage } from '../../containers/System/ClinicManage/ClinicManage';
 import { DoctorManage } from '../../containers/System/DoctorManage';
-import { PatientManage } from '../../containers/System/PatientManage/PatientManage';
-import { ScheduleManage } from '../../containers/System/ScheduleManage/ScheduleManage';
 import { SpecialtyManage } from '../../containers/System/SpecialtyManage/SpecialtyManage';
 import { UserRedux } from '../../containers/System/UserRedux';
 import { path } from '../../utils';

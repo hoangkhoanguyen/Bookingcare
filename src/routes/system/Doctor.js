@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
-import Header from '../../containers/Header/Header';
 import { PatientManage } from '../../containers/System/PatientManage/PatientManage';
 import { ScheduleManage } from '../../containers/System/ScheduleManage/ScheduleManage';
 import { path } from '../../utils';

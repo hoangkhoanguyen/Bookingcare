@@ -2,7 +2,7 @@ import React from 'react'
 import { DoctorResume } from '../../DoctorInfo/DoctorInfo/DoctorResume'
 import { DoctorSchedule } from '../../DoctorInfo/DoctorInfo/DoctorSchedule/DoctorSchedule'
 import { PriceItem } from '../../DoctorInfo/PriceItem/PriceItem'
-import '../DoctorItem/DoctorItem.scss'
+import './DoctorItem.scss'
 
 export const DoctorItem = (props) => {
     const { id } = props

@@ -4,7 +4,8 @@ import '../DoctorListBySpecialty/DoctorListBySpecialty.scss'
 import userService from '../../../services/userService'
 import { languages } from '../../../utils'
 import { useSelector } from 'react-redux'
-import { DoctorItem } from '../DoctorItem/DoctorItem'
+import { DoctorListByDoctorList } from '../../DoctorListByDoctorList/DoctorListByDoctorList'
+// import { DoctorItem } from '../DoctorItem/DoctorItem'
 
 export const DoctorListBySpecialty = (props) => {
 
@@ -18,8 +19,8 @@ export const DoctorListBySpecialty = (props) => {
         try {
             if (id) {
                 let res = await specialtyService.getDoctorListBySpecialtyId(id)
-                if (res && res.data && res.data.data) {
-                    setDoctorList(res.data.data)
+                if (res && res.data) {
+                    setDoctorList(res.data)
                 }
             }
         } catch (error) {
@@ -43,8 +44,8 @@ export const DoctorListBySpecialty = (props) => {
         try {
             let provinceId = e.target.value == 'all' ? null : e.target.value
             let res = await specialtyService.getDoctorListBySpecialtyId(id, provinceId)
-            if (res && res.data && res.data.errCode === 0) {
-                setDoctorList(res.data.data)
+            if (res && res.errCode === 0) {
+                setDoctorList(res.data)
             } else {
                 setDoctorList(null)
             }
@@ -55,7 +56,7 @@ export const DoctorListBySpecialty = (props) => {
     }
 
     return (
-        <div className='doctor-list-container'>
+        <>
             <div className="province-selection">
                 <select onChange={handleChangeSelectProvince} value={selectedProvince} className="province-selection">
                     <option value="all">{language == languages.EN ? 'All' : 'Toàn quốc'}</option>
@@ -66,18 +67,14 @@ export const DoctorListBySpecialty = (props) => {
                     })}
                 </select>
             </div>
-            <div className="doctor-info-container">
-                {doctorList && doctorList.length > 0 && doctorList.map((item, index) => {
-                    return <div key={index} className="doctor-info-item">
-                        <DoctorItem id={item} />
-                    </div>
-                })}
+            <div className="doctor-by-specialty-container">
+                {doctorList && doctorList.length > 0 && <DoctorListByDoctorList doctorList={doctorList} />}
                 {doctorList && doctorList.length == 0 &&
                     <div >
                         Hiện hệ thống chưa có bác sĩ tại khu vực này
                     </div>
                 }
             </div>
-        </div>
+        </>
     )
 }

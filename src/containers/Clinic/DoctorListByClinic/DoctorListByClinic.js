@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import clinicService from '../../../services/clinicService'
 import { languages } from '../../../utils'
-import { DoctorItem } from '../../Specialty/DoctorItem/DoctorItem'
+// import { DoctorItem } from '../../Specialty/DoctorItem/DoctorItem'
 import './DoctorListByClinic.scss'
 
 export const DoctorListByClinic = (props) => {
@@ -34,13 +34,6 @@ export const DoctorListByClinic = (props) => {
                         <DoctorItem id={item} />
                     </div>
                 })}
-                {doctorList && doctorList.length == 0 &&
-                    <div >
-                        {language == languages.VI ?
-                            'Hiện hệ thống chưa có bác sĩ thuộc chuyên khoa này' :
-                            'There is no doctor in this specialty now'}
-                    </div>
-                }
             </div>
         </div>
     )

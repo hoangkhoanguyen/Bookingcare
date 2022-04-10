@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
-import UserManage from '../../containers/System/UserManage';
-import ProductManage from '../../containers/System/ProductManage';
-import RegisterPackageGroupOrAcc from '../../containers/System/RegisterPackageGroupOrAcc';
-import { UserRedux } from '../../containers/System/UserRedux';
 import Header from '../../containers/Header/Header';
-import { DoctorManage } from '../../containers/System/DoctorManage';
-import { SpecialtyManage } from '../../containers/System/SpecialtyManage/SpecialtyManage';
-import { ClinicManage } from '../../containers/System/ClinicManage/ClinicManage';
 import { path } from '../../utils';
 import Admin from './Admin';
 import Doctor from './Doctor';
@@ -18,19 +11,13 @@ class System extends Component {
         const { systemMenuPath } = this.props;
         return (
             <div className="system-container">
-                <div className="system-list">
-                    <Header />
+                <Header />
+                <div className='body-system-page'>
                     <Switch>
                         <Route path={path.DOCTOR_SYSTEM} component={Doctor} />
                         <Route path={path.ADMIN_SYSTEM} component={Admin} />
-                        {/* <Route path="/system/user-manage" component={UserManage} />
-                        <Route path="/system/product-manage" component={ProductManage} />
-                        <Route path="/system/doctor-manage" component={DoctorManage} />
-                        <Route path="/system/user-redux" component={UserRedux} />
-                        <Route path="/system/specialty-manage" component={SpecialtyManage} />
-                        <Route path="/system/clinic-manage" component={ClinicManage} />
-                        <Route path="/system/register-package-group-or-account" component={RegisterPackageGroupOrAcc} />
-                        <Route component={() => { return (<Redirect to={systemMenuPath} />) }} /> */}
+                        {/* <Route path="/system/register-package-group-or-account" component={RegisterPackageGroupOrAcc} />
+                        <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />  */}
                     </Switch>
                 </div>
             </div>
