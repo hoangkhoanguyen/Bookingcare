@@ -3,6 +3,11 @@
     flex-direction : row;
     justify-content: space-around;
     padding        : 24px;
+    width          : 100vw;
+
+    @media (max-width:670px) {
+        flex-direction: column;
+    }
 
     .intro-container {
         img {

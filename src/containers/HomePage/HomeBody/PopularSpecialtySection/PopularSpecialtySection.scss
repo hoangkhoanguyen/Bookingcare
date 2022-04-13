@@ -41,6 +41,9 @@
         .slide-body {
             cursor         : pointer;
             text-decoration: none;
+            margin: 0 auto;
+            display: block;
+            width: 230px;
 
             &:hover {
                 h6 {
@@ -59,6 +62,8 @@
             .slide-img{
                 overflow     : hidden;
                 border-radius   : 8px;
+                // width: 230px;
+                // height: 160px;
 
                 img {
                     margin          : 0 auto;

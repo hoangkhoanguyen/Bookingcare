@@ -4,7 +4,6 @@
     justify-content : space-between;
     height          : 75px;
     width           : 100vw;
-    min-width       : 1300px;
     padding         : 0 24px;
     box-shadow      : 0px 0px 8px rgba($color: #000000, $alpha: 0.3);
     position        : fixed;
@@ -40,19 +39,20 @@
                 height: 100%;
                 width : 100%;
             }
-
         }
     }
 
     .nav-center {
         display        : flex;
         flex-direction : row;
-        justify-content: center;
+        justify-content: space-between;
         font-size      : 12px;
         opacity        : 0.7;
+        flex: 1;
+        padding: 0 16px;
 
         .nav-item {
-            margin         : auto 20px;
+            margin         : auto 0;
             width          : 182px;
             cursor         : pointer;
             text-decoration: none;
@@ -63,6 +63,98 @@
             }
 
             .sub-title {}
+        }
+    }
+
+    .nav-center-shorten{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex: 1;
+        gap: 10px;
+        .nav-item{
+            i{
+                font-size: 36px;
+                line-height: 75px;
+                color: #59b4df;
+                &:hover{
+                    color: #0e8bc5;
+                }
+            }
+        }
+    }
+
+    .nav-center-min{
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        text-align: center;
+        
+        .show-more-icon{
+            i{
+                font-size: 36px;
+                line-height: 75px;
+                color: #59b4df;
+                cursor: pointer;
+                &:hover{
+                    color: #0e8bc5;
+                }
+            }
+        }
+        
+        .dropdown-container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .nav-item{
+                background-color: #fff;
+                width: 70px;
+                position: relative;
+                i{
+                    font-size: 36px;
+                    line-height: 75px;
+                    color: #59b4df;
+                }
+                &:hover{
+
+                    i{
+                        color: #0e8bc5;
+                    }
+
+                    // &::after{
+                    //     content: 'aaaa';
+                    //     height: 100%;
+                    //     width: 100%;
+                    //     position: absolute;
+                    //     left: 100%;
+                        
+                    // }
+                }
+            }
+        }
+    }
+
+    @media (max-width: 1170px) {
+        .nav-center{
+            display: none;
+        }
+    }
+    
+    @media (min-width: 1171px) {
+        .nav-center-shorten{
+            display: none;
+        }
+    }
+
+    @media (max-width:600px) {
+        .nav-center-shorten{
+            display: none;
+        }
+    }
+
+    @media (min-width:601px) {
+        .nav-center-min{
+            display: none;
         }
     }
 

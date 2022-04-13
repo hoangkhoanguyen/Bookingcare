@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { FormattedMessage } from 'react-intl';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,9 +12,28 @@ import { HomeSidebar } from '../HomeSidebar/HomeSidebar';
 
 export const HomeHeader = () => {
 
+    const dropdownIcon = useRef()
     const dispatch = useDispatch()
     const isShowSidebar = useSelector(state => state.app.isShowSidebar)
     const language = useSelector(state => state.app.language)
+    const [isDropdown, setIsDropdown] = useState(false)
+
+    useEffect(() => {
+        const hideList = (e) => {
+            if (isDropdown && dropdownIcon.current && !dropdownIcon.current.contains(e.target)) {
+                toggleDropdownIcon(false)
+            }
+        }
+        document.addEventListener('click', hideList)
+
+        return () => {
+            document.removeEventListener('click', hideList)
+        }
+    })
+
+    const toggleDropdownIcon = (value) => {
+        setIsDropdown(value)
+    }
 
     const handleChangeLanguage = (language) => {
         dispatch(changeLanguage(language))
@@ -54,6 +73,39 @@ export const HomeHeader = () => {
                 <h6 className="nav-title"><FormattedMessage id="home-header.check-pagekage" /></h6>
                 <span className="sub-title"><FormattedMessage id="home-header.general-test" /></span>
             </NavLink>
+        </div>
+        <div className="nav-center-shorten" >
+            <NavLink to={path.SPECIALTY_LIST} className="nav-item">
+                <i class="fas fa-stethoscope"></i>
+            </NavLink>
+            <NavLink to={path.CLINIC_LIST} className="nav-item">
+                <i class="fas fa-hospital-alt"></i>
+            </NavLink>
+            <NavLink to={path.DOCTOR_LIST} className="nav-item">
+                <i class="fas fa-user-md"></i>
+            </NavLink>
+            <NavLink to={path.HOME_PAGE} className="nav-item">
+                <i class="fas fa-briefcase-medical"></i>
+            </NavLink>
+        </div>
+        <div className='nav-center-min' onClick={() => { toggleDropdownIcon(!isDropdown) }} ref={dropdownIcon}>
+            <div className="show-more-icon">
+                <i class="fas fa-th-large"></i>
+            </div>
+            {isDropdown && <div className="dropdown-container">
+                <NavLink to={path.SPECIALTY_LIST} className="nav-item" style={{ '--sub-name': 'abc' }} >
+                    <i class="fas fa-stethoscope"></i>
+                </NavLink>
+                <NavLink to={path.CLINIC_LIST} className="nav-item" style={{ '--sub-name': 'cdf' }}>
+                    <i class="fas fa-hospital-alt"></i>
+                </NavLink>
+                <NavLink to={path.DOCTOR_LIST} className="nav-item" style={{ '--sub-name': 'gdf' }}>
+                    <i class="fas fa-user-md"></i>
+                </NavLink>
+                <NavLink to={path.HOME_PAGE} className="nav-item" style={{ '--sub-name': 'svdf' }}>
+                    <i class="fas fa-briefcase-medical"></i>
+                </NavLink>
+            </div>}
         </div>
         <div className="nav-right">
             <div className="support">

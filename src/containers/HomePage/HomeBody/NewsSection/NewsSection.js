@@ -8,13 +8,32 @@ export const NewsSection = () => {
     const carousel = useRef(null)
 
     let settings = {
-        dots: false,
         infinite: true,
         speed: 500,
         slidesToShow: 4,
-        slidesToScroll: 1,
+        slidesToSscroll: 1,
         autoplay: true,
-        autoplaySpeed: 3000
+        autoplaySpeed: 3000,
+        responsive: [
+            {
+                breakpoint: 1100,
+                settings: {
+                    slidesToShow: 3,
+                }
+            },
+            {
+                breakpoint: 860,
+                settings: {
+                    slidesToShow: 2,
+                }
+            },
+            {
+                breakpoint: 620,
+                settings: {
+                    slidesToShow: 1,
+                }
+            }
+        ]
     };
 
     const slideList = [

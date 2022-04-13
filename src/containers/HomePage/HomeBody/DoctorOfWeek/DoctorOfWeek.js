@@ -16,25 +16,37 @@ export const DoctorOfWeek = () => {
 
     useEffect(() => {
         dispatch(fetchDoctorOfWeekStart(8))
-        if (document.querySelector('.doctor-of-week-section .slick-prev')) {
-            document.querySelector('.doctor-of-week-section .slick-prev').classList.add('disabled-arrow')
-        }
-    }, [carousel])
+        // if (document.querySelector('.doctor-of-week-section .slick-prev')) {
+        //     document.querySelector('.doctor-of-week-section .slick-prev').classList.add('disabled-arrow')
+        // }
+    }, [])
 
 
     let settings = {
-        dots: false,
-        infinite: false,
+        infinite: true,
         speed: 500,
         slidesToShow: 4,
-        slidesToScroll: 1,
-        afterChange: (index) => {
-            if (index == 0) {
-                document.querySelector('.doctor-of-week-section .slick-prev').classList.add('disabled-arrow')
-            } else {
-                document.querySelector('.doctor-of-week-section .slick-prev').classList.remove('disabled-arrow')
+        slidesToSscroll: 1,
+        responsive: [
+            {
+                breakpoint: 1100,
+                settings: {
+                    slidesToShow: 3,
+                }
+            },
+            {
+                breakpoint: 860,
+                settings: {
+                    slidesToShow: 2,
+                }
+            },
+            {
+                breakpoint: 620,
+                settings: {
+                    slidesToShow: 1,
+                }
             }
-        }
+        ]
     };
 
     return <div className='doctor-of-week-section'>

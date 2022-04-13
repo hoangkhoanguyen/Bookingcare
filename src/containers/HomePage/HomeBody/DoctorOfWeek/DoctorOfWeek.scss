@@ -39,7 +39,7 @@
     }
 
     .slide-item {
-        padding: 0 24px;
+        // padding: 0 24px;
 
         .slide-body {
             text-decoration: none;
@@ -53,7 +53,7 @@
             width: 235px;
             flex-direction: column;
             justify-content: space-between;
-
+            margin: 0 auto;
 
             &:hover {
                 .name {

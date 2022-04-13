@@ -14,13 +14,31 @@ export const MedicalFacilitySection = () => {
     const [clinicList, setClinicList] = useState()
 
     let settings = {
-        dots: false,
-        infinite: false,
+        infinite: true,
         speed: 500,
         slidesToShow: 4,
-        slidesToScroll: 1,
+        slidesToSscroll: 1,
+        responsive: [
+            {
+                breakpoint: 1100,
+                settings: {
+                    slidesToShow: 3,
+                }
+            },
+            {
+                breakpoint: 860,
+                settings: {
+                    slidesToShow: 2,
+                }
+            },
+            {
+                breakpoint: 620,
+                settings: {
+                    slidesToShow: 1,
+                }
+            }
+        ]
     };
-
     useEffect(async () => {
         try {
             let res = await clinicService.getClinic()
