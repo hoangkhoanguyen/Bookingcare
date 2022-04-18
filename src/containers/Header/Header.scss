@@ -7,12 +7,19 @@
     background-color: $colormain;
     color           : $common-text-color;
     height          : 40px;
-    position        : relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
 
     .header-right {
         margin-right  : 24px;
         display       : flex;
         flex-direction: row;
+
+        .user-info{
+            padding: 0 10px;
+        }
 
         .change-language {
             margin: auto 0;

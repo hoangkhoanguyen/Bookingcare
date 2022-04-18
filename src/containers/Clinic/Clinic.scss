@@ -1,11 +1,21 @@
 .clinic-body{
      background-color   : #eeeeee;
+     width     : 100%;
     .clinic-details {
         padding-bottom: 12px;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 
     .doctor-list-by-clinic {
         padding: 12px 0;
         padding-bottom: 24px;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding-left: 20px;
+        padding-right: 20px;
     }
 }

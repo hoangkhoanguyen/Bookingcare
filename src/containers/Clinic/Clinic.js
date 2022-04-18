@@ -37,9 +37,7 @@ export const Clinic = () => {
                 {doctorList && doctorList.length > 0 && <DoctorListByDoctorList doctorList={doctorList} />}
                 {doctorList && doctorList.length == 0 &&
                     <div >
-                        {language == languages.VI ?
-                            'Hiện hệ thống chưa có bác sĩ thuộc chuyên khoa này' :
-                            'There is no doctor in this specialty now'}
+                        Hiện hệ thống chưa có bác sĩ tại khu vực này
                     </div>
                 }
             </div>

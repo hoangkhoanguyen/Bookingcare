@@ -4,6 +4,7 @@
     display       : flex;
     flex-direction: row;
 
+    
 
     .doctor-info {
         width     : 55%;
@@ -21,4 +22,17 @@
 
         .price-info {}
     }
+    @media (max-width:600px) {
+        flex-direction: column;
+
+        .doctor-info {
+            width     : 100%;
+        }
+    
+        .doctor-booking {
+            width  : 100%;
+        }
+
+    }
+    
 }

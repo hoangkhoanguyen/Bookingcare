@@ -11,6 +11,8 @@ class Doctor extends Component {
             <Switch>
                 <Route path={path.DOCTOR_SYSTEM_SCHEDULE_MANAGE} component={ScheduleManage} />
                 <Route path={path.DOCTOR_SYSTEM_PATIENT_MANAGE} component={PatientManage} />
+                <Route component={() => { return (<Redirect to={path.DOCTOR_SYSTEM_SCHEDULE_MANAGE} />) }} />
+
             </Switch>
         );
     }

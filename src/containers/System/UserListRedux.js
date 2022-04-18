@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 import userService from '../../services/userService';
 import { fetchGetAllUsersStart, setEditMode, updateChosenUser } from '../../store/actions/userActions';
 import { languages } from '../../utils';
-
+import './UserListRedux.scss'
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 // import style manually
@@ -67,7 +67,7 @@ export const UserListRedux = () => {
 
     return (
 
-        <div className='container'>
+        <div className='table-container'>
             <table>
                 <thead>
                     <tr>

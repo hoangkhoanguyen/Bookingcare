@@ -71,7 +71,9 @@ export const DoctorListBySpecialty = (props) => {
                 {doctorList && doctorList.length > 0 && <DoctorListByDoctorList doctorList={doctorList} />}
                 {doctorList && doctorList.length == 0 &&
                     <div >
-                        Hiện hệ thống chưa có bác sĩ tại khu vực này
+                        {language == languages.VI ?
+                            'Hiện hệ thống chưa có bác sĩ thuộc chuyên khoa này' :
+                            'There is no doctor in this specialty now'}
                     </div>
                 }
             </div>

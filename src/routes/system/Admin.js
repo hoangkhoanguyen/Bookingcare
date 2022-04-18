@@ -15,7 +15,9 @@ class Admin extends Component {
                 <Route path={path.ADMIN_SYSTEM_DOCTOR_MANAGE} component={DoctorManage} />
                 <Route path={path.ADMIN_SYSTEM_CLINIC_MANAGE} component={ClinicManage} />
                 <Route path={path.ADMIN_SYSTEM_SPECIALTY_MANAGE} component={SpecialtyManage} />
+                <Route component={() => { return (<Redirect to={path.ADMIN_SYSTEM_USER_MANAGE} />) }} />
             </Switch>
+
         );
     }
 }

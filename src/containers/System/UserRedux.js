@@ -1,6 +1,7 @@
 
 import { FormUserInfoRedux } from './FormUserInfoRedux';
 import { UserListRedux } from './UserListRedux';
+import './UserRedux.scss'
 
 export const UserRedux = () => {
 

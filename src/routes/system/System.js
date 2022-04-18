@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Header from '../../containers/Header/Header';
-import { path } from '../../utils';
+import { path, USER_ROLE } from '../../utils';
 import Admin from './Admin';
 import Doctor from './Doctor';
+import './System.scss'
 
 class System extends Component {
+
     render() {
-        const { systemMenuPath } = this.props;
+        const { systemMenuPath, role } = this.props;
         return (
             <div className="system-container">
                 <Header />
@@ -16,8 +18,12 @@ class System extends Component {
                     <Switch>
                         <Route path={path.DOCTOR_SYSTEM} component={Doctor} />
                         <Route path={path.ADMIN_SYSTEM} component={Admin} />
-                        {/* <Route path="/system/register-package-group-or-account" component={RegisterPackageGroupOrAcc} />
-                        <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />  */}
+                        <Route component={() => {
+                            return (<Redirect to={
+                                role == USER_ROLE.ADMIN ? path.ADMIN_SYSTEM : path.DOCTOR_SYSTEM
+                            } />)
+                        }} />
+
                     </Switch>
                 </div>
             </div>
@@ -27,7 +33,8 @@ class System extends Component {
 
 const mapStateToProps = state => {
     return {
-        systemMenuPath: state.app.systemMenuPath
+        systemMenuPath: state.app.systemMenuPath,
+        role: state.user.userInfo && state.user.userInfo.role
     };
 };
 

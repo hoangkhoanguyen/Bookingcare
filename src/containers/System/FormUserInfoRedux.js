@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { languages } from '../../utils'
 import { FormattedMessage } from 'react-intl';
 import { fetchStart, updateChosenUser, fetchGetAllUsersStart, setEditMode } from '../../store/actions/userActions';
-import '../System/UserRedux.scss'
+import './FormUserInfoRedux.scss'
 import userService from '../../services/userService'
 import Validate from '../../services/Validate';
 import CommonUtils from '../../utils/CommonUtils'
@@ -206,7 +206,6 @@ export const FormUserInfoRedux = () => {
     }
 
     const handleStartType = (key) => {
-        console.log('type')
         setErrorMessage({
             ...errMessage,
             [key]: ''
@@ -239,9 +238,9 @@ export const FormUserInfoRedux = () => {
         dispatch(updateChosenUser({}))
     }
     return (
-        <div className="container">
+        <div className="form-user-info-container">
             <div className=" row mb-2">
-                <div className="form-group col-3 position-relative">
+                <div className="form-group col-sm-6 col-12  col-lg-3  position-relative">
                     <label >Email</label>
                     <FormattedMessage id='form-register.enter-email'>
                         {
@@ -252,13 +251,9 @@ export const FormUserInfoRedux = () => {
                         }
 
                     </FormattedMessage>
-                    {console.log('token: ', userLogin)}
-                    {console.log('edit: ', userEdit.email)}
-                    {console.log('new: ', newUserInfo.email)}
-                    {console.log('value: ', isEditting ? userEdit.email : newUserInfo.email)}
                     {errMessage.email != '' && <div className="warning-message position-absolute top-0 ">{errMessage.email}</div>}
                 </div>
-                <div className="form-group col-3 position-relative">
+                <div className="form-group col-sm-6 col-12  col-lg-3 position-relative">
                     <label ><FormattedMessage id='form-register.password' /></label>
                     <FormattedMessage id='form-register.enter-password'>
                         {
@@ -270,7 +265,7 @@ export const FormUserInfoRedux = () => {
                     </FormattedMessage>
                     {errMessage.password != '' && <div className="warning-message position-absolute top-0 ">{errMessage.password}</div>}
                 </div>
-                <div className="form-group col-3 position-relative">
+                <div className="form-group col-sm-6 col-12  col-lg-3 position-relative">
                     <label ><FormattedMessage id='form-register.first-name' /></label>
                     <FormattedMessage id='form-register.enter-first-name'>
                         {
@@ -282,7 +277,7 @@ export const FormUserInfoRedux = () => {
                     </FormattedMessage>
                     {errMessage.firstName != '' && <div className="warning-message position-absolute top-0 ">{errMessage.firstName}</div>}
                 </div>
-                <div className="form-group col-3 position-relative">
+                <div className="form-group col-sm-6 col-12  col-lg-3 position-relative">
                     <label ><FormattedMessage id='form-register.last-name' /></label>
                     <FormattedMessage id='form-register.enter-last-name'>
                         {
@@ -296,7 +291,7 @@ export const FormUserInfoRedux = () => {
                 </div>
             </div>
             <div className="row mb-2">
-                <div className="form-group col-3 position-relative">
+                <div className="form-group col-12 col-sm-4 col-md-3 position-relative">
                     <label ><FormattedMessage id='form-register.phone-number' /></label>
                     <FormattedMessage id='form-register.enter-phone-number'>
                         {
@@ -308,7 +303,7 @@ export const FormUserInfoRedux = () => {
                     </FormattedMessage>
                     {errMessage.phoneNumber != '' && <div className="warning-message position-absolute top-0 ">{errMessage.phoneNumber}</div>}
                 </div>
-                <div className="form-group col-9 position-relative">
+                <div className="form-group col-12 col-sm-8 col-md-9 position-relative">
                     <label ><FormattedMessage id='form-register.address' /></label>
                     <FormattedMessage id='form-register.enter-address'>
                         {
@@ -322,7 +317,7 @@ export const FormUserInfoRedux = () => {
                 </div>
             </div>
             <div className="row mb-3">
-                <div className="form-group col-3 position-relative">
+                <div className="form-group col-sm-6 col-12  col-lg-3 position-relative">
                     <label ><FormattedMessage id='form-register.gender' /></label>
                     <select className="form-control" value={isEditting ? userEdit.gender : newUserInfo.gender}
                         onChange={(e) => { handleChangeInput('gender', e) }}
@@ -337,7 +332,7 @@ export const FormUserInfoRedux = () => {
                     </select>
                     {errMessage.gender != '' && <div className="warning-message position-absolute top-0 ">{errMessage.gender}</div>}
                 </div>
-                <div className="form-group col-3 position-relative">
+                <div className="form-group col-sm-6 col-12  col-lg-3 position-relative">
                     <label ><FormattedMessage id='form-register.position' /></label>
                     <select className="form-control" value={isEditting ? userEdit.position : newUserInfo.position}
                         onChange={(e) => { handleChangeInput('position', e) }}
@@ -353,7 +348,7 @@ export const FormUserInfoRedux = () => {
 
                     {errMessage.position != '' && <div className="warning-message position-absolute top-0 ">{errMessage.position}</div>}
                 </div>
-                <div className="form-group col-3 position-relative">
+                <div className="form-group col-sm-6 col-12  col-lg-3 position-relative">
                     <label ><FormattedMessage id='form-register.role' /></label>
                     <select className="form-control" value={isEditting ? userEdit.role : newUserInfo.role}
                         onChange={(e) => { handleChangeInput('role', e) }}
@@ -368,7 +363,7 @@ export const FormUserInfoRedux = () => {
                     </select>
                     {errMessage.role != '' && <div className="warning-message position-absolute top-0 ">{errMessage.role}</div>}
                 </div>
-                <div className="form-group col-3 position-relative">
+                <div className="form-group col-sm-6 col-12  col-lg-3 text-center position-relative">
                     <label ></label>
                     <label htmlFor="input-img" className='preview'>
                         {!isEditting && newUserInfo && newUserInfo.image && <img src={newUserInfo.image} alt="" />}

@@ -39,6 +39,9 @@ export const DoctorInfo = (props) => {
 
     return (
         <>
+            {console.log('is local', process.env.REACT_APP_IS_LOCALHOST)}
+            {console.log('is local host != 1', process.env.REACT_APP_IS_LOCALHOST) != 1}
+            {console.log('window href ', window.location.href)}
             {doctor &&
                 <div className='doctor-detail-body'>
                     <div className="introduction-container">

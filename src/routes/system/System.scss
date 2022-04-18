@@ -1,6 +1,12 @@
 .system-container{
+    width: 100%;
+
         .body-system-page{
             margin-top: 40px;
+            height: calc(100vh - 40px);
+            overflow-y: auto;
+            width: 100%;
+            overflow-x: hidden;
         }
     
 }

@@ -3,7 +3,7 @@
     flex-direction  : row;
     justify-content : space-between;
     height          : 75px;
-    width           : 100vw;
+    width           : 100%;
     padding         : 0 24px;
     box-shadow      : 0px 0px 8px rgba($color: #000000, $alpha: 0.3);
     position        : fixed;
@@ -38,6 +38,19 @@
             img {
                 height: 100%;
                 width : 100%;
+            }
+        }
+
+        @media (max-width:600px) {
+            .menu-icon {
+                i {
+                    font-size: 24px;
+                }
+            }
+
+            .logo {
+                width: 150px;
+                margin-right: 8px;
             }
         }
     }
@@ -91,8 +104,9 @@
         text-align: center;
         
         .show-more-icon{
+            margin-right: 8px;
             i{
-                font-size: 36px;
+                font-size: 30px;                
                 line-height: 75px;
                 color: #59b4df;
                 cursor: pointer;

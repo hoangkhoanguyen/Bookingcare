@@ -7,6 +7,7 @@ import { adminMenu, doctorMenu } from './menuApp';
 import './Header.scss';
 import { languages, USER_ROLE } from '../../utils/constant';
 import { LanguageSelection } from '../LanguageSelection/LanguageSelection';
+import { UserInfo } from './UserInfo/UserInfo';
 
 // import { changeLanguage } from '../../store/actions';
 
@@ -34,14 +35,12 @@ class Header extends Component {
                 menu: doctorMenu
             })
         }
+
     };
 
     render() {
 
         const { processLogout, changeLanguage } = this.props;
-        const handleChangeLanguage = (language) => {
-            changeLanguage(language)
-        }
 
         return (
             <div className="header-container">
@@ -49,9 +48,11 @@ class Header extends Component {
                 <div className="header-tabs-container">
                     <Navigator menus={this.state.menu} />
                 </div>
-
                 {/* nút logout */}
                 <div className="header-right">
+                    <div className="user-info">
+                        <UserInfo />
+                    </div>
                     <div className="change-language">
                         <LanguageSelection />
                     </div>
